@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, GraduationCap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const navigation = [
-    { name: 'Accueil', path: '/' },
-    { name: 'Formations', path: '/courses' },
-    { name: 'Vidéos CCNA', path: '/videos' },
-    { name: 'Financement', path: '/funding' },
-    { name: 'Contact', path: '/contact' }
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.courses'), path: '/courses' },
+    { name: t('nav.videos'), path: '/videos' },
+    { name: t('nav.funding'), path: '/funding' },
+    { name: t('nav.contact'), path: '/contact' }
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -49,8 +52,9 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
+            <LanguageSwitcher />
             <Button className="ml-4 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-semibold">
-              Inscription
+              {t('nav.register')}
             </Button>
           </div>
 
@@ -82,8 +86,11 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
+            <div className="px-4 py-3">
+              <LanguageSwitcher />
+            </div>
             <Button className="w-full mt-3 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-semibold">
-              Inscription
+              {t('nav.register')}
             </Button>
           </div>
         </div>

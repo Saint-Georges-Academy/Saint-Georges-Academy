@@ -9,6 +9,7 @@ import CourseDetail from "./pages/CourseDetail";
 import Videos from "./pages/Videos";
 import Funding from "./pages/Funding";
 import Contact from "./pages/Contact";
+import "./i18n";
 
 function App() {
   return (
