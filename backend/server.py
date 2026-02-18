@@ -10,9 +10,13 @@ from typing import List
 import uuid
 from datetime import datetime, timezone
 
-
+# Load environment variables FIRST
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
+
+# Import payment routes after env is loaded
+from routes.payments import payment_router
+from routes.webhooks import webhook_router
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
@@ -68,6 +72,8 @@ async def get_status_checks():
 
 # Include the router in the main app
 app.include_router(api_router)
+app.include_router(payment_router)
+app.include_router(webhook_router)
 
 app.add_middleware(
     CORSMiddleware,
