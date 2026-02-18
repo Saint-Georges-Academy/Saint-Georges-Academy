@@ -19,6 +19,7 @@ import AccessibiliteHandicap from "./pages/AccessibiliteHandicap";
 import FAQ from "./pages/FAQ";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentCancel from "./pages/PaymentCancel";
+import About from "./pages/About";
 import "./i18n";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/course/:courseId" element={<CourseDetail />} />
           <Route path="/videos" element={<Videos />} />
