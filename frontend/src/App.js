@@ -9,6 +9,10 @@ import CourseDetail from "./pages/CourseDetail";
 import Videos from "./pages/Videos";
 import Funding from "./pages/Funding";
 import Contact from "./pages/Contact";
+import RGPD from "./pages/RGPD";
+import CGV from "./pages/CGV";
+import MentionsLegales from "./pages/MentionsLegales";
+import CertificationCheckout from "./pages/CertificationCheckout";
 import "./i18n";
 
 function App() {
@@ -23,6 +27,10 @@ function App() {
           <Route path="/videos" element={<Videos />} />
           <Route path="/funding" element={<Funding />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/rgpd" element={<RGPD />} />
+          <Route path="/cgv" element={<CGV />} />
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/certification" element={<CertificationCheckout />} />
         </Routes>
         <Footer />
         <Toaster />
