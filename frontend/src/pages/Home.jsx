@@ -42,21 +42,24 @@ const Home = () => {
       description: 'Certification réseau Cisco complète en 3 modules progressifs',
       level: 'Tous niveaux',
       path: '/courses?filter=CCNA',
-      color: 'from-blue-50 to-blue-100'
+      color: 'from-blue-50 to-blue-100',
+      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/b3co9hjk_image.png'
     },
     {
       title: 'CyberOps',
       description: 'Opérations de cybersécurité et détection des menaces',
       level: 'Intermédiaire',
       path: '/course/cyberops',
-      color: 'from-red-50 to-red-100'
+      color: 'from-red-50 to-red-100',
+      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/plvi6l26_image.png'
     },
     {
       title: 'Unreal Engine',
       description: 'Développement de jeux et applications 3D interactives',
       level: 'Tous niveaux',
       path: '/course/unreal',
-      color: 'from-purple-50 to-purple-100'
+      color: 'from-purple-50 to-purple-100',
+      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/9hanr4os_image.png'
     }
   ];
 
@@ -167,9 +170,16 @@ const Home = () => {
               <Card key={index} className="border-2 hover:border-[#d4af37] transition-all hover:shadow-xl group">
                 <div className={`h-3 bg-gradient-to-r ${course.color}`}></div>
                 <CardHeader>
-                  <Badge className="w-fit mb-2 bg-gray-100 text-gray-700 hover:bg-gray-200">
-                    {course.level}
-                  </Badge>
+                  <div className="flex items-start justify-between mb-3">
+                    <Badge className="bg-gray-100 text-gray-700 hover:bg-gray-200">
+                      {course.level}
+                    </Badge>
+                    <img 
+                      src={course.logo} 
+                      alt={`${course.title} Logo`}
+                      className="w-12 h-12 object-contain"
+                    />
+                  </div>
                   <CardTitle className="text-2xl text-[#0f1f3d] mb-2">{course.title}</CardTitle>
                   <p className="text-gray-600">{course.description}</p>
                 </CardHeader>
