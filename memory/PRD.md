@@ -79,6 +79,14 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Branded with Saint-Georges Academy colors
 - Download button on all course detail pages
 
+✅ **Procédure d'Inscription Page** (/inscription)
+- 7-step enrollment process (France Travail & Qualiopi compliant)
+- Visual timeline with icons
+- Quality engagement section
+- Qualiopi audit checklist
+- CTA buttons and contact info
+- Linked from "Register" button in navbar
+
 ✅ **Bug Fixes**
 - Removed "France Travail (AIF)" from funding options
 - Updated page title to "Saint-Georges Academy | Cisco Networking Academy"
@@ -199,6 +207,7 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 │   ├── CGV.jsx
 │   ├── MentionsLegales.jsx
 │   ├── Indicateurs.jsx
+│   ├── ProcedureInscription.jsx
 │   └── CertificationCheckout.jsx
 ├── data/
 │   └── mock.js (course data)
