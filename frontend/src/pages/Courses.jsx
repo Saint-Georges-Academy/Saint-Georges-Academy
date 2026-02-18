@@ -80,18 +80,18 @@ const Courses = () => {
                     {course.title}
                   </CardTitle>
                   <p className="text-gray-600 text-sm mb-4">{course.description}</p>
-                
-                <div className="space-y-2 text-sm text-gray-600">
-                  <div className="flex items-center space-x-2">
-                    <Clock className="w-4 h-4 text-[#d4af37]" />
-                    <span>{course.duration}</span>
+                  
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <div className="flex items-center space-x-2">
+                      <Clock className="w-4 h-4 text-[#d4af37]" />
+                      <span>{course.duration}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <BarChart className="w-4 h-4 text-[#d4af37]" />
+                      <span>Niveau: {course.level}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <BarChart className="w-4 h-4 text-[#d4af37]" />
-                    <span>Niveau: {course.level}</span>
-                  </div>
-                </div>
-              </CardHeader>
+                </CardHeader>
 
               <CardContent className="flex-grow flex flex-col justify-end">
                 <div className="border-t pt-4 mb-4">
