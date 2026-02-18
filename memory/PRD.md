@@ -25,20 +25,22 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - **Unreal Engine** (3750€): In-class only, 35 hours
 
 ### Certification
-- Cisco exams: 630€ (not included)
+- Cisco exams: 630€ (not included in course price)
 - Via PearsonVUE centers
 - Internal certificate for Unreal Engine
 
-### Funding Options
+### Funding Options (Updated)
 - Personal financing
 - Employer funding
 - OPCO
-- France Travail (AIF)
+- ~~France Travail (AIF)~~ - REMOVED (not yet validated)
 - NOT CPF eligible (yet)
 
-## What's Been Implemented (Phase 1)
+---
 
-### Completed (Dec 2024)
+## What's Been Implemented
+
+### Phase 1 - Completed (Dec 2024)
 ✅ **Frontend Landing Page** with mock data
 - Home page with hero, stats, features
 - Course catalog with filtering
@@ -48,28 +50,55 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Contact page with form
 - Responsive navbar and footer
 - Professional institutional design (navy #0f1f3d + gold #d4af37)
-- Mock payment flow
 - Toast notifications
 
-### Tech Stack
-- **Frontend**: React 19, React Router, TailwindCSS, Shadcn UI
+### Phase 1.5 - Completed (Jan 2026)
+✅ **Multilingual Support**
+- French, English, Croatian languages
+- i18next integration with language switcher
+
+✅ **Legal Pages**
+- RGPD (Politique de Confidentialité) - /rgpd
+- CGV (Conditions Générales de Vente) - /cgv
+- Mentions Légales - /mentions-legales
+- Footer updated with legal links section
+
+✅ **Certification Purchase Feature**
+- Dedicated page at /certification
+- Certification selection (CCNA, CyberOps)
+- Date picker for exam scheduling (14+ days in future)
+- Complete billing form
+- RGPD and CGV consent checkboxes
+- Mock Stripe payment (2.5s simulation)
+- Detailed receipt generation with print option
+
+✅ **Bug Fixes**
+- Removed "France Travail (AIF)" from funding options
+- Updated page title to "Saint-Georges Academy | Cisco Networking Academy"
+
+---
+
+## Tech Stack
+- **Frontend**: React 19, React Router, TailwindCSS, Shadcn UI, i18next
 - **Backend**: FastAPI, MongoDB (template ready)
 - **Deployment**: Supervisor, Nginx
 
-## Next Phase - Backend & Authentication
+---
+
+## Next Phase - Backend & Real Payments
 
 ### P0 Features (Critical)
-1. **Authentication System**
+1. **Real Stripe Integration**
+   - Replace mock payment with real Stripe Checkout
+   - Product creation in Stripe dashboard
+   - Webhook handling for payment confirmation
+   - Order storage in database
+
+2. **User Authentication System**
    - User registration/login
    - Email verification
    - Password reset
    - JWT tokens
-   
-2. **Real Stripe Integration**
-   - Product creation
-   - Checkout sessions
-   - Payment webhooks
-   - Order management
 
 3. **Student Dashboard**
    - Course access based on purchase
@@ -78,13 +107,8 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
    - Progress tracking
    - Document downloads
 
-4. **Live Session Booking**
-   - Calendar system
-   - Instructor availability
-   - Session scheduling
-   - Email notifications
-
 ### P1 Features (Important)
+- Live Session Booking System
 - Admin dashboard
 - Course content management
 - User management
@@ -96,6 +120,8 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Blog/news section
 - Certificate generation
 - Advanced analytics
+
+---
 
 ## API Contracts (To Implement)
 
@@ -125,6 +151,8 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - GET /api/dashboard/my-videos
 - GET /api/dashboard/progress
 
+---
+
 ## Design Guidelines
 - Institutional professional aesthetic
 - Navy blue (#0f1f3d) and gold (#d4af37)
@@ -133,12 +161,7 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Clean, spacious layouts
 - Smooth transitions and micro-interactions
 
-## Mock Data Location
-`/app/frontend/src/data/mock.js`
-- All course information
-- Video product details
-- Funding options
-- Mock checkout/booking functions
+---
 
 ## Important Notes
 - Certification exams NOT sold directly (user arranges via PearsonVUE)
@@ -146,3 +169,42 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Qualiopi certification in progress
 - NOT CPF eligible currently
 - Live sessions only for online full courses (not videos-only)
+- France Travail funding removed until validated
+
+---
+
+## File Structure
+```
+/app/frontend/src/
+├── components/
+│   ├── Navbar.jsx
+│   ├── Footer.jsx (with legal links)
+│   ├── LanguageSwitcher.jsx
+│   └── ui/ (Shadcn components)
+├── pages/
+│   ├── Home.jsx
+│   ├── Courses.jsx
+│   ├── CourseDetail.jsx
+│   ├── Videos.jsx
+│   ├── Funding.jsx
+│   ├── Contact.jsx
+│   ├── RGPD.jsx
+│   ├── CGV.jsx
+│   ├── MentionsLegales.jsx
+│   └── CertificationCheckout.jsx
+├── data/
+│   └── mock.js (course data)
+├── locales/
+│   ├── en.json
+│   ├── fr.json
+│   └── hr.json
+├── App.js
+└── i18n.js
+```
+
+---
+
+## Mocked Features (Awaiting Real Integration)
+- **Stripe Payment**: Currently simulated with setTimeout. Needs real API keys.
+- **Email Notifications**: Receipt/confirmation emails not implemented yet.
+- **Course Data**: All course info in frontend mock.js, not from backend.
