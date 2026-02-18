@@ -104,15 +104,20 @@ const generateSessions = (format) => {
 const CourseDetail = () => {
   const { courseId } = useParams();
   const course = courses.find(c => c.id === courseId);
-  const [selectedFormat, setSelectedFormat] = useState('online');
+  
+  // For Unreal Engine (no online option), default to inclass
+  const defaultFormat = course?.id === 'unreal' ? 'inclass' : 'online';
+  const [selectedFormat, setSelectedFormat] = useState(defaultFormat);
   const [selectedSession, setSelectedSession] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   // Generate available sessions based on selected format
   const availableSessions = useMemo(() => {
-    return generateSessions(selectedFormat);
-  }, [selectedFormat]);
+    // For Unreal Engine, always use inclass format
+    const format = course?.id === 'unreal' ? 'inclass' : selectedFormat;
+    return generateSessions(format);
+  }, [selectedFormat, course?.id]);
 
   // Reset session selection when format changes
   const handleFormatChange = (format) => {
