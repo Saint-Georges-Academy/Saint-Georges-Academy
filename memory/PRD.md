@@ -125,6 +125,19 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Removed "France Travail (AIF)" from funding options
 - Updated page title to "Saint-Georges Academy | Cisco Networking Academy"
 
+### Phase 2 - Session Selection (Feb 2026)
+✅ **Course Session Selection Feature**
+- Session selector dropdown on all course detail pages
+- Format-specific date generation:
+  - **En ligne (Online)**: 4-week sessions with 4-week breaks between sessions
+  - **Présentiel (In-class)**: Fixed annual sessions (Février, Avril, Juillet, Octobre)
+- Dynamic session generation based on current date (only shows future sessions)
+- Green confirmation box when session selected
+- Validation preventing checkout without session selection
+- Selected session info passed to Stripe checkout
+- Tab switching resets session selection
+- Unreal Engine shows only présentiel sessions (no format tabs)
+
 ---
 
 ## Tech Stack
