@@ -119,7 +119,20 @@ export const courses = [
       'Lire une trame Ethernet',
       'Diagnostiquer un problème simple'
     ],
-    note: 'CCNA 1 = Fondations réseau. C\'est le module le plus structurant. Sans maîtrise du CCNA 1, le reste est fragile.'
+    targetAudience: [
+      'Débutants en informatique',
+      'Étudiants post-bac',
+      'Personnes en reconversion professionnelle',
+      'Demandeurs d\'emploi',
+      'Autodidactes souhaitant structurer leurs bases'
+    ],
+    prerequisites: [
+      'Maîtrise basique d\'un ordinateur',
+      'Compréhension simple de l\'anglais technique (lecture)',
+      'Aucune connaissance réseau requise',
+      'Motivation et capacité de travail autonome'
+    ],
+    note: 'CCNA 1 = Fondations réseau. C\'est le module le plus structurant. Sans maîtrise du CCNA 1, le reste est fragile. Validation du niveau possible via entretien ou test de positionnement.'
   },
   {
     id: 'ccna2',
@@ -235,7 +248,20 @@ export const courses = [
       'Mettre en place port security',
       'Dépanner un réseau de taille moyenne'
     ],
-    note: 'CCNA 2 = Architecture réseau. Si CCNA 1 est la fondation, CCNA 2 est la construction de l\'infrastructure. C\'est le module où l\'étudiant devient réellement opérationnel.'
+    targetAudience: [
+      'Étudiants ayant validé CCNA 1',
+      'Techniciens IT débutants',
+      'Alternants',
+      'Administrateurs systèmes juniors'
+    ],
+    prerequisites: [
+      'Maîtrise des notions CCNA 1',
+      'Compréhension IPv4 et subnetting',
+      'Configuration basique routeur/switch',
+      'Connaissance modèle OSI',
+      'Capacité à travailler en ligne de commande (CLI)'
+    ],
+    note: 'CCNA 2 = Architecture réseau. Si CCNA 1 est la fondation, CCNA 2 est la construction de l\'infrastructure. C\'est le module où l\'étudiant devient réellement opérationnel. Validation du niveau possible via entretien ou test de positionnement.'
   },
   {
     id: 'ccna3',
@@ -342,7 +368,21 @@ export const courses = [
       'Mettre en œuvre supervision réseau',
       'Comprendre l\'automatisation réseau'
     ],
-    note: 'CCNA 3 = Niveau entreprise. C\'est le module qui transforme un technicien réseau en Administrateur réseau junior, Technicien cybersécurité, ou futur ingénieur réseau. Les 3 modules (CCNA 1 + 2 + 3) préparent à l\'examen Cisco Certified Network Associate.'
+    targetAudience: [
+      'Étudiants ayant validé CCNA 1 & 2',
+      'Techniciens réseau',
+      'Administrateurs IT',
+      'Profils évoluant vers ingénierie réseau'
+    ],
+    prerequisites: [
+      'Maîtrise VLAN et inter-VLAN',
+      'Routage statique',
+      'Bases OSPF',
+      'Subnetting avancé',
+      'Bonne compréhension TCP/IP',
+      'Rigueur technique'
+    ],
+    note: 'CCNA 3 = Niveau entreprise. C\'est le module qui transforme un technicien réseau en Administrateur réseau junior, Technicien cybersécurité, ou futur ingénieur réseau. Les 3 modules (CCNA 1 + 2 + 3) préparent à l\'examen Cisco Certified Network Associate. Validation du niveau possible via entretien ou test de positionnement.'
   },
   {
     id: 'cyberops',
@@ -449,7 +489,20 @@ export const courses = [
       'Administrateur sécurité junior',
       'Analyste sécurité réseau'
     ],
-    note: 'CyberOps est le complément naturel du CCNA. CCNA → Infrastructure, CyberOps → Défense. Ensemble, cela crée un profil très attractif pour les entreprises, ESN, SOC et PME.'
+    targetAudience: [
+      'Étudiants CCNA',
+      'Techniciens réseau',
+      'Personnes en reconversion vers la cybersécurité',
+      'Profils analytiques'
+    ],
+    prerequisites: [
+      'Connaissances réseau niveau CCNA 1 minimum',
+      'Compréhension TCP/IP',
+      'Bases systèmes (Windows ou Linux)',
+      'Intérêt pour la sécurité informatique',
+      'Capacité d\'analyse'
+    ],
+    note: 'CyberOps est le complément naturel du CCNA. CCNA → Infrastructure, CyberOps → Défense. Ensemble, cela crée un profil très attractif pour les entreprises, ESN, SOC et PME. Validation du niveau possible via entretien ou test de positionnement.'
   },
   {
     id: 'unreal',
@@ -586,7 +639,34 @@ export const courses = [
         finalProject: 'Création d\'un jeu prototype avancé avec : IA simple, Système d\'inventaire, Animations dynamiques, UI complète, Optimisation, Architecture structurée'
       }
     ],
-    note: 'Formation présentiel uniquement. Bootcamp intensif de 35h. Certificat interne de réussite. Unreal Beginner → Découverte & fondations. Unreal Intermediate → Développeur gameplay junior.'
+    targetAudience: {
+      beginner: [
+        'Débutants passionnés par le jeu vidéo',
+        'Étudiants créatifs',
+        'Designers',
+        'Reconversions vers le game development'
+      ],
+      intermediate: [
+        'Étudiants ayant validé Unreal Beginner',
+        'Développeurs gameplay juniors',
+        'Profils techniques créatifs'
+      ]
+    },
+    prerequisites: {
+      beginner: [
+        'Maîtrise basique d\'un ordinateur',
+        'Aisance dans un environnement 3D recommandée',
+        'Aucun prérequis en programmation',
+        'Créativité et motivation'
+      ],
+      intermediate: [
+        'Bonne maîtrise Blueprint',
+        'Compréhension logique de programmation',
+        'Capacité à structurer un projet',
+        'Connaissances de base en mathématiques 3D (recommandé)'
+      ]
+    },
+    note: 'Formation présentiel uniquement. Bootcamp intensif de 35h. Certificat interne de réussite. Unreal Beginner → Découverte & fondations. Unreal Intermediate → Développeur gameplay junior. Validation du niveau possible via entretien ou test de positionnement.'
   }
 ];
 
