@@ -73,6 +73,12 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Mock Stripe payment (2.5s simulation)
 - Detailed receipt generation with print option
 
+✅ **PDF Program Downloads**
+- Professional PDF generation for each course
+- Includes: Objectives, Skills, Modules, Prerequisites, Target Audience, Modalities
+- Branded with Saint-Georges Academy colors
+- Download button on all course detail pages
+
 ✅ **Bug Fixes**
 - Removed "France Travail (AIF)" from funding options
 - Updated page title to "Saint-Georges Academy | Cisco Networking Academy"
