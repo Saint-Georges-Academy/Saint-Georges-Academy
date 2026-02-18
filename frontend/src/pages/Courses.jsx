@@ -18,6 +18,18 @@ const Courses = () => {
     ? courses 
     : courses.filter(course => course.category === activeFilter);
 
+  // Get certification logo based on course
+  const getCertificationLogo = (course) => {
+    if (course.category === 'CCNA') {
+      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/b3co9hjk_image.png';
+    } else if (course.id === 'cyberops') {
+      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/plvi6l26_image.png';
+    } else if (course.id === 'unreal') {
+      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/9hanr4os_image.png';
+    }
+    return null;
+  };
+
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,16 +59,27 @@ const Courses = () => {
 
         {/* Course Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredCourses.map((course) => (
-            <Card key={course.id} className="border-2 hover:border-[#d4af37] transition-all hover:shadow-xl group flex flex-col">
-              <CardHeader>
-                <Badge className="w-fit mb-3 bg-[#0f1f3d] text-white hover:bg-[#1a3a5f]">
-                  {course.category}
-                </Badge>
-                <CardTitle className="text-2xl text-[#0f1f3d] mb-3">
-                  {course.title}
-                </CardTitle>
-                <p className="text-gray-600 text-sm mb-4">{course.description}</p>
+          {filteredCourses.map((course) => {
+            const certLogo = getCertificationLogo(course);
+            return (
+              <Card key={course.id} className="border-2 hover:border-[#d4af37] transition-all hover:shadow-xl group flex flex-col">
+                <CardHeader>
+                  <div className="flex items-start justify-between mb-3">
+                    <Badge className="bg-[#0f1f3d] text-white hover:bg-[#1a3a5f]">
+                      {course.category}
+                    </Badge>
+                    {certLogo && (
+                      <img 
+                        src={certLogo} 
+                        alt={`${course.category} Logo`}
+                        className="w-12 h-12 object-contain"
+                      />
+                    )}
+                  </div>
+                  <CardTitle className="text-2xl text-[#0f1f3d] mb-3">
+                    {course.title}
+                  </CardTitle>
+                  <p className="text-gray-600 text-sm mb-4">{course.description}</p>
                 
                 <div className="space-y-2 text-sm text-gray-600">
                   <div className="flex items-center space-x-2">
@@ -100,7 +123,8 @@ const Courses = () => {
                 </Button>
               </CardContent>
             </Card>
-          ))}
+          );
+        })}
         </div>
 
         {/* Videos CTA */}
