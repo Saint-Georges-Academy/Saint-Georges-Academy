@@ -61,7 +61,10 @@ const CourseDetail = () => {
     });
   };
 
-  const currentFeatures = selectedFormat === 'online' ? course.features : course.inClassFeatures;
+  // For courses with only in-class option, use inClassFeatures
+  const currentFeatures = (selectedFormat === 'online' && course.features) 
+    ? course.features 
+    : course.inClassFeatures;
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50">
