@@ -37,6 +37,20 @@ const CourseDetail = () => {
     );
   }
 
+  // Determine which certification logo to show
+  const getCertificationLogo = () => {
+    if (course.category === 'CCNA') {
+      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/b3co9hjk_image.png';
+    } else if (course.id === 'cyberops') {
+      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/plvi6l26_image.png';
+    } else if (course.id === 'unreal') {
+      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/9hanr4os_image.png';
+    }
+    return null;
+  };
+
+  const certLogo = getCertificationLogo();
+
   const handleAddToCart = () => {
     const price = selectedFormat === 'online' ? course.onlinePrice : course.inClassPrice;
     const format = selectedFormat === 'online' ? 'En ligne' : 'Présentiel';
@@ -62,11 +76,28 @@ const CourseDetail = () => {
 
         {/* Header */}
         <div className="bg-gradient-to-br from-[#0f1f3d] to-[#1a3a5f] text-white rounded-2xl p-8 md:p-12 mb-8">
-          <Badge className="mb-4 bg-[#d4af37] text-[#0f1f3d] hover:bg-[#b8941f]">
-            {course.category}
-          </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{course.title}</h1>
-          <p className="text-xl text-gray-300 mb-6">{course.description}</p>
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-6">
+            <div className="flex-1">
+              <Badge className="mb-4 bg-[#d4af37] text-[#0f1f3d] hover:bg-[#b8941f]">
+                {course.category}
+              </Badge>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">{course.title}</h1>
+              <p className="text-xl text-gray-300 mb-6">{course.description}</p>
+            </div>
+            
+            {/* Certification Logo */}
+            {certLogo && (
+              <div className="flex-shrink-0">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                  <img 
+                    src={certLogo} 
+                    alt={`${course.category} Certification`}
+                    className="w-32 h-32 object-contain"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
           
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center space-x-2">
