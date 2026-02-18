@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, GraduationCap } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
   return (
     <footer className="bg-[#0f1f3d] text-white">
@@ -18,13 +20,12 @@ const Footer = () => {
                 className="h-14 w-auto object-contain bg-white rounded-lg p-1"
               />
               <div className="flex flex-col">
-                <span className="font-bold text-lg text-white leading-tight">Saint-Georges Academy</span>
-                <span className="text-sm text-[#d4af37] leading-tight">International School</span>
+                <span className="font-bold text-lg text-white leading-tight">{t('footer.brand')}</span>
+                <span className="text-sm text-[#d4af37] leading-tight">{t('footer.intSchool')}</span>
               </div>
             </div>
             <p className="text-gray-300 text-sm mb-4 max-w-md">
-              Organisme de formation professionnelle spécialisé en réseaux, cybersécurité et Unreal Engine. 
-              Structure pédagogique conforme au Référentiel National Qualité.
+              {t('footer.description')}
             </p>
             <p className="text-sm text-gray-400">
               SIRET: 528 616 113 00023
@@ -33,26 +34,26 @@ const Footer = () => {
 
           {/* Links */}
           <div>
-            <h3 className="font-semibold text-[#d4af37] mb-4">Navigation</h3>
+            <h3 className="font-semibold text-[#d4af37] mb-4">{t('footer.navigation')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/" className="text-gray-300 hover:text-[#d4af37] transition-colors">
-                  Accueil
+                  {t('nav.home')}
                 </Link>
               </li>
               <li>
                 <Link to="/courses" className="text-gray-300 hover:text-[#d4af37] transition-colors">
-                  Formations
+                  {t('nav.courses')}
                 </Link>
               </li>
               <li>
                 <Link to="/videos" className="text-gray-300 hover:text-[#d4af37] transition-colors">
-                  Vidéos CCNA
+                  {t('nav.videos')}
                 </Link>
               </li>
               <li>
                 <Link to="/funding" className="text-gray-300 hover:text-[#d4af37] transition-colors">
-                  Financement
+                  {t('nav.funding')}
                 </Link>
               </li>
             </ul>
@@ -60,7 +61,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold text-[#d4af37] mb-4">Contact</h3>
+            <h3 className="font-semibold text-[#d4af37] mb-4">{t('footer.contact')}</h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-[#d4af37] mt-0.5 flex-shrink-0" />
@@ -86,7 +87,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-sm text-gray-400 text-center">
-          <p>© {currentYear} Saint-Georges Academy. Tous droits réservés.</p>
+          <p>© {currentYear} Saint-Georges Academy. {t('footer.rights')}</p>
           <p className="mt-2">
             <a href="https://saint-georges.academy" className="hover:text-[#d4af37] transition-colors">
               www.saint-georges.academy
