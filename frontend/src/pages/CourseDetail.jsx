@@ -294,7 +294,7 @@ const CourseDetail = () => {
                     <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                     <div className="text-sm text-blue-900">
                       <strong className="block mb-1">Options de financement</strong>
-                      OPCO, employeur, France Travail (AIF) et financement personnel disponibles.
+                      OPCO, employeur et financement personnel disponibles.
                       <Link to="/funding" className="text-blue-700 underline hover:text-blue-800 block mt-2">
                         En savoir plus →
                       </Link>
