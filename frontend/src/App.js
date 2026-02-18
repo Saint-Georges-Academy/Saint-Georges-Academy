@@ -15,6 +15,7 @@ import MentionsLegales from "./pages/MentionsLegales";
 import CertificationCheckout from "./pages/CertificationCheckout";
 import Indicateurs from "./pages/Indicateurs";
 import ProcedureInscription from "./pages/ProcedureInscription";
+import AccessibiliteHandicap from "./pages/AccessibiliteHandicap";
 import "./i18n";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/certification" element={<CertificationCheckout />} />
           <Route path="/indicateurs" element={<Indicateurs />} />
           <Route path="/inscription" element={<ProcedureInscription />} />
+          <Route path="/accessibilite" element={<AccessibiliteHandicap />} />
         </Routes>
         <Footer />
         <Toaster />
