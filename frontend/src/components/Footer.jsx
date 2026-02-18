@@ -67,6 +67,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/accessibilite" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  Accessibilité & Handicap
+                </Link>
+              </li>
+              <li>
                 <Link to="/rgpd" className="text-gray-300 hover:text-[#d4af37] transition-colors">
                   Politique de confidentialité
                 </Link>
