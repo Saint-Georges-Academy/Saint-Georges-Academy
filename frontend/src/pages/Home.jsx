@@ -43,7 +43,7 @@ const Home = () => {
       level: 'Tous niveaux',
       path: '/courses?filter=CCNA',
       color: 'from-blue-50 to-blue-100',
-      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/b3co9hjk_image.png'
+      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/r2zhdhc3_image.png'
     },
     {
       title: 'CyberOps',
@@ -51,7 +51,7 @@ const Home = () => {
       level: 'Intermédiaire',
       path: '/course/cyberops',
       color: 'from-red-50 to-red-100',
-      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/plvi6l26_image.png'
+      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/m1dxump9_image.png'
     },
     {
       title: 'Unreal Engine',
@@ -59,7 +59,7 @@ const Home = () => {
       level: 'Tous niveaux',
       path: '/course/unreal',
       color: 'from-purple-50 to-purple-100',
-      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/9hanr4os_image.png'
+      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/l0g1p6bm_image.png'
     }
   ];
 

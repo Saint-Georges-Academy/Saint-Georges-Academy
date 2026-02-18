@@ -19,7 +19,7 @@ const Footer = () => {
               />
               <div className="flex flex-col">
                 <span className="font-bold text-lg text-white leading-tight">Saint-Georges Academy</span>
-                <span className="text-sm text-[#d4af37] leading-tight">Official Cisco Networking Academy</span>
+                <span className="text-sm text-[#d4af37] leading-tight">International School</span>
               </div>
             </div>
             <p className="text-gray-300 text-sm mb-4 max-w-md">

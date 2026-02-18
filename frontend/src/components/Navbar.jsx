@@ -29,8 +29,8 @@ const Navbar = () => {
               className="h-14 w-auto object-contain"
             />
             <div className="flex flex-col">
-              <span className="font-bold text-lg text-[#0f1f3d] leading-tight">Saint-Georges</span>
-              <span className="text-xs text-gray-600 leading-tight">Cisco Networking Academy</span>
+              <span className="font-bold text-lg text-[#0f1f3d] leading-tight">Saint-Georges Academy</span>
+              <span className="text-xs text-gray-600 leading-tight">International School</span>
             </div>
           </Link>
 

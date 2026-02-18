@@ -40,11 +40,11 @@ const CourseDetail = () => {
   // Determine which certification logo to show
   const getCertificationLogo = () => {
     if (course.category === 'CCNA') {
-      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/b3co9hjk_image.png';
+      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/r2zhdhc3_image.png';
     } else if (course.id === 'cyberops') {
-      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/plvi6l26_image.png';
+      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/m1dxump9_image.png';
     } else if (course.id === 'unreal') {
-      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/9hanr4os_image.png';
+      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/l0g1p6bm_image.png';
     }
     return null;
   };
