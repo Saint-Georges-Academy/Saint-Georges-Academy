@@ -16,15 +16,19 @@ import {
   AlertCircle,
   ArrowLeft,
   Download,
-  FileText
+  FileText,
+  Loader2
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import { generateCoursePDF } from '../utils/generatePDF';
+
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const CourseDetail = () => {
   const { courseId } = useParams();
   const course = courses.find(c => c.id === courseId);
   const [selectedFormat, setSelectedFormat] = useState('online');
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   if (!course) {
@@ -54,14 +58,43 @@ const CourseDetail = () => {
 
   const certLogo = getCertificationLogo();
 
-  const handleAddToCart = () => {
-    const price = selectedFormat === 'online' ? course.onlinePrice : course.inClassPrice;
-    const format = selectedFormat === 'online' ? 'En ligne' : 'Présentiel';
+  const handleCheckout = async () => {
+    setIsLoading(true);
     
-    toast({
-      title: "Ajouté au panier",
-      description: `${course.title} - Format ${format} (${price}€)`,
-    });
+    // Build the product_id based on course and format
+    const productId = `${courseId}_${selectedFormat === 'online' ? 'online' : 'inclass'}`;
+    
+    try {
+      const response = await fetch(`${API_URL}/api/payments/checkout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          product_id: productId,
+          origin_url: window.location.origin,
+        }),
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.detail || 'Failed to create checkout session');
+      }
+      
+      const { url } = await response.json();
+      
+      // Redirect to Stripe Checkout
+      window.location.href = url;
+      
+    } catch (error) {
+      console.error('Checkout error:', error);
+      toast({
+        title: "Erreur",
+        description: "Impossible de procéder au paiement. Veuillez réessayer.",
+        variant: "destructive"
+      });
+      setIsLoading(false);
+    }
   };
 
   // For courses with only in-class option, use inClassFeatures
