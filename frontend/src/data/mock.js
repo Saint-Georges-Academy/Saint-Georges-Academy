@@ -263,11 +263,86 @@ export const courses = [
       'Évaluation finale'
     ],
     objectives: [
-      'Concevoir des architectures réseau d\'entreprise',
-      'Implémenter des politiques de sécurité',
-      'Automatiser les tâches réseau',
-      'Préparer la certification CCNA'
-    ]
+      'Concevoir et configurer un réseau d\'entreprise',
+      'Mettre en œuvre le routage avancé',
+      'Implémenter des mécanismes de sécurité réseau',
+      'Comprendre les bases de l\'automatisation réseau',
+      'Diagnostiquer des environnements complexes'
+    ],
+    modules: [
+      {
+        number: 1,
+        title: 'Network Design Concepts',
+        topics: ['Architecture réseau d\'entreprise', 'Modèle hiérarchique (Core / Distribution / Access)', 'Scalabilité', 'Redondance', 'Disponibilité']
+      },
+      {
+        number: 2,
+        title: 'Single-Area OSPFv2',
+        topics: ['Configuration avancée OSPF', 'Router ID', 'Coût OSPF', 'Passive interfaces', 'Default route propagation', 'Vérification et dépannage']
+      },
+      {
+        number: 3,
+        title: 'WAN Concepts',
+        topics: ['WAN vs LAN', 'Types de connexions WAN', 'MPLS', 'VPN', 'Internet connectivity']
+      },
+      {
+        number: 4,
+        title: 'WAN Configuration',
+        topics: ['PPP', 'PPP authentication (PAP / CHAP)', 'Configuration lien WAN', 'Dépannage']
+      },
+      {
+        number: 5,
+        title: 'Network Security Concepts',
+        topics: ['Threat landscape', 'CIA Triad', 'Attaques réseau', 'Défense en profondeur']
+      },
+      {
+        number: 6,
+        title: 'ACL (Access Control Lists)',
+        topics: ['Standard ACL', 'Extended ACL', 'Placement stratégique', 'Configuration pratique', 'Vérification et dépannage']
+      },
+      {
+        number: 7,
+        title: 'NAT (Network Address Translation)',
+        topics: ['NAT statique', 'NAT dynamique', 'PAT (Overload)', 'Configuration et vérification']
+      },
+      {
+        number: 8,
+        title: 'VPN & Secure Connectivity',
+        topics: ['VPN concepts', 'IPsec (concept)', 'Tunnel sécurisé', 'Introduction GRE']
+      },
+      {
+        number: 9,
+        title: 'QoS (Quality of Service)',
+        topics: ['Priorisation du trafic', 'Latence', 'Jitter', 'Concepts QoS']
+      },
+      {
+        number: 10,
+        title: 'Network Management',
+        topics: ['SNMP', 'Syslog', 'NTP', 'Monitoring']
+      },
+      {
+        number: 11,
+        title: 'Network Automation',
+        topics: ['Introduction à l\'automatisation', 'API', 'REST', 'JSON', 'Introduction Python', 'Concepts DevNet']
+      },
+      {
+        number: 12,
+        title: 'Programmability',
+        topics: ['Controller-based networking', 'SDN concepts', 'Introduction Cisco DNA Center']
+      }
+    ],
+    practicalSkills: [
+      'Concevoir une architecture réseau d\'entreprise',
+      'Configurer OSPF avancé',
+      'Mettre en place des ACL',
+      'Implémenter NAT',
+      'Sécuriser un périmètre réseau',
+      'Configurer PPP',
+      'Comprendre VPN & tunneling',
+      'Mettre en œuvre supervision réseau',
+      'Comprendre l\'automatisation réseau'
+    ],
+    note: 'CCNA 3 = Niveau entreprise. C\'est le module qui transforme un technicien réseau en Administrateur réseau junior, Technicien cybersécurité, ou futur ingénieur réseau. Les 3 modules (CCNA 1 + 2 + 3) préparent à l\'examen Cisco Certified Network Associate.'
   },
   {
     id: 'cyberops',
