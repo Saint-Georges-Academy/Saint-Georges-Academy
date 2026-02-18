@@ -51,7 +51,7 @@ const Home = () => {
       level: 'Intermédiaire',
       path: '/course/cyberops',
       color: 'from-red-50 to-red-100',
-      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/m1dxump9_image.png'
+      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/djop92go_image.png'
     },
     {
       title: 'Unreal Engine',

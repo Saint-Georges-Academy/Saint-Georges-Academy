@@ -42,7 +42,7 @@ const CourseDetail = () => {
     if (course.category === 'CCNA') {
       return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/r2zhdhc3_image.png';
     } else if (course.id === 'cyberops') {
-      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/m1dxump9_image.png';
+      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/djop92go_image.png';
     } else if (course.id === 'unreal') {
       return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/l0g1p6bm_image.png';
     }
