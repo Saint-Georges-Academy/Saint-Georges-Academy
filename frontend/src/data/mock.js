@@ -31,7 +31,95 @@ export const courses = [
       'Maîtriser l\'adressage IP',
       'Configurer des équipements Cisco',
       'Implémenter des réseaux de petite et moyenne taille'
-    ]
+    ],
+    modules: [
+      {
+        number: 1,
+        title: 'Networking Today',
+        topics: ['Rôle des réseaux dans le monde moderne', 'Types de réseaux (LAN, WAN, MAN, WLAN)', 'Composants réseau (routeur, switch, serveur, client)', 'Convergence réseau']
+      },
+      {
+        number: 2,
+        title: 'Basic Switch and End Device Configuration',
+        topics: ['Accès CLI Cisco', 'Configuration initiale d\'un switch', 'Nom d\'hôte, Mots de passe, Bannière', 'Configuration d\'adresse IP sur PC', 'Commandes de vérification (ping, ipconfig)']
+      },
+      {
+        number: 3,
+        title: 'Protocols and Models',
+        topics: ['Modèle OSI (7 couches)', 'Modèle TCP/IP', 'Encapsulation', 'Rôle des protocoles']
+      },
+      {
+        number: 4,
+        title: 'Physical Layer',
+        topics: ['Types de câbles (UTP, fibre optique)', 'Connecteurs', 'Notion de bande passante', 'Duplex / half-duplex', 'Interférences et atténuation']
+      },
+      {
+        number: 5,
+        title: 'Number Systems',
+        topics: ['Binaire', 'Décimal', 'Hexadécimal', 'Conversion de bases']
+      },
+      {
+        number: 6,
+        title: 'Data Link Layer',
+        topics: ['Adresses MAC', 'Trames Ethernet', 'Switch learning process', 'ARP']
+      },
+      {
+        number: 7,
+        title: 'Ethernet Switching',
+        topics: ['Table MAC', 'Forwarding', 'Collision domain', 'Broadcast domain']
+      },
+      {
+        number: 8,
+        title: 'Network Layer',
+        topics: ['IPv4', 'Structure d\'une adresse IP', 'Masque de sous-réseau', 'Gateway', 'Introduction au routage']
+      },
+      {
+        number: 9,
+        title: 'Address Resolution',
+        topics: ['ARP process', 'Communication locale et distante']
+      },
+      {
+        number: 10,
+        title: 'Basic Router Configuration',
+        topics: ['Configuration interface routeur', 'Adresse IP sur interface', 'no shutdown', 'Default gateway']
+      },
+      {
+        number: 11,
+        title: 'IPv4 Addressing',
+        topics: ['Classes A, B, C', 'CIDR', 'Subnetting', 'Calcul de sous-réseaux', 'VLSM introduction']
+      },
+      {
+        number: 12,
+        title: 'IPv6 Addressing',
+        topics: ['Format IPv6', 'Compression', 'Types d\'adresses', 'Configuration simple IPv6']
+      },
+      {
+        number: 13,
+        title: 'ICMP',
+        topics: ['Ping', 'Traceroute', 'Messages ICMP']
+      },
+      {
+        number: 14,
+        title: 'Transport Layer',
+        topics: ['TCP vs UDP', 'Ports', 'Fiabilité', 'Three-way handshake']
+      },
+      {
+        number: 15,
+        title: 'Application Layer',
+        topics: ['HTTP/HTTPS', 'FTP', 'DNS', 'DHCP', 'SMTP']
+      }
+    ],
+    practicalSkills: [
+      'Configurer un switch Cisco',
+      'Configurer un routeur basique',
+      'Attribuer des adresses IPv4',
+      'Réaliser un subnetting',
+      'Tester la connectivité',
+      'Comprendre le modèle OSI',
+      'Lire une trame Ethernet',
+      'Diagnostiquer un problème simple'
+    ],
+    note: 'CCNA 1 = Fondations réseau. C\'est le module le plus structurant. Sans maîtrise du CCNA 1, le reste est fragile.'
   },
   {
     id: 'ccna2',
@@ -204,17 +292,6 @@ export const fundingOptions = [
       'Prise en charge possible',
       'Accompagnement dans les démarches',
       'Dossier de financement personnalisé'
-    ]
-  },
-  {
-    id: 'france-travail',
-    title: 'France Travail (AIF)',
-    icon: 'Briefcase',
-    description: 'Aide Individuelle à la Formation sous réserve d\'acceptation par France Travail.',
-    benefits: [
-      'Possibilité de financement total',
-      'Accompagnement du conseiller',
-      'Validation selon votre situation'
     ]
   }
 ];
