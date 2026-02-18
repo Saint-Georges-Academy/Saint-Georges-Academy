@@ -76,6 +76,11 @@ const Footer = () => {
                   Mentions légales
                 </Link>
               </li>
+              <li>
+                <Link to="/indicateurs" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  Indicateurs de performance
+                </Link>
+              </li>
             </ul>
           </div>
 
