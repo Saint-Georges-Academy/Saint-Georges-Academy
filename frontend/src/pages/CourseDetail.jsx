@@ -105,7 +105,7 @@ const CourseDetail = () => {
             )}
           </div>
           
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap gap-6 items-center">
             <div className="flex items-center space-x-2">
               <Clock className="w-5 h-5 text-[#d4af37]" />
               <span>{course.duration}</span>
@@ -118,6 +118,16 @@ const CourseDetail = () => {
               <Award className="w-5 h-5 text-[#d4af37]" />
               <span>Certification Cisco</span>
             </div>
+            
+            {/* Download PDF Button */}
+            <Button 
+              onClick={() => generateCoursePDF(course)}
+              className="bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-semibold ml-auto"
+              data-testid="download-pdf-btn"
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Télécharger le programme PDF
+            </Button>
           </div>
         </div>
 
