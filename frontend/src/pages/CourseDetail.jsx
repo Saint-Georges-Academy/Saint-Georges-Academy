@@ -435,6 +435,54 @@ const CourseDetail = () => {
                   )}
                 </div>
 
+                {/* Session Selection Dropdown */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-[#d4af37]" />
+                    Sélectionnez votre session
+                  </label>
+                  <Select 
+                    value={selectedSession} 
+                    onValueChange={setSelectedSession}
+                    data-testid="session-selector"
+                  >
+                    <SelectTrigger className="w-full border-2 border-gray-200 focus:border-[#d4af37]" data-testid="session-selector-trigger">
+                      <SelectValue placeholder="Choisir une date de début" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {availableSessions.map((session) => (
+                        <SelectItem 
+                          key={session.id} 
+                          value={session.id}
+                          data-testid={`session-option-${session.id}`}
+                        >
+                          <div className="flex flex-col">
+                            <span className="font-medium">{session.label}</span>
+                            <span className="text-xs text-gray-500">{session.duration} • {session.format}</span>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {selectedSession && selectedSessionDetails && (
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-3 mt-2">
+                      <div className="flex items-center gap-2 text-green-800">
+                        <CheckCircle className="w-4 h-4" />
+                        <span className="text-sm font-medium">Session sélectionnée</span>
+                      </div>
+                      <p className="text-sm text-green-700 mt-1">
+                        {selectedSessionDetails.label}
+                      </p>
+                    </div>
+                  )}
+                  {!selectedSession && (
+                    <p className="text-xs text-amber-600 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3" />
+                      Veuillez sélectionner une session pour continuer
+                    </p>
+                  )}
+                </div>
+
                 <Button 
                   onClick={handleCheckout}
                   disabled={isLoading}
