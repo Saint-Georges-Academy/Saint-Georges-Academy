@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { courses } from '../data/mock';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { 
   CheckCircle, 
   Clock, 
@@ -17,19 +18,107 @@ import {
   ArrowLeft,
   Download,
   FileText,
-  Loader2
+  Loader2,
+  Calendar
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import { generateCoursePDF } from '../utils/generatePDF';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
+// Helper function to generate session dates
+const generateSessions = (format) => {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const sessions = [];
+  
+  if (format === 'inclass') {
+    // In-class sessions: October, February, April, July
+    const inClassMonths = [
+      { month: 1, name: 'Février' },    // February
+      { month: 3, name: 'Avril' },      // April
+      { month: 6, name: 'Juillet' },    // July
+      { month: 9, name: 'Octobre' }     // October
+    ];
+    
+    // Generate sessions for current and next year
+    for (let yearOffset = 0; yearOffset <= 1; yearOffset++) {
+      const year = currentYear + yearOffset;
+      inClassMonths.forEach(({ month, name }) => {
+        const sessionDate = new Date(year, month, 1);
+        // Only show future sessions (at least 2 weeks from now)
+        const minDate = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+        if (sessionDate >= minDate) {
+          sessions.push({
+            id: `inclass-${year}-${month}`,
+            label: `${name} ${year}`,
+            startDate: sessionDate,
+            duration: '1 semaine (35h)',
+            format: 'Présentiel intensif'
+          });
+        }
+      });
+    }
+  } else {
+    // Online sessions: Every 8 weeks (4 weeks course + 4 weeks break)
+    // Start from next available Monday
+    let startDate = new Date(now);
+    startDate.setDate(startDate.getDate() + ((8 - startDate.getDay()) % 7) + 1); // Next Monday
+    
+    // Add 2 weeks buffer for registration
+    startDate.setDate(startDate.getDate() + 14);
+    
+    // Align to 8-week cycle
+    const referenceDate = new Date(2024, 0, 8); // First Monday of 2024
+    const weeksSinceReference = Math.floor((startDate - referenceDate) / (7 * 24 * 60 * 60 * 1000));
+    const weeksIntoCurrentCycle = weeksSinceReference % 8;
+    if (weeksIntoCurrentCycle > 0) {
+      startDate.setDate(startDate.getDate() + (8 - weeksIntoCurrentCycle) * 7);
+    }
+    
+    // Generate next 6 online sessions
+    for (let i = 0; i < 6; i++) {
+      const sessionStart = new Date(startDate);
+      sessionStart.setDate(sessionStart.getDate() + (i * 8 * 7)); // Every 8 weeks
+      
+      const sessionEnd = new Date(sessionStart);
+      sessionEnd.setDate(sessionEnd.getDate() + 27); // 4 weeks duration
+      
+      const monthNames = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 
+                          'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+      
+      sessions.push({
+        id: `online-${sessionStart.getFullYear()}-${sessionStart.getMonth()}-${sessionStart.getDate()}`,
+        label: `${sessionStart.getDate()} ${monthNames[sessionStart.getMonth()]} - ${sessionEnd.getDate()} ${monthNames[sessionEnd.getMonth()]} ${sessionStart.getFullYear()}`,
+        startDate: sessionStart,
+        endDate: sessionEnd,
+        duration: '4 semaines',
+        format: 'En ligne'
+      });
+    }
+  }
+  
+  return sessions;
+};
+
 const CourseDetail = () => {
   const { courseId } = useParams();
   const course = courses.find(c => c.id === courseId);
   const [selectedFormat, setSelectedFormat] = useState('online');
+  const [selectedSession, setSelectedSession] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+
+  // Generate available sessions based on selected format
+  const availableSessions = useMemo(() => {
+    return generateSessions(selectedFormat);
+  }, [selectedFormat]);
+
+  // Reset session selection when format changes
+  const handleFormatChange = (format) => {
+    setSelectedFormat(format);
+    setSelectedSession('');
+  };
 
   if (!course) {
     return (
@@ -58,7 +147,19 @@ const CourseDetail = () => {
 
   const certLogo = getCertificationLogo();
 
+  // Get selected session details
+  const selectedSessionDetails = availableSessions.find(s => s.id === selectedSession);
+
   const handleCheckout = async () => {
+    if (!selectedSession) {
+      toast({
+        title: "Session requise",
+        description: "Veuillez sélectionner une session de formation.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsLoading(true);
     
     // Build the product_id based on course and format
@@ -73,6 +174,7 @@ const CourseDetail = () => {
         body: JSON.stringify({
           product_id: productId,
           origin_url: window.location.origin,
+          session_date: selectedSessionDetails?.label || '',
         }),
       });
       
