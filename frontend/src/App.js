@@ -17,6 +17,8 @@ import Indicateurs from "./pages/Indicateurs";
 import ProcedureInscription from "./pages/ProcedureInscription";
 import AccessibiliteHandicap from "./pages/AccessibiliteHandicap";
 import FAQ from "./pages/FAQ";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCancel from "./pages/PaymentCancel";
 import "./i18n";
 
 function App() {
@@ -39,6 +41,8 @@ function App() {
           <Route path="/inscription" element={<ProcedureInscription />} />
           <Route path="/accessibilite" element={<AccessibiliteHandicap />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/cancel" element={<PaymentCancel />} />
         </Routes>
         <Footer />
         <Toaster />
