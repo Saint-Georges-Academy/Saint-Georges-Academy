@@ -147,11 +147,95 @@ export const courses = [
       'Évaluation finale'
     ],
     objectives: [
-      'Maîtriser les VLANs et le routage inter-VLAN',
-      'Configurer le routage dynamique',
-      'Implémenter des réseaux sans fil',
-      'Optimiser les performances réseau'
-    ]
+      'Configurer des réseaux commutés (switching)',
+      'Mettre en place le routage inter-VLAN',
+      'Configurer des réseaux sans fil',
+      'Implémenter la sécurité de base',
+      'Déployer le routage statique et dynamique'
+    ],
+    modules: [
+      {
+        number: 1,
+        title: 'Basic Device Configuration Review',
+        topics: ['Révision CCNA1', 'Configuration avancée switch', 'Configuration routeur', 'Vérification et dépannage']
+      },
+      {
+        number: 2,
+        title: 'Switching Concepts',
+        topics: ['VLAN', 'Segmentation réseau', 'Access ports vs trunk ports', '802.1Q encapsulation', 'Native VLAN']
+      },
+      {
+        number: 3,
+        title: 'VLAN Configuration',
+        topics: ['Création de VLAN', 'Attribution de ports', 'VLAN management', 'Vérification avec show vlan']
+      },
+      {
+        number: 4,
+        title: 'Inter-VLAN Routing',
+        topics: ['Router-on-a-stick', 'Sous-interfaces', 'Encapsulation dot1Q', 'Configuration IP sur sous-interface', 'Test de connectivité']
+      },
+      {
+        number: 5,
+        title: 'STP (Spanning Tree Protocol)',
+        topics: ['Boucles réseau', 'Fonctionnement STP', 'Root bridge', 'États des ports', 'RSTP introduction']
+      },
+      {
+        number: 6,
+        title: 'EtherChannel',
+        topics: ['Agrégation de liens', 'LACP', 'PAgP', 'Configuration pratique']
+      },
+      {
+        number: 7,
+        title: 'DHCP',
+        topics: ['Configuration DHCP sur routeur', 'Exclusion d\'adresses', 'Pools DHCP', 'DHCP relay']
+      },
+      {
+        number: 8,
+        title: 'SLAAC et DHCPv6',
+        topics: ['IPv6 auto-configuration', 'DHCPv6 stateless / stateful']
+      },
+      {
+        number: 9,
+        title: 'Wireless Concepts',
+        topics: ['WLAN', '802.11 standards', 'Fréquences 2.4 GHz / 5 GHz', 'Sécurité Wi-Fi']
+      },
+      {
+        number: 10,
+        title: 'WLAN Configuration',
+        topics: ['Configuration routeur Wi-Fi', 'SSID', 'WPA2 / WPA3', 'Sécurisation réseau sans fil']
+      },
+      {
+        number: 11,
+        title: 'Static Routing',
+        topics: ['Route statique', 'Default route', 'Floating static route', 'Configuration avec ip route']
+      },
+      {
+        number: 12,
+        title: 'Dynamic Routing (OSPF Single Area)',
+        topics: ['Introduction au routage dynamique', 'OSPFv2', 'Router ID', 'Network command', 'Vérification show ip route', 'Dépannage OSPF']
+      },
+      {
+        number: 13,
+        title: 'FHRP (Introduction)',
+        topics: ['HSRP concept', 'Redondance gateway']
+      },
+      {
+        number: 14,
+        title: 'Network Security Basics',
+        topics: ['Sécurisation des ports', 'Port security', 'DHCP snooping (introduction)', 'ARP inspection (concept)']
+      }
+    ],
+    practicalSkills: [
+      'Créer et configurer des VLAN',
+      'Mettre en place un routage inter-VLAN',
+      'Configurer un routeur-on-a-stick',
+      'Configurer OSPF simple zone',
+      'Déployer DHCP',
+      'Configurer un réseau Wi-Fi sécurisé',
+      'Mettre en place port security',
+      'Dépanner un réseau de taille moyenne'
+    ],
+    note: 'CCNA 2 = Architecture réseau. Si CCNA 1 est la fondation, CCNA 2 est la construction de l\'infrastructure. C\'est le module où l\'étudiant devient réellement opérationnel.'
   },
   {
     id: 'ccna3',
