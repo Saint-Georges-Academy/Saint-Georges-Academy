@@ -87,8 +87,10 @@ const Navbar = () => {
             <div className="px-5 py-3">
               <LanguageSwitcher />
             </div>
-            <Button className="w-full mt-3 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold py-3 text-base shadow-lg">
-              {t('nav.register')}
+            <Button asChild className="w-full mt-3 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold py-3 text-base shadow-lg">
+              <Link to="/inscription">
+                {t('nav.register')}
+              </Link>
             </Button>
           </div>
         </div>
