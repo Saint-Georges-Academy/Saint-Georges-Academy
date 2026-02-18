@@ -87,6 +87,16 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - CTA buttons and contact info
 - Linked from "Register" button in navbar
 
+✅ **Accessibilité & Référent Handicap** (/accessibilite)
+- Disability referent contact (Thierry Paul)
+- 4 engagement commitments
+- 6 possible accommodations
+- Physical & digital accessibility info
+- Partnership options
+- 5-step procedure
+- Confidentiality notice
+- Qualiopi compliance checklist
+
 ✅ **Bug Fixes**
 - Removed "France Travail (AIF)" from funding options
 - Updated page title to "Saint-Georges Academy | Cisco Networking Academy"
@@ -208,6 +218,7 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 │   ├── MentionsLegales.jsx
 │   ├── Indicateurs.jsx
 │   ├── ProcedureInscription.jsx
+│   ├── AccessibiliteHandicap.jsx
 │   └── CertificationCheckout.jsx
 ├── data/
 │   └── mock.js (course data)
