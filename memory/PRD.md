@@ -97,6 +97,12 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Confidentiality notice
 - Qualiopi compliance checklist
 
+✅ **FAQ Page** (/faq)
+- 12 most frequent questions with accordion
+- Covers: formats, pricing, certification, funding, prerequisites, duration, accessibility, GDPR, careers
+- Links to relevant pages (videos, certification, funding, accessibility, inscription, indicateurs)
+- CTA to contact page
+
 ✅ **Bug Fixes**
 - Removed "France Travail (AIF)" from funding options
 - Updated page title to "Saint-Georges Academy | Cisco Networking Academy"
@@ -219,6 +225,7 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 │   ├── Indicateurs.jsx
 │   ├── ProcedureInscription.jsx
 │   ├── AccessibiliteHandicap.jsx
+│   ├── FAQ.jsx
 │   └── CertificationCheckout.jsx
 ├── data/
 │   └── mock.js (course data)
