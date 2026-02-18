@@ -1,38 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Award, BookOpen, Users, CheckCircle, ArrowRight, Shield, Globe, TrendingUp } from 'lucide-react';
+import { Award, BookOpen, Users, ArrowRight, Shield, Globe } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+  const { t } = useTranslation();
+  
   const stats = [
-    { label: 'Formations certifiantes', value: '5+' },
-    { label: 'Heures de formation', value: '350+' },
-    { label: 'Taux de réussite', value: '94%' },
-    { label: 'Années d\'expérience', value: '15+' }
+    { label: t('hero.stats.courses'), value: '5+' },
+    { label: t('hero.stats.hours'), value: '350+' },
+    { label: t('hero.stats.success'), value: '94%' },
+    { label: t('hero.stats.experience'), value: '15+' }
   ];
 
   const features = [
     {
       icon: Award,
-      title: 'Cisco Networking Academy Officielle',
-      description: 'Accès direct aux ressources et certifications Cisco reconnues mondialement.'
+      title: t('features.cisco.title'),
+      description: t('features.cisco.description')
     },
     {
       icon: Users,
-      title: 'Instructeurs Certifiés',
-      description: 'Formateurs experts avec une expérience terrain significative en entreprise.'
+      title: t('features.instructors.title'),
+      description: t('features.instructors.description')
     },
     {
       icon: BookOpen,
-      title: 'Double Format',
-      description: 'Formations en ligne flexibles ou intensives en présentiel selon vos besoins.'
+      title: t('features.format.title'),
+      description: t('features.format.description')
     },
     {
       icon: Shield,
-      title: 'Qualité Garantie',
-      description: 'Structure pédagogique conforme au Référentiel National Qualité.'
+      title: t('features.quality.title'),
+      description: t('features.quality.description')
     }
   ];
 
@@ -84,28 +87,27 @@ const Home = () => {
             </div>
             
             <Badge className="mb-6 bg-[#d4af37] text-[#0f1f3d] hover:bg-[#b8941f] text-sm font-semibold px-4 py-2">
-              Official Cisco Networking Academy
+              {t('hero.badge')}
             </Badge>
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Devenez Expert en Réseaux et Cybersécurité
+              {t('hero.title')}
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-              Formations professionnelles certifiantes en présentiel et en ligne. 
-              Cisco CCNA, CyberOps et Unreal Engine à Loudun, France.
+              {t('hero.subtitle')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button asChild size="lg" className="bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-semibold px-8 py-6 text-lg">
                 <Link to="/courses">
-                  Explorer les formations
+                  {t('hero.exploreBtn')}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#0f1f3d] px-8 py-6 text-lg">
                 <Link to="/funding">
-                  Options de financement
+                  {t('hero.fundingBtn')}
                 </Link>
               </Button>
             </div>
@@ -128,10 +130,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#0f1f3d] mb-4">
-              Pourquoi Choisir Saint-Georges Academy ?
+              {t('features.title')}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Une formation d'excellence reconnue par les professionnels du secteur
+              {t('features.subtitle')}
             </p>
           </div>
 
@@ -158,10 +160,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#0f1f3d] mb-4">
-              Nos Formations
+              {t('coursesPreview.title')}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Formations professionnelles reconnues avec certifications internationales
+              {t('coursesPreview.subtitle')}
             </p>
           </div>
 
@@ -186,7 +188,7 @@ const Home = () => {
                 <CardContent>
                   <Button asChild className="w-full bg-[#0f1f3d] hover:bg-[#1a3a5f] text-white">
                     <Link to={course.path}>
-                      En savoir plus
+                      {t('coursesPreview.learnMore')}
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                   </Button>
@@ -198,7 +200,7 @@ const Home = () => {
           <div className="text-center mt-12">
             <Button asChild size="lg" variant="outline" className="border-2 border-[#0f1f3d] text-[#0f1f3d] hover:bg-[#0f1f3d] hover:text-white">
               <Link to="/courses">
-                Voir toutes les formations
+                {t('coursesPreview.allCourses')}
               </Link>
             </Button>
           </div>
@@ -210,20 +212,20 @@ const Home = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Globe className="w-16 h-16 text-[#d4af37] mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-6">
-            Prêt à Lancer Votre Carrière ?
+            {t('cta.title')}
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Rejoignez des centaines de professionnels formés chez Saint-Georges Academy
+            {t('cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-semibold px-8 py-6 text-lg">
               <Link to="/courses">
-                Choisir ma formation
+                {t('cta.chooseBtn')}
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#0f1f3d] px-8 py-6 text-lg">
               <Link to="/contact">
-                Nous contacter
+                {t('cta.contactBtn')}
               </Link>
             </Button>
           </div>
