@@ -241,7 +241,7 @@ const CourseDetail = () => {
                     <span>Certification Cisco</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
+                <CardContent className="space-y-4">
                   <p className="text-gray-700">
                     À l'issue de cette formation, vous pouvez passer l'examen de certification officiel Cisco.
                   </p>
@@ -250,9 +250,15 @@ const CourseDetail = () => {
                       <span className="font-semibold text-gray-900">Examen officiel Cisco</span>
                       <span className="text-2xl font-bold text-[#d4af37]">{course.certificationCost}€</span>
                     </div>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 mb-4">
                       Passé en centre agréé PearsonVUE (non inclus dans le prix de la formation)
                     </p>
+                    <Button asChild className="w-full bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-semibold">
+                      <Link to="/certification" data-testid="buy-certification-btn">
+                        <Award className="w-4 h-4 mr-2" />
+                        Acheter l'examen de certification
+                      </Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
