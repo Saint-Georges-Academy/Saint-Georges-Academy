@@ -334,11 +334,22 @@ const CourseDetail = () => {
                 </div>
 
                 <Button 
-                  onClick={handleAddToCart}
+                  onClick={handleCheckout}
+                  disabled={isLoading}
                   className="w-full bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-semibold text-lg py-6"
+                  data-testid="checkout-btn"
                 >
-                  <ShoppingCart className="w-5 h-5 mr-2" />
-                  S'inscrire maintenant
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Redirection vers le paiement...
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="w-5 h-5 mr-2" />
+                      S'inscrire maintenant
+                    </>
+                  )}
                 </Button>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
