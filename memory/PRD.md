@@ -150,11 +150,10 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 ## Next Phase - Backend & Real Payments
 
 ### P0 Features (Critical)
-1. **Real Stripe Integration**
-   - Replace mock payment with real Stripe Checkout
-   - Product creation in Stripe dashboard
-   - Webhook handling for payment confirmation
-   - Order storage in database
+1. **Database Migration**
+   - Migrate all course data from mock.js to MongoDB
+   - Create CRUD APIs for courses, users, orders
+   - Refactor frontend to fetch data from backend
 
 2. **User Authentication System**
    - User registration/login
