@@ -21,7 +21,7 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+    <nav className="fixed top-0 w-full bg-white shadow-md z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -34,22 +34,22 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-5 py-2.5 rounded-lg text-base font-semibold transition-all ${
                   isActive(item.path)
-                    ? 'text-[#0f1f3d] bg-[#d4af37]/10'
-                    : 'text-gray-700 hover:text-[#0f1f3d] hover:bg-gray-100'
+                    ? 'text-white bg-[#0f1f3d]'
+                    : 'text-[#0f1f3d] hover:text-white hover:bg-[#0f1f3d]/90'
                 }`}
               >
                 {item.name}
               </Link>
             ))}
             <LanguageSwitcher />
-            <Button className="ml-4 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-semibold">
+            <Button className="ml-3 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold px-6 py-2.5 text-base shadow-lg">
               {t('nav.register')}
             </Button>
           </div>
@@ -66,26 +66,26 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200">
-          <div className="px-4 pt-2 pb-4 space-y-1">
+        <div className="md:hidden bg-white border-t-2 border-gray-200 shadow-lg">
+          <div className="px-4 pt-2 pb-4 space-y-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${
+                className={`block px-5 py-3 rounded-lg text-base font-semibold transition-all ${
                   isActive(item.path)
-                    ? 'text-[#0f1f3d] bg-[#d4af37]/10'
-                    : 'text-gray-700 hover:text-[#0f1f3d] hover:bg-gray-100'
+                    ? 'text-white bg-[#0f1f3d]'
+                    : 'text-[#0f1f3d] hover:text-white hover:bg-[#0f1f3d]/90'
                 }`}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="px-4 py-3">
+            <div className="px-5 py-3">
               <LanguageSwitcher />
             </div>
-            <Button className="w-full mt-3 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-semibold">
+            <Button className="w-full mt-3 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold py-3 text-base shadow-lg">
               {t('nav.register')}
             </Button>
           </div>
