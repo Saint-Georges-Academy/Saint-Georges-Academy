@@ -12,9 +12,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#d4af37] to-[#b8941f] rounded-lg flex items-center justify-center">
-                <GraduationCap className="w-7 h-7 text-[#0f1f3d]" />
-              </div>
+              <img 
+                src="https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/klaxr3o2_logo%20saint%20georges.webp" 
+                alt="Saint-Georges Academy"
+                className="h-14 w-auto object-contain bg-white rounded-lg p-1"
+              />
               <div className="flex flex-col">
                 <span className="font-bold text-lg text-white leading-tight">Saint-Georges Academy</span>
                 <span className="text-sm text-[#d4af37] leading-tight">Official Cisco Networking Academy</span>

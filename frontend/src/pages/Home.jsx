@@ -71,6 +71,15 @@ const Home = () => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
+            {/* Saint-Georges Logo */}
+            <div className="mb-6 flex justify-center">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/klaxr3o2_logo%20saint%20georges.webp" 
+                alt="Saint-Georges Academy"
+                className="h-24 w-auto object-contain bg-white/10 backdrop-blur-sm rounded-lg p-3"
+              />
+            </div>
+            
             <Badge className="mb-6 bg-[#d4af37] text-[#0f1f3d] hover:bg-[#b8941f] text-sm font-semibold px-4 py-2">
               Official Cisco Networking Academy
             </Badge>

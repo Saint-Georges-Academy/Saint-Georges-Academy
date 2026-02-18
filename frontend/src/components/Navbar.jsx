@@ -23,9 +23,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#0f1f3d] to-[#1a3a5f] rounded-lg flex items-center justify-center">
-              <GraduationCap className="w-7 h-7 text-[#d4af37]" />
-            </div>
+            <img 
+              src="https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/klaxr3o2_logo%20saint%20georges.webp" 
+              alt="Saint-Georges Academy"
+              className="h-14 w-auto object-contain"
+            />
             <div className="flex flex-col">
               <span className="font-bold text-lg text-[#0f1f3d] leading-tight">Saint-Georges</span>
               <span className="text-xs text-gray-600 leading-tight">Cisco Networking Academy</span>
