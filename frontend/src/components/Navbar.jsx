@@ -25,16 +25,12 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center">
             <img 
               src="https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/klaxr3o2_logo%20saint%20georges.webp" 
               alt="Saint-Georges Academy"
-              className="h-14 w-auto object-contain"
+              className="h-16 w-auto object-contain hover:scale-105 transition-transform"
             />
-            <div className="flex flex-col">
-              <span className="font-bold text-lg text-[#0f1f3d] leading-tight">Saint-Georges Academy</span>
-              <span className="text-xs text-gray-600 leading-tight">International School</span>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
