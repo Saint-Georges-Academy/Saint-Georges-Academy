@@ -475,7 +475,118 @@ export const courses = [
       'Créer des Blueprints fonctionnels',
       'Développer un prototype de jeu',
       'Comprendre le workflow de développement'
-    ]
+    ],
+    levels: [
+      {
+        name: 'Beginner',
+        subtitle: 'Introduction to Real-Time 3D & Game Development',
+        modules: [
+          {
+            number: 1,
+            title: 'Introduction au moteur Unreal',
+            topics: ['Présentation de l\'interface', 'Viewport', 'World Outliner', 'Content Browser', 'Actors et Components']
+          },
+          {
+            number: 2,
+            title: 'Création d\'un projet',
+            topics: ['Templates (First Person / Third Person)', 'Structure d\'un projet', 'Organisation des dossiers']
+          },
+          {
+            number: 3,
+            title: 'Environnement 3D',
+            topics: ['Import d\'assets', 'Static Mesh', 'Collision', 'Matériaux de base', 'Lighting (lumière statique / dynamique)']
+          },
+          {
+            number: 4,
+            title: 'Blueprint – Bases',
+            topics: ['Logique visuelle', 'Variables', 'Events', 'Nodes', 'Branch / Conditions', 'Timeline']
+          },
+          {
+            number: 5,
+            title: 'Gameplay de base',
+            topics: ['Mouvement du personnage', 'Caméra', 'Interactions simples', 'Détection de collision']
+          },
+          {
+            number: 6,
+            title: 'UI Basics',
+            topics: ['Widgets', 'HUD', 'Boutons', 'Affichage score']
+          },
+          {
+            number: 7,
+            title: 'Introduction au Level Design',
+            topics: ['Organisation d\'un niveau', 'Trigger volumes', 'Spawn d\'objets']
+          },
+          {
+            number: 8,
+            title: 'Export et Build',
+            topics: ['Packaging du projet', 'Génération d\'un exécutable']
+          }
+        ],
+        skills: [
+          'Naviguer dans Unreal Engine',
+          'Créer un environnement 3D simple',
+          'Programmer en Blueprint',
+          'Construire un prototype jouable',
+          'Comprendre la logique événementielle'
+        ],
+        finalProject: 'Création d\'un mini-jeu jouable comprenant : Déplacement, Interaction, Score, Interface utilisateur, Export fonctionnel'
+      },
+      {
+        name: 'Intermediate',
+        subtitle: 'Advanced Blueprint & Game Systems',
+        modules: [
+          {
+            number: 1,
+            title: 'Architecture avancée',
+            topics: ['Game Mode', 'Game State', 'Player Controller', 'Pawn vs Character', 'Blueprint Classes']
+          },
+          {
+            number: 2,
+            title: 'Blueprint avancé',
+            topics: ['Functions', 'Macros', 'Interfaces', 'Event Dispatchers', 'Data Structures (Arrays, Maps)']
+          },
+          {
+            number: 3,
+            title: 'Intelligence Artificielle',
+            topics: ['Navigation Mesh', 'Behavior Tree (introduction)', 'AI Controller', 'Détection joueur']
+          },
+          {
+            number: 4,
+            title: 'Système d\'inventaire',
+            topics: ['Struct', 'Data Table', 'Système d\'objets', 'Sauvegarde données']
+          },
+          {
+            number: 5,
+            title: 'Animation System',
+            topics: ['Animation Blueprint', 'Blend Space', 'State Machine', 'Transitions']
+          },
+          {
+            number: 6,
+            title: 'Physics & Interaction',
+            topics: ['Rigid Body', 'Forces', 'Triggers complexes', 'Destruction system']
+          },
+          {
+            number: 7,
+            title: 'Optimisation',
+            topics: ['LOD', 'Nanite (concept)', 'Gestion mémoire', 'Performance debugging']
+          },
+          {
+            number: 8,
+            title: 'Introduction au Multijoueur',
+            topics: ['Concepts replication', 'Client / Server', 'RPC basics']
+          }
+        ],
+        skills: [
+          'Structurer un projet professionnel',
+          'Développer des systèmes complexes',
+          'Implémenter IA basique',
+          'Optimiser un jeu',
+          'Comprendre logique multijoueur'
+        ],
+        finalProject: 'Création d\'un jeu prototype avancé avec : IA simple, Système d\'inventaire, Animations dynamiques, UI complète, Optimisation, Architecture structurée'
+      }
+    ],
+    note: 'Formation présentiel uniquement. Bootcamp intensif de 35h. Certificat interne de réussite. Unreal Beginner → Découverte & fondations. Unreal Intermediate → Développeur gameplay junior.'
   }
 ];
 
