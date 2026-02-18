@@ -62,6 +62,11 @@ const Footer = () => {
             <h3 className="font-semibold text-[#d4af37] mt-6 mb-4">Informations légales</h3>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link to="/inscription" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  Procédure d'inscription
+                </Link>
+              </li>
+              <li>
                 <Link to="/rgpd" className="text-gray-300 hover:text-[#d4af37] transition-colors">
                   Politique de confidentialité
                 </Link>
