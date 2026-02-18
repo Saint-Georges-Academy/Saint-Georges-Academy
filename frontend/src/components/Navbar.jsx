@@ -23,23 +23,23 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full bg-white shadow-md z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center flex-shrink-0">
             <img 
               src="https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/klaxr3o2_logo%20saint%20georges.webp" 
               alt="Saint-Georges Academy"
-              className="h-16 w-auto object-contain hover:scale-105 transition-transform"
+              className="h-20 w-auto object-contain hover:scale-105 transition-transform"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-1 ml-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`px-5 py-2.5 rounded-lg text-base font-semibold transition-all ${
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
                   isActive(item.path)
                     ? 'text-white bg-[#0f1f3d]'
                     : 'text-[#0f1f3d] hover:text-white hover:bg-[#0f1f3d]/90'
@@ -49,7 +49,7 @@ const Navbar = () => {
               </Link>
             ))}
             <LanguageSwitcher />
-            <Button className="ml-3 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold px-6 py-2.5 text-base shadow-lg">
+            <Button className="ml-2 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold px-5 py-2 text-sm shadow-lg">
               {t('nav.register')}
             </Button>
           </div>
