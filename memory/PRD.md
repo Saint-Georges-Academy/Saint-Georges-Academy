@@ -61,6 +61,7 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - RGPD (Politique de Confidentialité) - /rgpd
 - CGV (Conditions Générales de Vente) - /cgv
 - Mentions Légales - /mentions-legales
+- Indicateurs de Performance (Qualiopi) - /indicateurs
 - Footer updated with legal links section
 
 ✅ **Certification Purchase Feature**
@@ -191,6 +192,7 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 │   ├── RGPD.jsx
 │   ├── CGV.jsx
 │   ├── MentionsLegales.jsx
+│   ├── Indicateurs.jsx
 │   └── CertificationCheckout.jsx
 ├── data/
 │   └── mock.js (course data)
