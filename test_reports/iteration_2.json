@@ -1,0 +1,79 @@
+{
+  "summary": "Frontend testing completed for session selector feature on course detail pages. All requested features verified: session selector dropdown, format-specific session dates (4-week online / fixed months for in-class), tab switching resets selection, green confirmation box, checkout validation, and Stripe redirect.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Unreal Engine course page still shows 'Certification Cisco' label instead of 'Attestation de formation' - minor inconsistency but not breaking"
+  ],
+  "updated_files": [],
+  "success_rate": {
+    "backend": "N/A - Frontend only testing",
+    "frontend": "100%"
+  },
+  "test_credentials": "N/A - No authentication required",
+  "seed_data_creation": "N/A",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Session selection feature is fully working. Stripe checkout is in TEST MODE (real integration, not mocked). Course data is MOCKED in frontend/src/data/mock.js.",
+  "tests_executed": {
+    "session_selector_dropdown": {
+      "ccna1": "PASSED - Dropdown with data-testid='session-selector-trigger' present and functional",
+      "ccna2": "PASSED - Session selector present",
+      "ccna3": "PASSED - Session selector present",
+      "cyberops": "PASSED - Session selector present",
+      "unreal": "PASSED - Session selector present"
+    },
+    "online_format_dates": {
+      "test": "PASSED - Shows 4-week sessions (e.g., '28 Avril - 25 Mai 2026')",
+      "format_text": "PASSED - Shows '4 semaines • En ligne'"
+    },
+    "inclass_format_dates": {
+      "test": "PASSED - Shows fixed months: Février, Avril, Juillet, Octobre",
+      "format_text": "PASSED - Shows '1 semaine (35h) • Présentiel intensif'"
+    },
+    "tab_switch_reset": {
+      "test": "PASSED - Selecting session in En ligne, then switching to Présentiel resets selection"
+    },
+    "green_confirmation_box": {
+      "test": "PASSED - Green box with 'Session sélectionnée' shows when session selected"
+    },
+    "checkout_validation": {
+      "without_session": "PASSED - Shows amber warning 'Veuillez sélectionner une session pour continuer'",
+      "stays_on_page": "PASSED - User stays on course page when no session selected"
+    },
+    "stripe_checkout": {
+      "redirect": "PASSED - Redirects to checkout.stripe.com with correct product",
+      "test_mode": "PASSED - Shows 'TEST MODE' badge on Stripe checkout",
+      "amount": "PASSED - Correct amount €2,290.00 for online CCNA1"
+    },
+    "unreal_engine_course": {
+      "no_tabs": "PASSED - No format tabs (En ligne/Présentiel) shown",
+      "presentiel_only_card": "PASSED - Shows 'Formation Présentiel Uniquement' card",
+      "price": "PASSED - Shows correct price 3750€",
+      "sessions": "PASSED - Shows only Présentiel sessions (Avril, Juillet, Octobre, Février)"
+    },
+    "all_course_pages_load": {
+      "ccna1": "PASSED - /course/ccna1 loads correctly",
+      "ccna2": "PASSED - /course/ccna2 loads correctly",
+      "ccna3": "PASSED - /course/ccna3 loads correctly",
+      "cyberops": "PASSED - /course/cyberops loads correctly",
+      "unreal": "PASSED - /course/unreal loads correctly"
+    }
+  },
+  "data_testids_verified": [
+    "session-selector-trigger",
+    "checkout-btn",
+    "download-pdf-btn",
+    "buy-certification-btn"
+  ],
+  "mocked_api_note": "Course data is MOCKED in frontend/src/data/mock.js. Stripe payment is REAL but in TEST MODE."
+}
