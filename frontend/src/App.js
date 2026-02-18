@@ -13,6 +13,7 @@ import RGPD from "./pages/RGPD";
 import CGV from "./pages/CGV";
 import MentionsLegales from "./pages/MentionsLegales";
 import CertificationCheckout from "./pages/CertificationCheckout";
+import Indicateurs from "./pages/Indicateurs";
 import "./i18n";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/cgv" element={<CGV />} />
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/certification" element={<CertificationCheckout />} />
+          <Route path="/indicateurs" element={<Indicateurs />} />
         </Routes>
         <Footer />
         <Toaster />
