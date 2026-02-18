@@ -14,6 +14,7 @@ import CGV from "./pages/CGV";
 import MentionsLegales from "./pages/MentionsLegales";
 import CertificationCheckout from "./pages/CertificationCheckout";
 import Indicateurs from "./pages/Indicateurs";
+import ProcedureInscription from "./pages/ProcedureInscription";
 import "./i18n";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/certification" element={<CertificationCheckout />} />
           <Route path="/indicateurs" element={<Indicateurs />} />
+          <Route path="/inscription" element={<ProcedureInscription />} />
         </Routes>
         <Footer />
         <Toaster />
