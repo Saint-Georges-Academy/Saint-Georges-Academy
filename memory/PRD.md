@@ -103,6 +103,24 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Links to relevant pages (videos, certification, funding, accessibility, inscription, indicateurs)
 - CTA to contact page
 
+✅ **About Page** (/about)
+- Mission statement
+- 3 areas of expertise (Networking, CyberOps, Unreal Engine)
+- Official Cisco Networking Academy badge
+- Instructor-led excellence section
+- Professional structure & commitments
+- Target audience (6 profiles)
+- Vision statement
+- Location & contact info
+
+✅ **Stripe Payment Integration**
+- Real Stripe Checkout (test mode)
+- 12 products configured (all courses, videos, certifications)
+- Backend API: /api/payments/checkout, /api/payments/status, /api/payments/products
+- Webhook handler for payment confirmation
+- Payment success/cancel pages
+- Transaction tracking in MongoDB
+
 ✅ **Bug Fixes**
 - Removed "France Travail (AIF)" from funding options
 - Updated page title to "Saint-Georges Academy | Cisco Networking Academy"
