@@ -49,8 +49,10 @@ const Navbar = () => {
               </Link>
             ))}
             <LanguageSwitcher />
-            <Button className="ml-2 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold px-5 py-2 text-sm shadow-lg">
-              {t('nav.register')}
+            <Button asChild className="ml-2 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold px-5 py-2 text-sm shadow-lg">
+              <Link to="/inscription">
+                {t('nav.register')}
+              </Link>
             </Button>
           </div>
 
