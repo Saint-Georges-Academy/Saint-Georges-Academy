@@ -370,11 +370,86 @@ export const courses = [
       'Évaluation finale'
     ],
     objectives: [
-      'Surveiller et analyser les menaces de sécurité',
-      'Répondre aux incidents de sécurité',
-      'Utiliser des outils de cybersécurité',
-      'Comprendre les techniques d\'attaque et de défense'
-    ]
+      'Surveiller un réseau et identifier des menaces',
+      'Analyser des logs et détecter des anomalies',
+      'Réagir aux incidents de sécurité',
+      'Appliquer des procédures de cybersécurité',
+      'Participer aux opérations d\'un SOC'
+    ],
+    modules: [
+      {
+        number: 1,
+        title: 'Cybersecurity Foundations',
+        topics: ['Principes fondamentaux de la cybersécurité', 'CIA Triad (Confidentialité, Intégrité, Disponibilité)', 'Types de menaces', 'Attaques courantes (phishing, malware, DDoS)', 'Vecteurs d\'attaque']
+      },
+      {
+        number: 2,
+        title: 'Operating Systems & Network Basics',
+        topics: ['Rappels réseau (IP, ports, protocoles)', 'TCP vs UDP', 'Services réseau (DNS, HTTP, FTP)', 'Linux fundamentals', 'Windows fundamentals', 'Processus et services']
+      },
+      {
+        number: 3,
+        title: 'Security Monitoring Concepts',
+        topics: ['SOC structure', 'Rôle d\'un analyste SOC', 'Types d\'alertes', 'Triage des incidents', 'Niveaux d\'escalade']
+      },
+      {
+        number: 4,
+        title: 'Network Security Monitoring (NSM)',
+        topics: ['Analyse de trafic réseau', 'IDS / IPS', 'Wireshark', 'NetFlow', 'Détection d\'anomalies']
+      },
+      {
+        number: 5,
+        title: 'Log Analysis',
+        topics: ['Types de logs', 'Syslog', 'Windows Event Logs', 'Corrélation d\'événements', 'Indicateurs de compromission (IOC)']
+      },
+      {
+        number: 6,
+        title: 'Security Policies & Procedures',
+        topics: ['Politique de sécurité', 'Gestion des accès', 'Principe du moindre privilège', 'Segmentation réseau', 'Documentation des incidents']
+      },
+      {
+        number: 7,
+        title: 'Endpoint Security',
+        topics: ['Antivirus', 'EDR', 'Malware analysis basics', 'Techniques d\'évasion']
+      },
+      {
+        number: 8,
+        title: 'Cryptography Fundamentals',
+        topics: ['Hashing', 'Encryption symétrique / asymétrique', 'TLS', 'Certificats numériques', 'PKI']
+      },
+      {
+        number: 9,
+        title: 'Incident Response',
+        topics: ['Cycle de réponse à incident', 'Identification', 'Confinement', 'Éradication', 'Récupération', 'Rapport d\'incident']
+      },
+      {
+        number: 10,
+        title: 'Digital Forensics Basics',
+        topics: ['Collecte de preuves', 'Intégrité des données', 'Chaîne de conservation', 'Analyse post-incident']
+      },
+      {
+        number: 11,
+        title: 'SIEM Concepts',
+        topics: ['Introduction SIEM', 'Corrélation', 'Analyse centralisée', 'Détection automatisée']
+      }
+    ],
+    practicalSkills: [
+      'Identifier des menaces réseau',
+      'Analyser du trafic avec Wireshark',
+      'Lire et interpréter des logs',
+      'Détecter des comportements suspects',
+      'Appliquer des procédures SOC',
+      'Réagir à un incident',
+      'Comprendre la cryptographie de base',
+      'Participer à une investigation'
+    ],
+    careerProfiles: [
+      'Analyste SOC Niveau 1',
+      'Technicien cybersécurité',
+      'Administrateur sécurité junior',
+      'Analyste sécurité réseau'
+    ],
+    note: 'CyberOps est le complément naturel du CCNA. CCNA → Infrastructure, CyberOps → Défense. Ensemble, cela crée un profil très attractif pour les entreprises, ESN, SOC et PME.'
   },
   {
     id: 'unreal',
