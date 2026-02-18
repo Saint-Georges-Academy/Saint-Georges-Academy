@@ -14,9 +14,12 @@ import {
   Users,
   ShoppingCart,
   AlertCircle,
-  ArrowLeft
+  ArrowLeft,
+  Download,
+  FileText
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import { generateCoursePDF } from '../utils/generatePDF';
 
 const CourseDetail = () => {
   const { courseId } = useParams();
