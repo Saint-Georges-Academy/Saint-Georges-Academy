@@ -56,6 +56,11 @@ const Footer = () => {
                   {t('nav.funding')}
                 </Link>
               </li>
+              <li>
+                <Link to="/faq" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  FAQ
+                </Link>
+              </li>
             </ul>
             
             {/* Legal Links */}
