@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "home": "Početna",
+    "courses": "Tečajevi",
+    "videos": "CCNA Videozapisi",
+    "funding": "Financiranje",
+    "contact": "Kontakt",
+    "register": "Registracija"
+  },
+  "hero": {
+    "badge": "Službena Cisco Networking Academy",
+    "title": "Postanite Stručnjak za Mreže i Kibernetičku Sigurnost",
+    "subtitle": "Profesionalna certificirana obuka uživo i online. Cisco CCNA, CyberOps i Unreal Engine u Loudunn, Francuska.",
+    "exploreBtn": "Istražite tečajeve",
+    "fundingBtn": "Opcije financiranja",
+    "stats": {
+      "courses": "Certificirani tečajevi",
+      "hours": "Sati obuke",
+      "success": "Stopa uspješnosti",
+      "experience": "Godina iskustva"
+    }
+  },
+  "features": {
+    "title": "Zašto Odabrati Saint-Georges Academy?",
+    "subtitle": "Izvrsna obuka priznata od strane profesionalaca u industriji",
+    "cisco": {
+      "title": "Službena Cisco Networking Academy",
+      "description": "Izravan pristup globalno priznatim Cisco resursima i certifikatima."
+    },
+    "instructors": {
+      "title": "Certificirani Instruktori",
+      "description": "Stručni treneri sa značajnim iskustvom na terenu u tvrtkama."
+    },
+    "format": {
+      "title": "Dvostruki Format",
+      "description": "Fleksibilna online ili intenzivna obuka uživo prema vašim potrebama."
+    },
+    "quality": {
+      "title": "Zajamčena Kvaliteta",
+      "description": "Obrazovna struktura u skladu s Nacionalnim okvirom kvalitete."
+    }
+  },
+  "coursesPreview": {
+    "title": "Naši Tečajevi",
+    "subtitle": "Priznata stručna obuka s međunarodnim certifikatima",
+    "allCourses": "Pogledaj sve tečajeve",
+    "learnMore": "Saznaj više"
+  },
+  "cta": {
+    "title": "Spremni Pokrenuti Svoju Karijeru?",
+    "subtitle": "Pridružite se stotinama profesionalaca obučenih u Saint-Georges Academy",
+    "chooseBtn": "Odaberi moj tečaj",
+    "contactBtn": "Kontaktirajte nas"
+  },
+  "footer": {
+    "brand": "Saint-Georges Academy",
+    "intSchool": "Međunarodna Škola",
+    "description": "Organizacija za profesionalnu obuku specijalizirana za mreže, kibernetičku sigurnost i Unreal Engine. Obrazovna struktura u skladu s Nacionalnim okvirom kvalitete.",
+    "navigation": "Navigacija",
+    "contact": "Kontakt",
+    "address": "Adresa",
+    "rights": "Sva prava pridržana."
+  }
+}

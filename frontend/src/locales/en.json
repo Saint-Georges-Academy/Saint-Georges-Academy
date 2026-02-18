@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "home": "Home",
+    "courses": "Courses",
+    "videos": "CCNA Videos",
+    "funding": "Funding",
+    "contact": "Contact",
+    "register": "Register"
+  },
+  "hero": {
+    "badge": "Official Cisco Networking Academy",
+    "title": "Become an Expert in Networks and Cybersecurity",
+    "subtitle": "Professional certifying training in-person and online. Cisco CCNA, CyberOps and Unreal Engine in Loudun, France.",
+    "exploreBtn": "Explore Courses",
+    "fundingBtn": "Funding Options",
+    "stats": {
+      "courses": "Certifying courses",
+      "hours": "Training hours",
+      "success": "Success rate",
+      "experience": "Years of experience"
+    }
+  },
+  "features": {
+    "title": "Why Choose Saint-Georges Academy?",
+    "subtitle": "Excellence training recognized by industry professionals",
+    "cisco": {
+      "title": "Official Cisco Networking Academy",
+      "description": "Direct access to globally recognized Cisco resources and certifications."
+    },
+    "instructors": {
+      "title": "Certified Instructors",
+      "description": "Expert trainers with significant field experience in companies."
+    },
+    "format": {
+      "title": "Dual Format",
+      "description": "Flexible online or intensive in-person training according to your needs."
+    },
+    "quality": {
+      "title": "Guaranteed Quality",
+      "description": "Educational structure compliant with the National Quality Framework."
+    }
+  },
+  "coursesPreview": {
+    "title": "Our Courses",
+    "subtitle": "Recognized professional training with international certifications",
+    "allCourses": "View all courses",
+    "learnMore": "Learn more"
+  },
+  "cta": {
+    "title": "Ready to Launch Your Career?",
+    "subtitle": "Join hundreds of professionals trained at Saint-Georges Academy",
+    "chooseBtn": "Choose my course",
+    "contactBtn": "Contact us"
+  },
+  "footer": {
+    "brand": "Saint-Georges Academy",
+    "intSchool": "International School",
+    "description": "Professional training organization specialized in networks, cybersecurity and Unreal Engine. Educational structure compliant with the National Quality Framework.",
+    "navigation": "Navigation",
+    "contact": "Contact",
+    "address": "Address",
+    "rights": "All rights reserved."
+  }
+}
