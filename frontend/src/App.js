@@ -52,6 +52,7 @@ function App() {
             <Route path="/payment/success" element={<PaymentSuccess />} />
             <Route path="/payment/cancel" element={<PaymentCancel />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/extreme-bootcamp" element={<ExtremeBootcamp />} />
             <Route 
               path="/dashboard" 
               element={
