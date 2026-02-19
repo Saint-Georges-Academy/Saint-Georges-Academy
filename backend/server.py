@@ -14,9 +14,12 @@ from datetime import datetime, timezone
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# Import payment routes after env is loaded
+# Import routes after env is loaded
 from routes.payments import payment_router
 from routes.webhooks import webhook_router
+from routes.courses import course_router
+from routes.auth import auth_router
+from routes.dashboard import dashboard_router
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
