@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { t } = useTranslation();
+  const { isAuthenticated, user, logout } = useAuth();
 
   const navigation = [
     { name: t('nav.home'), path: '/' },
@@ -49,11 +51,30 @@ const Navbar = () => {
               </Link>
             ))}
             <LanguageSwitcher />
-            <Button asChild className="ml-2 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold px-5 py-2 text-sm shadow-lg">
-              <Link to="/inscription">
-                {t('nav.register')}
-              </Link>
-            </Button>
+            
+            {isAuthenticated ? (
+              <div className="flex items-center gap-2 ml-2">
+                <Button asChild variant="outline" className="border-[#0f1f3d] text-[#0f1f3d]">
+                  <Link to="/dashboard" data-testid="nav-dashboard-btn">
+                    <User className="h-4 w-4 mr-2" />
+                    {user?.first_name}
+                  </Link>
+                </Button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 ml-2">
+                <Button asChild variant="outline" className="border-[#0f1f3d] text-[#0f1f3d]">
+                  <Link to="/auth" data-testid="nav-login-btn">
+                    Connexion
+                  </Link>
+                </Button>
+                <Button asChild className="bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold px-5 py-2 text-sm shadow-lg">
+                  <Link to="/inscription" data-testid="nav-register-btn">
+                    {t('nav.register')}
+                  </Link>
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -87,11 +108,38 @@ const Navbar = () => {
             <div className="px-5 py-3">
               <LanguageSwitcher />
             </div>
-            <Button asChild className="w-full mt-3 bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold py-3 text-base shadow-lg">
-              <Link to="/inscription">
-                {t('nav.register')}
-              </Link>
-            </Button>
+            
+            {isAuthenticated ? (
+              <div className="space-y-2 pt-2">
+                <Button asChild variant="outline" className="w-full border-[#0f1f3d] text-[#0f1f3d]">
+                  <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+                    <User className="h-4 w-4 mr-2" />
+                    Mon Espace
+                  </Link>
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="w-full text-red-600 border-red-200 hover:bg-red-50"
+                  onClick={() => { logout(); setIsOpen(false); }}
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Déconnexion
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-2 pt-2">
+                <Button asChild variant="outline" className="w-full border-[#0f1f3d] text-[#0f1f3d]">
+                  <Link to="/auth" onClick={() => setIsOpen(false)}>
+                    Connexion
+                  </Link>
+                </Button>
+                <Button asChild className="w-full bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold py-3 text-base shadow-lg">
+                  <Link to="/inscription" onClick={() => setIsOpen(false)}>
+                    {t('nav.register')}
+                  </Link>
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       )}
