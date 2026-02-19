@@ -67,7 +67,7 @@ PRODUCTS = {
     # Extreme CCNA Boot Camp
     "extreme-ccna-bootcamp_inclass": {
         "name": "Extreme CCNA Boot Camp (Présentiel - 75 Labs)",
-        "amount": 3990.00,
+        "amount": 3290.00,
         "currency": "eur",
         "category": "formation"
     },
