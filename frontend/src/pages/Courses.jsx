@@ -165,7 +165,7 @@ const Courses = () => {
                 </div>
 
                 <Button asChild className={`w-full ${bootcamp ? 'bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d]' : 'bg-[#0f1f3d] hover:bg-[#1a3a5f] text-white'}`}>
-                  <Link to={`/course/${course.id}`}>
+                  <Link to={bootcamp ? '/extreme-bootcamp' : `/course/${course.id}`}>
                     Voir les détails
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
