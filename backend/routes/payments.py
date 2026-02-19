@@ -64,6 +64,13 @@ PRODUCTS = {
         "currency": "eur",
         "category": "formation"
     },
+    # Extreme CCNA Boot Camp
+    "extreme-ccna-bootcamp_inclass": {
+        "name": "Extreme CCNA Boot Camp (Présentiel - 75 Labs)",
+        "amount": 3990.00,
+        "currency": "eur",
+        "category": "formation"
+    },
     # CyberOps
     "cyberops_online": {
         "name": "CyberOps Associate (En ligne)",
