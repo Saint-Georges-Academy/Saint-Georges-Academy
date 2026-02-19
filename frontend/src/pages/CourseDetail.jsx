@@ -363,23 +363,49 @@ const CourseDetail = () => {
               </Card>
             )}
 
-            {course.id === 'unreal' && (
-              <Card>
+            {/* In-class only courses (Unreal or Bootcamp or no online price) */}
+            {(!course.onlinePrice || course.id === 'unreal' || course.id === 'extreme-ccna-bootcamp') && (
+              <Card className={course.id === 'extreme-ccna-bootcamp' ? 'border-2 border-[#d4af37]' : ''}>
                 <CardHeader>
-                  <CardTitle className="text-2xl text-[#0f1f3d]">Formation Présentiel Uniquement</CardTitle>
+                  <CardTitle className="text-2xl text-[#0f1f3d]">
+                    {course.id === 'extreme-ccna-bootcamp' ? 'Boot Camp Intensif' : 'Formation Présentiel Uniquement'}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <h3 className="text-2xl font-bold text-[#0f1f3d]">Unreal Engine</h3>
+                      <h3 className="text-2xl font-bold text-[#0f1f3d]">{course.title}</h3>
                       <div className="text-right">
                         <div className="text-3xl font-bold text-[#d4af37]">{course.inClassPrice}€</div>
                         <div className="text-sm text-gray-600">Durée: {course.duration}</div>
                       </div>
                     </div>
                     <p className="text-gray-600">
-                      Formation intensive en présentiel uniquement, avec accès aux stations de travail professionnelles.
+                      {course.id === 'extreme-ccna-bootcamp' 
+                        ? 'Formation intensive avec 75 labs pratiques sur Packet Tracer. Idéal pour une préparation rapide et complète à la certification CCNA.'
+                        : 'Formation intensive en présentiel uniquement, avec accès aux équipements professionnels.'}
                     </p>
+                    
+                    {/* Meals included notice for in-class */}
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center space-x-2 text-green-700">
+                          <Coffee className="w-5 h-5" />
+                          <span className="text-sm font-medium">Petit-déjeuner continental inclus</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-green-700">
+                          <Utensils className="w-5 h-5" />
+                          <span className="text-sm font-medium">Déjeuner inclus</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start space-x-3">
+                      <Users className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <div className="text-sm text-blue-900">
+                        <strong>Formation sur site:</strong> 2 venelle des Amandiers, 86200 Loudun, France
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
