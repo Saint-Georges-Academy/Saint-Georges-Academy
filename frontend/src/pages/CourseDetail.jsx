@@ -105,27 +105,61 @@ const generateSessions = (format) => {
 
 const CourseDetail = () => {
   const { courseId } = useParams();
-  const course = courses.find(c => c.id === courseId);
+  const [course, setCourse] = useState(null);
+  const [loading, setLoading] = useState(true);
   
-  // For Unreal Engine (no online option), default to inclass
-  const defaultFormat = course?.id === 'unreal' ? 'inclass' : 'online';
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/api/courses/${courseId}`);
+        setCourse(response.data);
+      } catch (error) {
+        console.error('Failed to fetch course:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCourse();
+  }, [courseId]);
+  
+  // For Unreal Engine or Bootcamp (no online option), default to inclass
+  const isInClassOnly = course?.id === 'unreal' || course?.id === 'extreme-ccna-bootcamp' || !course?.onlinePrice;
+  const defaultFormat = isInClassOnly ? 'inclass' : 'online';
   const [selectedFormat, setSelectedFormat] = useState(defaultFormat);
   const [selectedSession, setSelectedSession] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
+  // Update default format when course loads
+  useEffect(() => {
+    if (course) {
+      const inClassOnly = course.id === 'unreal' || course.id === 'extreme-ccna-bootcamp' || !course.onlinePrice;
+      setSelectedFormat(inClassOnly ? 'inclass' : 'online');
+    }
+  }, [course]);
+
   // Generate available sessions based on selected format
   const availableSessions = useMemo(() => {
-    // For Unreal Engine, always use inclass format
-    const format = course?.id === 'unreal' ? 'inclass' : selectedFormat;
+    if (!course) return [];
+    // For in-class only courses, always use inclass format
+    const inClassOnly = course.id === 'unreal' || course.id === 'extreme-ccna-bootcamp' || !course.onlinePrice;
+    const format = inClassOnly ? 'inclass' : selectedFormat;
     return generateSessions(format);
-  }, [selectedFormat, course?.id]);
+  }, [selectedFormat, course]);
 
   // Reset session selection when format changes
   const handleFormatChange = (format) => {
     setSelectedFormat(format);
     setSelectedSession('');
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen pt-32 pb-20 flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-[#0f1f3d]" />
+      </div>
+    );
+  }
 
   if (!course) {
     return (
