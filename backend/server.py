@@ -77,6 +77,9 @@ async def get_status_checks():
 app.include_router(api_router)
 app.include_router(payment_router)
 app.include_router(webhook_router)
+app.include_router(course_router)
+app.include_router(auth_router)
+app.include_router(dashboard_router)
 
 app.add_middleware(
     CORSMiddleware,
