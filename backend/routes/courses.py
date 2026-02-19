@@ -85,6 +85,133 @@ async def get_course(course_id: str):
     return course
 
 # =============================================================================
+# Update Courses Endpoint
+# =============================================================================
+
+@course_router.post("/update-inclass-features")
+async def update_inclass_features():
+    """Update all in-class courses with meal information"""
+    
+    # Updated in-class features with meals
+    meal_features = [
+        "Petit-déjeuner continental inclus",
+        "Déjeuner inclus"
+    ]
+    
+    # Update CCNA 1, 2, 3
+    for course_id in ["ccna1", "ccna2", "ccna3"]:
+        course = await db.courses.find_one({"id": course_id})
+        if course and course.get("inClassFeatures"):
+            current_features = course["inClassFeatures"]
+            # Add meal features if not already present
+            for feature in meal_features:
+                if feature not in current_features:
+                    current_features.append(feature)
+            await db.courses.update_one(
+                {"id": course_id},
+                {"$set": {"inClassFeatures": current_features}}
+            )
+    
+    # Update CyberOps
+    cyberops = await db.courses.find_one({"id": "cyberops"})
+    if cyberops and cyberops.get("inClassFeatures"):
+        current_features = cyberops["inClassFeatures"]
+        for feature in meal_features:
+            if feature not in current_features:
+                current_features.append(feature)
+        await db.courses.update_one(
+            {"id": "cyberops"},
+            {"$set": {"inClassFeatures": current_features}}
+        )
+    
+    # Update Unreal Engine
+    unreal = await db.courses.find_one({"id": "unreal"})
+    if unreal and unreal.get("inClassFeatures"):
+        current_features = unreal["inClassFeatures"]
+        for feature in meal_features:
+            if feature not in current_features:
+                current_features.append(feature)
+        await db.courses.update_one(
+            {"id": "unreal"},
+            {"$set": {"inClassFeatures": current_features}}
+        )
+    
+    return {"message": "Updated all in-class courses with meal information"}
+
+@course_router.post("/add-bootcamp")
+async def add_bootcamp():
+    """Add the Extreme CCNA Boot Camp course"""
+    
+    # Check if already exists
+    existing = await db.courses.find_one({"id": "extreme-ccna-bootcamp"})
+    if existing:
+        return {"message": "Extreme CCNA Boot Camp already exists"}
+    
+    bootcamp = {
+        "id": "extreme-ccna-bootcamp",
+        "title": "Extreme CCNA Boot Camp",
+        "category": "CCNA",
+        "description": "Formation intensive de préparation CCNA avec 75 labs pratiques sur Packet Tracer. Un bootcamp complet pour maîtriser les fondamentaux du réseau en une semaine.",
+        "duration": "35 hours",
+        "level": "Tous niveaux",
+        "onlinePrice": None,
+        "inClassPrice": 3990,
+        "certificationCost": 630,
+        "features": None,
+        "inClassFeatures": [
+            "Formation intensive en présentiel à Loudun",
+            "Durée : 35 heures (1 semaine)",
+            "75 labs pratiques sur Packet Tracer",
+            "Encadrement par instructeur certifié Cisco",
+            "Petit-déjeuner continental inclus",
+            "Déjeuner inclus",
+            "Support de cours complet",
+            "Accès aux équipements réels",
+            "Évaluation continue et finale"
+        ],
+        "objectives": [
+            "Maîtriser les fondamentaux du réseau en mode intensif",
+            "Configurer des réseaux IPv4/IPv6 complets",
+            "Déployer et gérer des VLANs sur switches Cisco",
+            "Implémenter le routage inter-VLAN",
+            "Configurer DHCP, NAT, SSH, ACLs, trunking",
+            "Diagnostiquer et résoudre des problèmes réseau",
+            "Se préparer efficacement à la certification CCNA"
+        ],
+        "modules": [
+            {"number": 1, "title": "Fondamentaux Réseau Intensif", "topics": ["Révision complète OSI/TCP-IP", "Adressage IPv4/IPv6", "Subnetting avancé", "Configuration switch/routeur"]},
+            {"number": 2, "title": "Switching & VLANs", "topics": ["Configuration VLANs", "Trunking 802.1Q", "VTP", "STP/RSTP", "EtherChannel"]},
+            {"number": 3, "title": "Routing Essentials", "topics": ["Routage statique", "OSPF single-area", "Inter-VLAN routing", "Router-on-a-stick"]},
+            {"number": 4, "title": "Services Réseau", "topics": ["DHCP", "NAT/PAT", "DNS", "NTP", "SNMP"]},
+            {"number": 5, "title": "Sécurité & ACLs", "topics": ["ACLs standard et étendues", "SSH configuration", "Port-security", "DHCP snooping"]},
+            {"number": 6, "title": "Labs Pratiques Intensifs", "topics": ["75 labs Packet Tracer", "Troubleshooting scenarios", "Cas pratiques entreprise", "Simulation examen"]}
+        ],
+        "practicalSkills": [
+            "Configurer un réseau complet de A à Z",
+            "Maîtriser 75 scénarios pratiques",
+            "Diagnostiquer rapidement les problèmes réseau",
+            "Préparer l'examen CCNA 200-301",
+            "Travailler sur équipements réels et simulés"
+        ],
+        "targetAudience": [
+            "Professionnels IT en reconversion rapide",
+            "Techniciens souhaitant valider leurs acquis",
+            "Candidats CCNA en préparation intensive",
+            "Administrateurs systèmes voulant élargir leurs compétences"
+        ],
+        "prerequisites": [
+            "Connaissances de base en informatique",
+            "Motivation pour un rythme intensif",
+            "Capacité à travailler 7h/jour pendant 5 jours",
+            "Anglais technique recommandé"
+        ],
+        "note": "Formation présentiel uniquement. Bootcamp intensif de 35h avec 75 labs. Petit-déjeuner et déjeuner inclus. Idéal pour une préparation rapide et complète à la certification CCNA."
+    }
+    
+    await db.courses.insert_one(bootcamp)
+    return {"message": "Extreme CCNA Boot Camp added successfully"}
+
+# =============================================================================
 # Seed Data Endpoint (for initial setup)
 # =============================================================================
 
