@@ -1,16 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { courses } from '../data/mock';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { Clock, BarChart, MapPin, Globe, ArrowRight } from 'lucide-react';
+import { Clock, BarChart, MapPin, Globe, ArrowRight, Loader2, Zap } from 'lucide-react';
+import axios from 'axios';
+
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Courses = () => {
   const [searchParams] = useSearchParams();
   const filterParam = searchParams.get('filter');
   const [activeFilter, setActiveFilter] = useState(filterParam || 'all');
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/api/courses`);
+        setCourses(response.data);
+      } catch (error) {
+        console.error('Failed to fetch courses:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCourses();
+  }, []);
 
   const categories = ['all', 'CCNA', 'Cybersécurité', 'Développement'];
 
@@ -29,6 +47,17 @@ const Courses = () => {
     }
     return null;
   };
+
+  // Check if course is bootcamp
+  const isBootcamp = (course) => course.id === 'extreme-ccna-bootcamp';
+
+  if (loading) {
+    return (
+      <div className="min-h-screen pt-24 pb-20 bg-gray-50 flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-[#0f1f3d]" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50">
@@ -61,13 +90,27 @@ const Courses = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredCourses.map((course) => {
             const certLogo = getCertificationLogo(course);
+            const bootcamp = isBootcamp(course);
             return (
-              <Card key={course.id} className="border-2 hover:border-[#d4af37] transition-all hover:shadow-xl group flex flex-col">
+              <Card 
+                key={course.id} 
+                className={`border-2 hover:border-[#d4af37] transition-all hover:shadow-xl group flex flex-col ${
+                  bootcamp ? 'border-[#d4af37] bg-gradient-to-br from-amber-50 to-yellow-50' : ''
+                }`}
+              >
                 <CardHeader>
                   <div className="flex items-start justify-between mb-3">
-                    <Badge className="bg-[#0f1f3d] text-white hover:bg-[#1a3a5f]">
-                      {course.category}
-                    </Badge>
+                    <div className="flex gap-2">
+                      <Badge className="bg-[#0f1f3d] text-white hover:bg-[#1a3a5f]">
+                        {course.category}
+                      </Badge>
+                      {bootcamp && (
+                        <Badge className="bg-[#d4af37] text-[#0f1f3d] hover:bg-[#b8941f]">
+                          <Zap className="w-3 h-3 mr-1" />
+                          Intensif
+                        </Badge>
+                      )}
+                    </div>
                     {certLogo && (
                       <img 
                         src={certLogo} 
@@ -90,6 +133,12 @@ const Courses = () => {
                       <BarChart className="w-4 h-4 text-[#d4af37]" />
                       <span>Niveau: {course.level}</span>
                     </div>
+                    {bootcamp && (
+                      <div className="flex items-center space-x-2 text-[#d4af37] font-medium">
+                        <Zap className="w-4 h-4" />
+                        <span>75 Labs Packet Tracer</span>
+                      </div>
+                    )}
                   </div>
                 </CardHeader>
 
@@ -115,7 +164,7 @@ const Courses = () => {
                   )}
                 </div>
 
-                <Button asChild className="w-full bg-[#0f1f3d] hover:bg-[#1a3a5f] text-white">
+                <Button asChild className={`w-full ${bootcamp ? 'bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d]' : 'bg-[#0f1f3d] hover:bg-[#1a3a5f] text-white'}`}>
                   <Link to={`/course/${course.id}`}>
                     Voir les détails
                     <ArrowRight className="ml-2 w-4 h-4" />
