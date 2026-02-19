@@ -157,7 +157,7 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 ### Phase 3.5 - New Course & Updates (Feb 2026) ✅ NEW
 ✅ **Extreme CCNA Boot Camp**
 - New course: "Extreme CCNA Boot Camp"
-- In-class only: 3990€
+- In-class only: 3290€
 - Duration: 35 hours (1 week intensive)
 - 75 labs on Packet Tracer
 - Highlighted with "Intensif" badge on courses page
@@ -174,6 +174,91 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Courses page now fetches from /api/courses (not mock.js)
 - CourseDetail page fetches individual course from API
 - Proper loading states and error handling
+
+### Phase 4 - Institutional Bootcamp Page (Feb 2026) ✅ NEW
+✅ **Extreme CCNA Boot Camp Institutional Page** - /extreme-bootcamp
+Created professional, Qualiopi-compliant institutional page with:
+
+**1. Hero Section**
+- Title: EXTREME CCNA BOOT CAMP
+- Price: 3 290 €
+- Duration: 35 heures
+- 75+ Labs indicator
+- Cisco CCNA certification badge
+- Checkout card with exam option (+630€)
+
+**2. Objectifs Professionnels**
+12 professional objectives including:
+- Configure Cisco routers and switches
+- VLAN and inter-VLAN routing
+- OSPF, EIGRP, RIP configuration
+- ACL standard and extended
+- NAT (static, dynamic, PAT)
+- IPv6 (SLAAC, DHCPv6)
+- HSRP configuration
+- ASA Firewall (ACL, NAT, inspection)
+- VPN GRE and IPSec
+- VoIP and Voice VLAN
+- Enterprise WLAN
+- Network security
+
+**3. Programme Détaillé (5 Modules)**
+- Module 1: Configuration & Sécurisation des Équipements
+- Module 2: Switching Avancé
+- Module 3: Routage Entreprise
+- Module 4: WAN, VoIP & VPN
+- Module 5: Cisco ASA Firewall
+- Projet Final Intégrateur (multi-site architecture)
+
+**4. Modalités Pédagogiques**
+- 80% Pratique / 20% Théorie
+- 75+ Laboratoires
+- 1:8 Encadrement formateur
+- Plateau technique Cisco
+
+**5. Prérequis**
+- Modèle OSI
+- Bases IPv4
+- CLI recommandée
+- Niveau CCNA1 conseillé
+- Entretien de positionnement
+
+**6. Certification**
+- Certificat de participation Saint-Georges Academy
+- Option examen Cisco: 630€ (PearsonVUE)
+- Accès NetAcad inclus selon niveau
+
+**7. Moyens Techniques**
+- Routeurs Cisco
+- Switches L2 & L3
+- Cisco ASA Firewall
+- Packet Tracer
+- Plateforme pédagogique sécurisée
+
+**8. Modalités d'Évaluation**
+- Évaluation continue
+- Grille de compétences
+- Projet final
+- Attestation de fin de formation
+
+**9. Accessibilité Handicap**
+- Engagement d'adaptation
+- Référent Handicap mentionné
+
+**10. Indicateurs de Performance**
+- Taux de satisfaction: 98%
+- Taux de réussite: 95%
+- Taux certification: 85%
+- Taux insertion: 92%
+
+**11. Informations Réglementaires**
+- Links to CGV, RGPD, Mentions Légales
+- Modalités de rétractation
+- Contact administratif
+
+**12. CTA Final**
+- Checkout buttons
+- Contact link
 
 ---
 
