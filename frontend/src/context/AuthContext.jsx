@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
@@ -13,14 +13,19 @@ export const useAuth = () => {
   return context;
 };
 
+// Create a separate axios instance for auth requests
+const authAxios = axios.create({
+  baseURL: API_URL
+});
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('auth_token'));
+  const [token, setToken] = useState(() => localStorage.getItem('auth_token'));
   const [loading, setLoading] = useState(true);
 
-  // Set up axios interceptor for auth header
+  // Set up axios interceptor for auth header - runs once
   useEffect(() => {
-    const interceptor = axios.interceptors.request.use(
+    const requestInterceptor = axios.interceptors.request.use(
       (config) => {
         const storedToken = localStorage.getItem('auth_token');
         if (storedToken) {
@@ -31,16 +36,33 @@ export const AuthProvider = ({ children }) => {
       (error) => Promise.reject(error)
     );
 
-    return () => axios.interceptors.request.eject(interceptor);
+    // Response interceptor to handle 401 errors
+    const responseInterceptor = axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response?.status === 401) {
+          // Token expired or invalid - clear auth state
+          localStorage.removeItem('auth_token');
+          setToken(null);
+          setUser(null);
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.request.eject(requestInterceptor);
+      axios.interceptors.response.eject(responseInterceptor);
+    };
   }, []);
 
-  // Load user on mount
+  // Load user on mount and when token changes
   useEffect(() => {
     const loadUser = async () => {
       const storedToken = localStorage.getItem('auth_token');
       if (storedToken) {
         try {
-          const response = await axios.get(`${API_URL}/api/auth/me`, {
+          const response = await authAxios.get('/api/auth/me', {
             headers: { Authorization: `Bearer ${storedToken}` }
           });
           setUser(response.data);
@@ -49,6 +71,7 @@ export const AuthProvider = ({ children }) => {
           console.error('Failed to load user:', error);
           localStorage.removeItem('auth_token');
           setToken(null);
+          setUser(null);
         }
       }
       setLoading(false);
@@ -57,8 +80,8 @@ export const AuthProvider = ({ children }) => {
     loadUser();
   }, []);
 
-  const login = async (email, password) => {
-    const response = await axios.post(`${API_URL}/api/auth/login`, {
+  const login = useCallback(async (email, password) => {
+    const response = await authAxios.post('/api/auth/login', {
       email,
       password
     });
@@ -69,10 +92,10 @@ export const AuthProvider = ({ children }) => {
     setUser(userData);
     
     return userData;
-  };
+  }, []);
 
-  const register = async (userData) => {
-    const response = await axios.post(`${API_URL}/api/auth/register`, userData);
+  const register = useCallback(async (userData) => {
+    const response = await authAxios.post('/api/auth/register', userData);
     
     const { access_token, user: newUser } = response.data;
     localStorage.setItem('auth_token', access_token);
@@ -80,32 +103,32 @@ export const AuthProvider = ({ children }) => {
     setUser(newUser);
     
     return newUser;
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem('auth_token');
     setToken(null);
     setUser(null);
-  };
+  }, []);
 
-  const updateProfile = async (profileData) => {
+  const updateProfile = useCallback(async (profileData) => {
     const response = await axios.put(`${API_URL}/api/auth/me`, profileData);
     setUser(response.data);
     return response.data;
-  };
+  }, []);
 
-  const changePassword = async (currentPassword, newPassword) => {
+  const changePassword = useCallback(async (currentPassword, newPassword) => {
     await axios.post(`${API_URL}/api/auth/change-password`, {
       current_password: currentPassword,
       new_password: newPassword
     });
-  };
+  }, []);
 
-  const requestPasswordReset = async (email) => {
+  const requestPasswordReset = useCallback(async (email) => {
     await axios.post(`${API_URL}/api/auth/request-password-reset`, { email });
-  };
+  }, []);
 
-  const value = {
+  const value = useMemo(() => ({
     user,
     token,
     loading,
@@ -116,7 +139,7 @@ export const AuthProvider = ({ children }) => {
     updateProfile,
     changePassword,
     requestPasswordReset
-  };
+  }), [user, token, loading, login, register, logout, updateProfile, changePassword, requestPasswordReset]);
 
   return (
     <AuthContext.Provider value={value}>
