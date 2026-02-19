@@ -29,11 +29,10 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Via PearsonVUE centers
 - Internal certificate for Unreal Engine
 
-### Funding Options (Updated)
+### Funding Options
 - Personal financing
 - Employer funding
 - OPCO
-- ~~France Travail (AIF)~~ - REMOVED (not yet validated)
 - NOT CPF eligible (yet)
 
 ---
@@ -70,7 +69,7 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Date picker for exam scheduling (14+ days in future)
 - Complete billing form
 - RGPD and CGV consent checkboxes
-- Mock Stripe payment (2.5s simulation)
+- Stripe payment integration
 - Detailed receipt generation with print option
 
 ✅ **PDF Program Downloads**
@@ -79,39 +78,11 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Branded with Saint-Georges Academy colors
 - Download button on all course detail pages
 
-✅ **Procédure d'Inscription Page** (/inscription)
-- 7-step enrollment process (France Travail & Qualiopi compliant)
-- Visual timeline with icons
-- Quality engagement section
-- Qualiopi audit checklist
-- CTA buttons and contact info
-- Linked from "Register" button in navbar
-
-✅ **Accessibilité & Référent Handicap** (/accessibilite)
-- Disability referent contact (Thierry Paul)
-- 4 engagement commitments
-- 6 possible accommodations
-- Physical & digital accessibility info
-- Partnership options
-- 5-step procedure
-- Confidentiality notice
-- Qualiopi compliance checklist
-
-✅ **FAQ Page** (/faq)
-- 12 most frequent questions with accordion
-- Covers: formats, pricing, certification, funding, prerequisites, duration, accessibility, GDPR, careers
-- Links to relevant pages (videos, certification, funding, accessibility, inscription, indicateurs)
-- CTA to contact page
-
-✅ **About Page** (/about)
-- Mission statement
-- 3 areas of expertise (Networking, CyberOps, Unreal Engine)
-- Official Cisco Networking Academy badge
-- Instructor-led excellence section
-- Professional structure & commitments
-- Target audience (6 profiles)
-- Vision statement
-- Location & contact info
+✅ **Additional Pages**
+- Procédure d'Inscription (/inscription)
+- Accessibilité & Référent Handicap (/accessibilite)
+- FAQ Page (/faq)
+- About Page (/about)
 
 ✅ **Stripe Payment Integration**
 - Real Stripe Checkout (test mode)
@@ -121,96 +92,141 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - Payment success/cancel pages
 - Transaction tracking in MongoDB
 
-✅ **Bug Fixes**
-- Removed "France Travail (AIF)" from funding options
-- Updated page title to "Saint-Georges Academy | Cisco Networking Academy"
-
 ### Phase 2 - Session Selection (Feb 2026)
 ✅ **Course Session Selection Feature**
 - Session selector dropdown on all course detail pages
-- Format-specific date generation:
-  - **En ligne (Online)**: 4-week sessions with 4-week breaks between sessions
-  - **Présentiel (In-class)**: Fixed annual sessions (Février, Avril, Juillet, Octobre)
-- Dynamic session generation based on current date (only shows future sessions)
-- Green confirmation box when session selected
-- Validation preventing checkout without session selection
+- Format-specific date generation
+- Dynamic session generation based on current date
 - Selected session info passed to Stripe checkout
-- Tab switching resets session selection
-- Unreal Engine shows only présentiel sessions (no format tabs)
+
+### Phase 3 - P0 Features (Feb 2026) ✅ NEW
+✅ **Database Migration**
+- Migrated all course data from mock.js to MongoDB
+- Seed endpoint: POST /api/courses/seed
+- 5 courses + 1 video product in database
+- API endpoints:
+  - GET /api/courses - List all courses
+  - GET /api/courses/{id} - Get course details
+  - GET /api/courses/videos - Get video product
+
+✅ **User Authentication System**
+- User registration with email/password
+- JWT token-based authentication (24-hour expiry)
+- Password hashing with bcrypt
+- Login/logout functionality
+- Profile management
+- Password change
+- Password reset request
+- Email verification (placeholder)
+- API endpoints:
+  - POST /api/auth/register
+  - POST /api/auth/login
+  - GET /api/auth/me
+  - PUT /api/auth/me
+  - POST /api/auth/change-password
+  - POST /api/auth/request-password-reset
+  - POST /api/auth/reset-password
+  - POST /api/auth/verify-email
+  - GET /api/auth/users (admin only)
+  - PUT /api/auth/users/{id}/role (admin only)
+
+✅ **Student Dashboard**
+- Protected route (requires authentication)
+- Dashboard summary with stats
+- My Courses section (purchased courses)
+- Video Access section (75 CCNA videos)
+- Orders history
+- Profile settings
+- API endpoints:
+  - GET /api/dashboard/summary
+  - GET /api/dashboard/my-courses
+  - GET /api/dashboard/video-access
+  - GET /api/dashboard/course/{id}/progress
+  - POST /api/dashboard/course/{id}/progress
+  - GET /api/dashboard/orders
+
+✅ **Frontend Auth Components**
+- Auth page (/auth) with login/register tabs
+- AuthContext for state management
+- ProtectedRoute component
+- Navbar integration (shows user name when logged in)
+- Dashboard page with multiple sections
 
 ---
 
 ## Tech Stack
 - **Frontend**: React 19, React Router, TailwindCSS, Shadcn UI, i18next
-- **Backend**: FastAPI, MongoDB (template ready)
+- **Backend**: FastAPI, MongoDB, JWT, bcrypt
+- **Payments**: Stripe (test mode)
 - **Deployment**: Supervisor, Nginx
 
 ---
 
-## Next Phase - Backend & Real Payments
-
-### P0 Features (Critical)
-1. **Database Migration**
-   - Migrate all course data from mock.js to MongoDB
-   - Create CRUD APIs for courses, users, orders
-   - Refactor frontend to fetch data from backend
-
-2. **User Authentication System**
-   - User registration/login
-   - Email verification
-   - Password reset
-   - JWT tokens
-
-3. **Student Dashboard**
-   - Course access based on purchase
-   - NetAcad links (online courses)
-   - Video library (video product)
-   - Progress tracking
-   - Document downloads
+## Next Phase - P1 Features
 
 ### P1 Features (Important)
-- Live Session Booking System
-- Admin dashboard
-- Course content management
-- User management
-- Analytics and reporting
-- Email automation
+1. **Course Access Integration**
+   - Grant course access after successful payment
+   - Link purchased courses to user dashboard
+   - NetAcad integration links
+
+2. **Email Notifications**
+   - Welcome email on registration
+   - Purchase confirmation emails
+   - Password reset emails
+
+3. **Admin Dashboard**
+   - User management
+   - Course management
+   - Transaction overview
+   - Analytics
+
+4. **Live Session Booking System**
+   - Weekly session scheduling
+   - Instructor availability
+   - Video call integration
 
 ### P2 Features (Nice to Have)
 - Review/testimonial system
 - Blog/news section
 - Certificate generation
 - Advanced analytics
+- Student progress tracking
 
 ---
 
-## API Contracts (To Implement)
+## API Contracts
 
 ### Authentication
-- POST /api/auth/register
-- POST /api/auth/login
-- POST /api/auth/verify-email
-- POST /api/auth/reset-password
+- POST /api/auth/register ✅
+- POST /api/auth/login ✅
+- GET /api/auth/me ✅
+- PUT /api/auth/me ✅
+- POST /api/auth/change-password ✅
+- POST /api/auth/request-password-reset ✅
+- POST /api/auth/reset-password ✅
+- POST /api/auth/verify-email ✅
 
 ### Courses
-- GET /api/courses
-- GET /api/courses/:id
-- GET /api/videos (75 videos product)
+- GET /api/courses ✅
+- GET /api/courses/{id} ✅
+- GET /api/courses/videos ✅
+- POST /api/courses/seed ✅
 
 ### Payments
-- POST /api/payments/create-checkout
-- POST /api/payments/webhook
-- GET /api/payments/orders
+- POST /api/payments/checkout ✅
+- GET /api/payments/status/{session_id} ✅
+- GET /api/payments/products ✅
+- GET /api/payments/transactions ✅
+- POST /api/webhook/stripe ✅
 
-### Bookings
-- GET /api/bookings/availability
-- POST /api/bookings/create
-- GET /api/bookings/my-bookings
-
-### User Dashboard
-- GET /api/dashboard/my-courses
-- GET /api/dashboard/my-videos
-- GET /api/dashboard/progress
+### Dashboard
+- GET /api/dashboard/summary ✅
+- GET /api/dashboard/my-courses ✅
+- GET /api/dashboard/video-access ✅
+- GET /api/dashboard/course/{id}/progress ✅
+- POST /api/dashboard/course/{id}/progress ✅
+- GET /api/dashboard/orders ✅
 
 ---
 
@@ -236,40 +252,47 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 
 ## File Structure
 ```
-/app/frontend/src/
-├── components/
-│   ├── Navbar.jsx
-│   ├── Footer.jsx (with legal links)
-│   ├── LanguageSwitcher.jsx
-│   └── ui/ (Shadcn components)
-├── pages/
-│   ├── Home.jsx
-│   ├── Courses.jsx
-│   ├── CourseDetail.jsx
-│   ├── Videos.jsx
-│   ├── Funding.jsx
-│   ├── Contact.jsx
-│   ├── RGPD.jsx
-│   ├── CGV.jsx
-│   ├── MentionsLegales.jsx
-│   ├── Indicateurs.jsx
-│   ├── ProcedureInscription.jsx
-│   ├── AccessibiliteHandicap.jsx
-│   ├── FAQ.jsx
-│   └── CertificationCheckout.jsx
-├── data/
-│   └── mock.js (course data)
-├── locales/
-│   ├── en.json
-│   ├── fr.json
-│   └── hr.json
-├── App.js
-└── i18n.js
+/app/
+├── backend/
+│   ├── server.py           # Main FastAPI application
+│   ├── routes/
+│   │   ├── auth.py         # Authentication routes
+│   │   ├── courses.py      # Course routes
+│   │   ├── dashboard.py    # Dashboard routes
+│   │   ├── payments.py     # Payment routes
+│   │   └── webhooks.py     # Webhook handlers
+│   └── requirements.txt
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── ProtectedRoute.jsx
+│   │   │   └── ui/
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx
+│   │   ├── pages/
+│   │   │   ├── Auth.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Home.jsx
+│   │   │   ├── Courses.jsx
+│   │   │   └── ...
+│   │   ├── data/
+│   │   │   └── mock.js
+│   │   ├── locales/
+│   │   └── App.js
+│   └── package.json
+└── memory/
+    └── PRD.md
 ```
 
 ---
 
-## Mocked Features (Awaiting Real Integration)
-- **Stripe Payment**: Currently simulated with setTimeout. Needs real API keys.
-- **Email Notifications**: Receipt/confirmation emails not implemented yet.
-- **Course Data**: All course info in frontend mock.js, not from backend.
+## Test Credentials
+- Email: test@saint-georges.academy
+- Password: TestPass123!
+
+---
+
+## Last Updated
+February 2026 - P0 Features Completed
