@@ -1,6 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { courses } from '../data/mock';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -19,10 +18,13 @@ import {
   Download,
   FileText,
   Loader2,
-  Calendar
+  Calendar,
+  Coffee,
+  Utensils
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import { generateCoursePDF } from '../utils/generatePDF';
+import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
