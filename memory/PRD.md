@@ -103,11 +103,13 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 ✅ **Database Migration**
 - Migrated all course data from mock.js to MongoDB
 - Seed endpoint: POST /api/courses/seed
-- 5 courses + 1 video product in database
+- 6 courses + 1 video product in database (including Extreme CCNA Boot Camp)
 - API endpoints:
   - GET /api/courses - List all courses
   - GET /api/courses/{id} - Get course details
   - GET /api/courses/videos - Get video product
+  - POST /api/courses/add-bootcamp - Add bootcamp course
+  - POST /api/courses/update-inclass-features - Update meal features
 
 ✅ **User Authentication System**
 - User registration with email/password
@@ -151,6 +153,27 @@ Official Cisco Networking Academy training platform for Saint-Georges Academy in
 - ProtectedRoute component
 - Navbar integration (shows user name when logged in)
 - Dashboard page with multiple sections
+
+### Phase 3.5 - New Course & Updates (Feb 2026) ✅ NEW
+✅ **Extreme CCNA Boot Camp**
+- New course: "Extreme CCNA Boot Camp"
+- In-class only: 3990€
+- Duration: 35 hours (1 week intensive)
+- 75 labs on Packet Tracer
+- Highlighted with "Intensif" badge on courses page
+- Full course detail page with modules, objectives, skills
+
+✅ **Meal Service for In-Class Courses**
+- All in-class courses now include:
+  - Petit-déjeuner continental (Continental breakfast)
+  - Déjeuner (Lunch)
+- Visible in course detail pages for in-class format
+- Added to inClassFeatures for all courses
+
+✅ **Frontend API Integration**
+- Courses page now fetches from /api/courses (not mock.js)
+- CourseDetail page fetches individual course from API
+- Proper loading states and error handling
 
 ---
 
