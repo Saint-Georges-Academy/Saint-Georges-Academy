@@ -91,6 +91,19 @@ PRODUCTS = {
         "currency": "eur",
         "category": "formation"
     },
+    # Edge Computing
+    "edge-computing_online": {
+        "name": "Edge Computing for Smart Towns (En ligne)",
+        "amount": 3000.00,
+        "currency": "eur",
+        "category": "formation"
+    },
+    "edge-computing_group": {
+        "name": "Edge Computing for Smart Towns (Groupe Privé - max 10)",
+        "amount": 20000.00,
+        "currency": "eur",
+        "category": "formation"
+    },
     # Videos
     "ccna_videos": {
         "name": "75 Vidéos de Préparation CCNA",
