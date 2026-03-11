@@ -202,6 +202,119 @@ class SimpleAPITester:
         if success and 'email' in profile:
             self.log_test("Profile retrieval", True, f"Email: {profile.get('email', 'N/A')}")
 
+    def test_email_endpoints(self):
+        """Test email system endpoints"""
+        print("\n📧 Testing Email System API...")
+        
+        # Test email configuration
+        success, config = self.run_test(
+            "GET /api/emails/config - Email configuration",
+            "GET",
+            "api/emails/config",
+            200,
+            auth_required=False
+        )
+        
+        if success:
+            resend_configured = config.get('resend_configured', False)
+            sender_email = config.get('sender_email', '')
+            admin_emails = config.get('admin_emails', [])
+            status = config.get('status', 'unknown')
+            
+            self.log_test("Email config - Resend API", resend_configured, f"Configured: {resend_configured}")
+            self.log_test("Email config - Sender email", bool(sender_email), f"Sender: {sender_email}")
+            self.log_test("Email config - Admin emails", len(admin_emails) > 0, f"Admin count: {len(admin_emails)}")
+            self.log_test("Email config - Status", status == "ready", f"Status: {status}")
+        
+        # Test sending test email (to verified account only)
+        test_email_data = {
+            "recipient_email": "thierrypaul72@gmail.com",  # Verified email
+            "student_name": "Test Student",
+            "course_name": "CCNA 1 - Introduction to Networks",
+            "course_format": "En ligne",
+            "session_date": "28 Avril - 25 Mai 2026",
+            "amount": 2290.00
+        }
+        
+        success, email_response = self.run_test(
+            "POST /api/emails/test - Send test email",
+            "POST",
+            "api/emails/test",
+            200,
+            data=test_email_data,
+            auth_required=False
+        )
+        
+        if success:
+            status = email_response.get('status', 'unknown')
+            results = email_response.get('results', {})
+            student_result = results.get('student_email', {})
+            admin_result = results.get('admin_notification', {})
+            
+            self.log_test("Test email - Overall status", status == "success", f"Status: {status}")
+            self.log_test("Test email - Student email", student_result.get('status') == 'success', f"Student: {student_result.get('status', 'unknown')}")
+            self.log_test("Test email - Admin notification", admin_result.get('status') == 'success', f"Admin: {admin_result.get('status', 'unknown')}")
+
+    def test_payment_endpoints(self):
+        """Test payment system endpoints"""
+        print("\n💳 Testing Payment System API...")
+        
+        # Test get products
+        success, products_response = self.run_test(
+            "GET /api/payments/products - Get products",
+            "GET",
+            "api/payments/products",
+            200,
+            auth_required=False
+        )
+        
+        if success:
+            products = products_response.get('products', [])
+            self.log_test("Payment products count", len(products) >= 10, f"Found {len(products)} products")
+            
+            # Check for CCNA courses
+            ccna_products = [p for p in products if 'ccna' in p.get('id', '').lower()]
+            self.log_test("CCNA products available", len(ccna_products) >= 3, f"CCNA courses: {len(ccna_products)}")
+        
+        # Test create checkout session
+        checkout_data = {
+            "product_id": "ccna1_online",
+            "origin_url": "https://preview-demo-54.preview.emergentagent.com",
+            "customer_email": "test@saint-georges.academy",
+            "customer_name": "Test Student",
+            "session_date": "28 Avril - 25 Mai 2026"
+        }
+        
+        success, checkout_response = self.run_test(
+            "POST /api/payments/checkout - Create checkout",
+            "POST",
+            "api/payments/checkout",
+            200,
+            data=checkout_data,
+            auth_required=False
+        )
+        
+        if success:
+            session_id = checkout_response.get('session_id', '')
+            checkout_url = checkout_response.get('url', '')
+            
+            self.log_test("Checkout session ID", bool(session_id), f"Session: {session_id[:20]}..." if session_id else "No session ID")
+            self.log_test("Checkout URL format", 'stripe' in checkout_url.lower(), f"URL contains Stripe: {'Yes' if 'stripe' in checkout_url.lower() else 'No'}")
+            
+            # Test get payment status
+            if session_id:
+                success, status_response = self.run_test(
+                    "GET /api/payments/status/{session_id} - Payment status",
+                    "GET",
+                    f"api/payments/status/{session_id}",
+                    200,
+                    auth_required=False
+                )
+                
+                if success:
+                    payment_status = status_response.get('payment_status', 'unknown')
+                    self.log_test("Payment status check", True, f"Status: {payment_status}")
+
     def test_dashboard_endpoints(self):
         """Test dashboard endpoints"""
         print("\n🔍 Testing Dashboard API...")
@@ -251,8 +364,10 @@ class SimpleAPITester:
         print("🚀 Starting Saint-Georges Academy API Tests")
         print(f"Testing against: {self.base_url}")
         
-        # Test in order: courses (no auth) -> auth -> dashboard (with auth)
+        # Test in order: courses (no auth) -> email -> payments -> auth -> dashboard (with auth)
         self.test_courses_endpoints()
+        self.test_email_endpoints()
+        self.test_payment_endpoints()
         self.test_auth_endpoints()
         self.test_dashboard_endpoints()
         

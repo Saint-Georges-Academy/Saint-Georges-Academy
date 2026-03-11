@@ -122,6 +122,7 @@ class CreateCheckoutRequest(BaseModel):
     customer_email: Optional[str] = Field(None, description="Customer email")
     customer_name: Optional[str] = Field(None, description="Customer name")
     exam_date: Optional[str] = Field(None, description="Exam date for certification")
+    session_date: Optional[str] = Field(None, description="Selected session date")
 
 class CheckoutResponse(BaseModel):
     url: str
@@ -189,6 +190,8 @@ async def create_checkout_session(request: CreateCheckoutRequest, http_request: 
         metadata["customer_name"] = request.customer_name
     if request.exam_date:
         metadata["exam_date"] = request.exam_date
+    if request.session_date:
+        metadata["session_date"] = request.session_date
     
     try:
         # Create checkout session with FIXED amount from server
@@ -213,6 +216,7 @@ async def create_checkout_session(request: CreateCheckoutRequest, http_request: 
             "customer_email": request.customer_email,
             "customer_name": request.customer_name,
             "exam_date": request.exam_date,
+            "session_date": request.session_date if hasattr(request, 'session_date') else None,
             "status": "initiated",
             "payment_status": "pending",
             "created_at": datetime.now(timezone.utc).isoformat(),
