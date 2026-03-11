@@ -548,3 +548,111 @@ March 2026 - Full System Verification + Email System Implementation
 
 **Navigation:**
 - Footer link added to World of Haiku page
+
+
+---
+
+### Phase 7 - Qualiopi Administrative Compliance System (Mar 2026) ✅ NEW
+
+**Objective:** Implement internal administrative workflows for Qualiopi compliance WITHOUT exposing audit checklists to public visitors.
+
+#### Public-Facing Changes:
+✅ **Removed Qualiopi Audit Blocks** from:
+- `/inscription` (Procedure d'Inscription page) - "Ce que Qualiopi vérifie ici" block removed
+- `/accessibilite` (Accessibilité Handicap page) - audit checklist removed
+
+✅ **New Public Forms Added:**
+1. **Individual Training Advice** (`/conseil-formation`)
+   - Personal information, target course, current level
+   - Professional background, objectives, expected outcomes
+   - Constraints (format, schedule, language, accessibility)
+   - GDPR consent with link to privacy policy
+
+2. **Organisation Needs Analysis** (`/besoins-organisation`)
+   - Organisation details (name, type, country)
+   - Contact information
+   - Project context, target audience, learner count
+   - Expected skills, identified gaps
+   - Deployment constraints, schedule, format preference
+   - Certification and reporting expectations
+
+3. **Pre-Enrolment Form** (`/pre-inscription`)
+   - Personal details and address
+   - Professional information
+   - Course selection with format preference
+   - Funding type and details
+   - Accessibility needs
+   - GDPR consent + CGV acceptance
+
+✅ **Updated Procedure d'Inscription Page:**
+- New CTA section with buttons linking to admission forms
+- "Particulier - Demander un conseil" → `/conseil-formation`
+- "Entreprise / Institution" → `/besoins-organisation`
+- "Accéder au formulaire de pré-inscription" → `/pre-inscription`
+
+#### Internal/Admin Features:
+✅ **Admin Dashboard** (`/admin/admissions`) - Protected route
+- Statistics: total applications, pending, recent 30 days, enrolled
+- Filters by status and application type
+- Application list with reference, type, name, email, status, date
+- Detail view with full audit trail
+- Status update workflow
+- Evidence summary (needs analysis, prerequisites, consents)
+- Export application as JSON for audit
+
+✅ **Application Status Workflow:**
+1. `enquiry_received` - Demande reçue
+2. `needs_analysed` - Besoins analysés
+3. `prerequisites_reviewed` - Prérequis vérifiés
+4. `admission_approved` / `admission_pending` / `admission_refused`
+5. `quotation_sent` - Devis envoyé
+6. `agreement_sent` - Convention envoyée
+7. `terms_accepted` - Conditions acceptées
+8. `enrolment_confirmed` - Inscrit
+9. `training_access_sent` - Accès envoyé
+
+✅ **Evidence Trail System:**
+- All form submissions timestamped
+- Audit trail for every status change with actor and notes
+- Admin notes with author and date
+- GDPR consent dates recorded
+- CGV acceptance dates recorded
+- Document references stored
+
+✅ **Prerequisite Validation System:**
+- Self-assessment questionnaire API
+- Review statuses: validated, validated_with_reservation, not_validated, additional_info_required
+- Evidence sources tracking (self_assessment, cv, diploma, test, manual_validation)
+- Reviewer name and comments stored
+
+#### Backend APIs:
+- `POST /api/admissions/individual-needs` - Individual training advice
+- `POST /api/admissions/organisation-needs` - Organisation needs analysis
+- `POST /api/admissions/pre-enrolment` - Pre-enrolment application
+- `POST /api/admissions/prerequisite-assessment` - Self-assessment form
+- `GET /api/admissions/status/{reference_number}` - Check application status
+- `GET /api/admissions/admin/applications` - List all applications (admin)
+- `GET /api/admissions/admin/applications/{id}` - Application details (admin)
+- `PUT /api/admissions/admin/applications/{id}/status` - Update status (admin)
+- `POST /api/admissions/admin/applications/{id}/notes` - Add admin note
+- `PUT /api/admissions/admin/applications/{id}/prerequisite-review` - Submit prerequisite review
+- `GET /api/admissions/admin/applications/{id}/export` - Export application file
+- `GET /api/admissions/admin/stats` - Dashboard statistics
+
+#### MongoDB Collections:
+- `applications` - All application types stored with full audit trail
+- `prerequisite_assessments` - Self-assessment forms
+
+#### Reference Number Formats:
+- `IND-YYYYMMDD-XXXXXX` - Individual needs analysis
+- `ORG-YYYYMMDD-XXXXXX` - Organisation needs analysis
+- `ENR-YYYYMMDD-XXXXXX` - Pre-enrolment applications
+- `PRE-YYYYMMDD-XXXXXX` - Prerequisite assessments
+
+#### Key Compliance Notes:
+- No "Qualiopi compliant" claims made
+- Internal workflows support evidence generation
+- All forms include GDPR consent
+- Audit trails provide documentary proof for auditors
+- Status history fully traceable
+- Admin can export application files as JSON
