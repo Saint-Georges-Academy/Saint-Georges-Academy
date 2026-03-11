@@ -20,13 +20,40 @@ import {
   Loader2,
   Calendar,
   Coffee,
-  Utensils
+  Utensils,
+  Play,
+  Youtube
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import { generateCoursePDF } from '../utils/generatePDF';
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
+
+// Unreal Engine course videos
+const unrealVideos = [
+  {
+    id: 1,
+    title: "Introduction à Unreal Engine 5",
+    url: "https://www.youtube.com/watch?v=2rMkr4wh1Ls",
+    embedId: "2rMkr4wh1Ls",
+    description: "Découvrez les bases d'Unreal Engine 5 et son interface"
+  },
+  {
+    id: 2,
+    title: "Blueprint Visual Scripting",
+    url: "https://www.youtube.com/watch?v=7NonJwSJi_U",
+    embedId: "7NonJwSJi_U",
+    description: "Apprenez la programmation visuelle avec les Blueprints"
+  },
+  {
+    id: 3,
+    title: "Création d'Environnements 3D",
+    url: "https://www.youtube.com/watch?v=nWb2Ht7jbrE",
+    embedId: "nWb2Ht7jbrE",
+    description: "Techniques de création d'environnements immersifs"
+  }
+];
 
 // Helper function to generate session dates
 const generateSessions = (format) => {
@@ -461,6 +488,51 @@ const CourseDetail = () => {
                 </ul>
               </CardContent>
             </Card>
+
+            {/* Unreal Engine Course Videos */}
+            {course.id === 'unreal' && (
+              <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-indigo-50">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-[#0f1f3d] flex items-center space-x-2">
+                    <Youtube className="w-6 h-6 text-red-600" />
+                    <span>Vidéos de présentation</span>
+                  </CardTitle>
+                  <p className="text-gray-600 text-sm mt-2">
+                    Découvrez un aperçu du contenu de la formation avec ces vidéos introductives
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  {unrealVideos.map((video) => (
+                    <div key={video.id} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                      <div className="aspect-video w-full">
+                        <iframe
+                          width="100%"
+                          height="100%"
+                          src={`https://www.youtube.com/embed/${video.embedId}`}
+                          title={video.title}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                          className="w-full h-full"
+                        ></iframe>
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-bold text-[#0f1f3d] mb-1">{video.title}</h4>
+                        <p className="text-sm text-gray-600">{video.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  <div className="bg-purple-100 rounded-lg p-4 flex items-start space-x-3">
+                    <Play className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                    <div className="text-sm text-purple-900">
+                      <strong>Formation complète:</strong> Ces vidéos sont un aperçu du programme. 
+                      La formation inclut des dizaines d'heures de contenu pratique et théorique.
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Certification Info */}
             {course.certificationCost && (
