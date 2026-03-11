@@ -9,6 +9,15 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import jwt
 import logging
 
+# Import email service
+try:
+    from services.admission_emails import send_admission_email, send_admin_admission_notification, AdmissionEmailData
+    EMAIL_SERVICE_AVAILABLE = True
+except ImportError:
+    EMAIL_SERVICE_AVAILABLE = False
+    logger = logging.getLogger(__name__)
+    logger.warning("Admission email service not available")
+
 # Configure logging
 logger = logging.getLogger(__name__)
 
@@ -325,6 +334,23 @@ async def submit_individual_needs_analysis(data: IndividualNeedsAnalysis):
     
     logger.info(f"New individual needs analysis submitted: {reference_number}")
     
+    # Send automated emails
+    if EMAIL_SERVICE_AVAILABLE:
+        try:
+            email_data = AdmissionEmailData(
+                recipient_email=data.email,
+                recipient_name=f"{data.first_name} {data.last_name}",
+                reference_number=reference_number,
+                application_type="individual",
+                status="enquiry_received"
+            )
+            # Send confirmation to applicant
+            await send_admission_email(email_data)
+            # Send notification to admin
+            await send_admin_admission_notification(email_data)
+        except Exception as e:
+            logger.error(f"Error sending admission emails: {str(e)}")
+    
     return IndividualNeedsResponse(
         id=application_id,
         status="success",
@@ -392,6 +418,21 @@ async def submit_organisation_needs_analysis(data: OrganisationNeedsAnalysis):
     await db.applications.insert_one(application)
     
     logger.info(f"New organisation needs analysis submitted: {reference_number}")
+    
+    # Send automated emails
+    if EMAIL_SERVICE_AVAILABLE:
+        try:
+            email_data = AdmissionEmailData(
+                recipient_email=data.contact_email,
+                recipient_name=data.contact_name,
+                reference_number=reference_number,
+                application_type="organisation",
+                status="enquiry_received"
+            )
+            await send_admission_email(email_data)
+            await send_admin_admission_notification(email_data)
+        except Exception as e:
+            logger.error(f"Error sending admission emails: {str(e)}")
     
     return OrganisationNeedsResponse(
         id=application_id,
@@ -541,6 +582,22 @@ async def submit_pre_enrolment(data: PreEnrolmentApplication):
     
     logger.info(f"New pre-enrolment application submitted: {reference_number}")
     
+    # Send automated emails
+    if EMAIL_SERVICE_AVAILABLE:
+        try:
+            email_data = AdmissionEmailData(
+                recipient_email=data.email,
+                recipient_name=f"{data.first_name} {data.last_name}",
+                reference_number=reference_number,
+                application_type="pre_enrolment",
+                course_name=data.target_course,
+                status="enquiry_received"
+            )
+            await send_admission_email(email_data)
+            await send_admin_admission_notification(email_data)
+        except Exception as e:
+            logger.error(f"Error sending admission emails: {str(e)}")
+    
     return PreEnrolmentResponse(
         id=application_id,
         status="success",
@@ -687,6 +744,40 @@ async def update_application_status(
         raise HTTPException(status_code=404, detail="Application not found")
     
     logger.info(f"Application {application_id} status updated to {update.new_status} by {admin_name}")
+    
+    # Send email notification for status change
+    if EMAIL_SERVICE_AVAILABLE:
+        try:
+            # Get application details for email
+            app = await db.applications.find_one({"id": application_id}, {"_id": 0})
+            if app:
+                recipient_email = app.get("email") or app.get("contact_email")
+                recipient_name = None
+                if app.get("first_name"):
+                    recipient_name = f"{app.get('first_name')} {app.get('last_name', '')}"
+                elif app.get("contact_name"):
+                    recipient_name = app.get("contact_name")
+                
+                # Get course name if available
+                course_name = None
+                if app.get("training_selection"):
+                    course_name = app["training_selection"].get("target_course")
+                elif app.get("needs_analysis"):
+                    course_name = app["needs_analysis"].get("target_course")
+                
+                if recipient_email:
+                    email_data = AdmissionEmailData(
+                        recipient_email=recipient_email,
+                        recipient_name=recipient_name,
+                        reference_number=app.get("reference_number", ""),
+                        application_type=app.get("type", "individual"),
+                        course_name=course_name,
+                        status=update.new_status,
+                        notes=update.notes
+                    )
+                    await send_admission_email(email_data)
+        except Exception as e:
+            logger.error(f"Error sending status change email: {str(e)}")
     
     return {"message": f"Status updated to {update.new_status}", "audit_entry": audit_entry}
 

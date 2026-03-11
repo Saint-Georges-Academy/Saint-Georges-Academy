@@ -245,6 +245,65 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Official Partners Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-[#d4af37]/10 text-[#d4af37] border border-[#d4af37]/30 px-4 py-1.5">
+              <Shield className="w-4 h-4 mr-2" />
+              Partenaires Officiels
+            </Badge>
+            <h2 className="text-3xl font-bold text-[#0f1f3d] mb-4">
+              Nos Partenariats
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Saint-Georges Academy collabore avec des acteurs majeurs de la formation et de la cybersécurité
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center items-center gap-12">
+            {/* Cisco Partner */}
+            <div className="flex flex-col items-center">
+              <div className="bg-[#0f1f3d] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border-2 border-[#d4af37]/20">
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_288e3385-608d-4caa-ae86-50c9ee822e33/artifacts/628w7ac8_image.png"
+                  alt="Cisco Networking Academy"
+                  className="h-16 w-auto object-contain"
+                />
+              </div>
+              <p className="mt-4 text-sm font-medium text-gray-700">Cisco Networking Academy</p>
+              <Badge className="mt-1 bg-blue-100 text-blue-700 text-xs">
+                Partenaire Académique
+              </Badge>
+            </div>
+
+            {/* World of Haiku Partner */}
+            <Link to="/world-of-haiku" className="flex flex-col items-center group">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 hover:border-[#d4af37] transition-all group-hover:shadow-xl">
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_288e3385-608d-4caa-ae86-50c9ee822e33/artifacts/qdtdlhwi_image.png"
+                  alt="World of Haiku - Cybersecurity Training"
+                  className="h-16 w-auto object-contain"
+                />
+              </div>
+              <p className="mt-4 text-sm font-medium text-gray-700">World of Haiku</p>
+              <Badge className="mt-1 bg-green-100 text-green-700 text-xs">
+                Revendeur Officiel Europe
+              </Badge>
+            </Link>
+          </div>
+
+          <div className="text-center mt-10">
+            <Button asChild variant="outline" className="border-[#0f1f3d] text-[#0f1f3d]">
+              <Link to="/world-of-haiku">
+                Découvrir World of Haiku
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
