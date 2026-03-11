@@ -441,7 +441,7 @@ Saint-Georges Academy Certificate in Edge Computing Fundamentals for Smart Towns
 ---
 
 ## Last Updated
-March 2026 - Full System Verification Completed
+March 2026 - Full System Verification + Email System Implementation
 
 ## Verification Summary (March 2026)
 ✅ All courses display correctly on /courses page
@@ -460,3 +460,20 @@ March 2026 - Full System Verification Completed
 ✅ Auth page (login/register) works
 ✅ Contact page works
 ✅ All navigation links functional
+
+## Email System (March 2026)
+✅ Resend email integration implemented
+✅ Automatic enrollment confirmation emails after payment
+✅ Professional HTML email templates with:
+   - Course details (name, format, session dates)
+   - Payment confirmation (amount, date, transaction ID)
+   - Legal information (droit de rétractation, RGPD, CGV)
+   - Academy contact information
+✅ Admin notification emails to:
+   - contact@saint-georges.academy
+   - thierry.paul@saint-georges.academy
+   - thierrypaul72@gmail.com (for testing)
+✅ Email test endpoint: POST /api/emails/test
+✅ Email configuration endpoint: GET /api/emails/config
+
+**Note:** Domain verification required in Resend dashboard to send to recipients other than thierrypaul72@gmail.com
