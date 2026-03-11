@@ -208,7 +208,7 @@ const CourseDetail = () => {
     } else if (course.id === 'cyberops') {
       return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/djop92go_image.png';
     } else if (course.id === 'unreal') {
-      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/l0g1p6bm_image.png';
+      return 'https://customer-assets.emergentagent.com/job_preview-demo-54/artifacts/xqpq43nf_image.png';
     }
     return null;
   };
