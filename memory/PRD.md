@@ -402,5 +402,43 @@ Created professional, Qualiopi-compliant institutional page with:
 
 ---
 
+### Phase 5 - Edge Computing Course (Mar 2026) ✅ NEW
+✅ **Edge Computing for Smart Towns Course**
+- New course page at /edge-computing
+- 3-month hybrid online programme
+- Real-world case study: Metković, Croatia
+- Dedicated Stormshield Firewall module
+
+**Page Sections:**
+1. Hero with badges (3 Months, Beginner, Hybrid Online)
+2. Why This Course Matters
+3. Who This Course Is For (Target Audience)
+4. What Participants Will Learn
+5. Metković Lab Project (8 use cases)
+6. Course Structure (3 months with 12 weeks)
+7. Stormshield Firewall Integration Module
+8. Key Practical Outcomes
+9. Pricing Options (€3,000 individual / €20,000 group)
+10. Certification Section
+11. Why Saint-Georges Academy
+12. Final CTA with contact info
+
+**Pricing:**
+- Individual: €3,000
+- Private Group (up to 10): €20,000
+
+**Target Audience:**
+- Municipalities & Town Halls
+- Local Authorities
+- SMEs & IT Companies
+- Cybersecurity Providers
+- Schools & Training Centres
+- Smart City Teams
+
+**Certificate:**
+Saint-Georges Academy Certificate in Edge Computing Fundamentals for Smart Towns
+
+---
+
 ## Last Updated
-February 2026 - P0 Features Completed
+March 2026 - Edge Computing Course Added
