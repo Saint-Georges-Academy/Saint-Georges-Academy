@@ -16,7 +16,6 @@ import {
   ClipboardList,
   Lock,
   CheckCircle,
-  BookOpen,
   MessageCircle,
   Search,
   FileText,
@@ -63,13 +62,6 @@ const AccessibiliteHandicap = () => {
     { number: 3, text: 'Une analyse des besoins est réalisée' },
     { number: 4, text: 'Un plan d\'adaptation est proposé' },
     { number: 5, text: 'Un suivi est assuré pendant la formation' }
-  ];
-
-  const qualiopiChecks = [
-    'Existence d\'un référent identifié',
-    'Procédure écrite',
-    'Capacité d\'adaptation',
-    'Preuve d\'analyse des besoins'
   ];
 
   return (
@@ -319,35 +311,6 @@ const AccessibiliteHandicap = () => {
                 Règlement général sur la protection des données (RGPD)
               </Link>.
             </p>
-          </CardContent>
-        </Card>
-
-        {/* Ce que Qualiopi vérifie */}
-        <Card className="mb-8 border-2 border-blue-200 bg-blue-50">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
-              <BookOpen className="w-6 h-6 text-blue-600" />
-              Ce que Qualiopi vérifie
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-700 mb-4">
-              L'auditeur contrôle :
-            </p>
-            <div className="grid md:grid-cols-2 gap-3 mb-6">
-              {qualiopiChecks.map((check, index) => (
-                <div key={index} className="flex items-center gap-2 bg-white rounded-lg p-3 border border-blue-100">
-                  <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                  <span className="text-gray-800">{check}</span>
-                </div>
-              ))}
-            </div>
-            <div className="bg-white border border-blue-200 rounded-lg p-4">
-              <p className="text-blue-900 text-sm">
-                <strong>Important :</strong> L'auditeur ne demande pas que vous soyez un centre spécialisé, 
-                mais que vous soyez <strong>structuré et engagé</strong> dans votre démarche d'accessibilité.
-              </p>
-            </div>
           </CardContent>
         </Card>
 

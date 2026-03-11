@@ -22,6 +22,7 @@ from routes.auth import auth_router
 from routes.dashboard import dashboard_router
 from routes.email_api import email_router
 from routes.quotes import quotes_router
+from routes.admissions import admissions_router
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
@@ -84,6 +85,7 @@ app.include_router(auth_router)
 app.include_router(dashboard_router)
 app.include_router(email_router)
 app.include_router(quotes_router)
+app.include_router(admissions_router)
 
 app.add_middleware(
     CORSMiddleware,

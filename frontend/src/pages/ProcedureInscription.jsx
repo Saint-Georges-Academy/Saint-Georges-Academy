@@ -18,7 +18,6 @@ import {
   Video,
   FileCheck,
   Users,
-  BookOpen,
   AlertCircle,
   ArrowRight
 } from 'lucide-react';
@@ -131,13 +130,6 @@ const ProcedureInscription = () => {
     'Accompagnement administratif',
     'Respect des délais',
     'Confidentialité des données (RGPD)'
-  ];
-
-  const qualiopiChecks = [
-    'Tu analyses réellement le besoin',
-    'Tu valides les prérequis',
-    'Tu formalises l\'entrée en formation',
-    'Tu conserves les preuves (emails, conventions, tests)'
   ];
 
   return (
@@ -253,49 +245,33 @@ const ProcedureInscription = () => {
           </CardContent>
         </Card>
 
-        {/* Qualiopi Section */}
-        <Card className="border-2 border-blue-200 bg-blue-50 mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
-              <BookOpen className="w-6 h-6 text-blue-600" />
-              Ce que Qualiopi vérifie ici
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-700 mb-4">
-              L'auditeur contrôle que :
-            </p>
-            <div className="grid md:grid-cols-2 gap-3">
-              {qualiopiChecks.map((check, index) => (
-                <div key={index} className="flex items-center gap-2 bg-white rounded-lg p-3 border border-blue-100">
-                  <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                  <span className="text-gray-800">{check}</span>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* CTA Section */}
-        <Card className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-[#0f1f3d]">
+        {/* CTA Section - Forms */}
+        <Card className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-[#0f1f3d] mb-8">
           <CardContent className="pt-8 pb-8">
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-4">Prêt à commencer ?</h3>
+              <h3 className="text-2xl font-bold mb-4">Commencez votre parcours</h3>
               <p className="text-[#0f1f3d]/80 mb-6 max-w-2xl mx-auto">
-                Contactez-nous pour discuter de votre projet de formation. 
-                Notre équipe vous accompagne dans toutes vos démarches.
+                Choisissez le formulaire adapté à votre situation pour démarrer votre projet de formation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="bg-[#0f1f3d] hover:bg-[#1a3a5f] text-white">
-                  <Link to="/contact">
-                    <Mail className="w-5 h-5 mr-2" />
-                    Nous contacter
+                  <Link to="/conseil-formation">
+                    <Users className="w-5 h-5 mr-2" />
+                    Particulier - Demander un conseil
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="border-[#0f1f3d] text-[#0f1f3d] hover:bg-[#0f1f3d] hover:text-white">
-                  <Link to="/courses">
-                    <ArrowRight className="w-5 h-5 mr-2" />
-                    Voir les formations
+                  <Link to="/besoins-organisation">
+                    <FileCheck className="w-5 h-5 mr-2" />
+                    Entreprise / Institution
+                  </Link>
+                </Button>
+              </div>
+              <div className="mt-4">
+                <Button asChild variant="link" className="text-[#0f1f3d]">
+                  <Link to="/pre-inscription">
+                    <ArrowRight className="w-4 h-4 mr-2" />
+                    Accéder au formulaire de pré-inscription
                   </Link>
                 </Button>
               </div>

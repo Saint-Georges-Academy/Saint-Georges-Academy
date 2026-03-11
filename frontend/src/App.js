@@ -32,6 +32,10 @@ import Dashboard from "./pages/Dashboard";
 import ExtremeBootcamp from "./pages/ExtremeBootcamp";
 import EdgeComputing from "./pages/EdgeComputing";
 import WorldOfHaiku from "./pages/WorldOfHaiku";
+import TrainingAdvice from "./pages/TrainingAdvice";
+import OrganisationNeeds from "./pages/OrganisationNeeds";
+import PreEnrolment from "./pages/PreEnrolment";
+import AdminAdmissions from "./pages/AdminAdmissions";
 import "./i18n";
 
 function App() {
@@ -67,6 +71,17 @@ function App() {
             <Route path="/extreme-bootcamp" element={<ExtremeBootcamp />} />
             <Route path="/edge-computing" element={<EdgeComputing />} />
             <Route path="/world-of-haiku" element={<WorldOfHaiku />} />
+            <Route path="/conseil-formation" element={<TrainingAdvice />} />
+            <Route path="/besoins-organisation" element={<OrganisationNeeds />} />
+            <Route path="/pre-inscription" element={<PreEnrolment />} />
+            <Route 
+              path="/admin/admissions" 
+              element={
+                <ProtectedRoute>
+                  <AdminAdmissions />
+                </ProtectedRoute>
+              } 
+            />
             <Route 
               path="/dashboard" 
               element={
