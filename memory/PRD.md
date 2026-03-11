@@ -477,3 +477,74 @@ March 2026 - Full System Verification + Email System Implementation
 ✅ Email configuration endpoint: GET /api/emails/config
 
 **Note:** Domain verification required in Resend dashboard to send to recipients other than thierrypaul72@gmail.com
+
+---
+
+### Phase 6 - World of Haiku Reseller Page (Mar 2026) ✅ NEW
+✅ **World of Haiku - European Reseller Page**
+- New dedicated page at /world-of-haiku
+- Saint-Georges Academy positioned as official (non-exclusive) European reseller for The World of Haiku cybersecurity training platform
+
+**Page Sections:**
+1. **Hero Section**
+   - Title: "World of Haiku in Europe through Saint-Georges Academy"
+   - Badges: Cybersecurity Training, Game-Based Learning, Available in Europe
+   - Clear statement: "Reseller status is non-exclusive"
+   - Key value points: Engaging Gameplay, Security Awareness, Team Deployment, Progress Tracking
+   - Price preview: Individual €19/month, Companies/Education Custom Quote
+
+2. **What is World of Haiku?**
+   - Product features: Game-Based Learning, Real-World Scenarios, Practical Skills, Progress Tracking, Team Deployment, Recognised Training
+
+3. **Who is World of Haiku For?**
+   - Individual Learners
+   - Companies & SMEs
+   - Large Enterprises
+   - Educational Institutions
+   - Higher Education
+   - Public Sector
+
+4. **Why Game-Based Cybersecurity Learning**
+   - Higher Engagement, Better Retention, Safe Environment, Measurable Results
+   - Learning Through Play card: Threat Recognition, Security Best Practices, Incident Response
+
+5. **Pricing & Licence Options**
+   - Individual: €19/month (Start Now CTA)
+   - Companies: Custom Quote (Request a Quote CTA) - marked "MOST POPULAR"
+   - Educational Institutions: Custom Quote (Request a Quote CTA)
+
+6. **Quote Request Form** (id: quote-form)
+   - Organisation Name, Contact Name, Email, Country
+   - Organisation Type (dropdown with 8 options)
+   - Estimated Number of Licences (dropdown: 1-10 to 500+)
+   - Intended Use (dropdown: Employee Training, Onboarding, Compliance, Curriculum, Professional Development)
+   - Additional Information (textarea)
+   - Submit Quote Request button
+
+7. **SGA as European Contact**
+   - Saint-Georges Academy logo and contact information
+   - "Official Reseller in Europe for The World of Haiku"
+   - Contact details: email and phone
+
+8. **FAQ Section**
+   - 6 frequently asked questions about the product and partnership
+
+9. **Final CTA**
+   - "Start as an Individual — €19/month" button
+   - "Request a Company or Education Quote" button
+
+**Backend API:**
+- POST /api/quotes/haiku - Submit quote request (stores in MongoDB)
+- GET /api/quotes/haiku - Get all quote requests (admin)
+
+**Database Collection:**
+- quote_requests: { id, product, organisation_name, contact_name, email, country, organisation_type, estimated_licences, intended_use, message, status, created_at, updated_at }
+
+**Key Positioning:**
+- SGA is an official reseller (NOT exclusive)
+- SGA is the commercial contact point in Europe
+- No ownership claims about World of Haiku
+- No false compliance or certification claims
+
+**Navigation:**
+- Footer link added to World of Haiku page
