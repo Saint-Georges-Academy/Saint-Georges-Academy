@@ -34,24 +34,24 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 const unrealVideos = [
   {
     id: 1,
-    title: "Introduction à Unreal Engine 5",
-    url: "https://www.youtube.com/watch?v=2rMkr4wh1Ls",
-    embedId: "2rMkr4wh1Ls",
-    description: "Découvrez les bases d'Unreal Engine 5 et son interface"
-  },
-  {
-    id: 2,
     title: "Blueprint Visual Scripting",
     url: "https://www.youtube.com/watch?v=7NonJwSJi_U",
     embedId: "7NonJwSJi_U",
     description: "Apprenez la programmation visuelle avec les Blueprints"
   },
   {
-    id: 3,
+    id: 2,
     title: "Création d'Environnements 3D",
     url: "https://www.youtube.com/watch?v=nWb2Ht7jbrE",
     embedId: "nWb2Ht7jbrE",
     description: "Techniques de création d'environnements immersifs"
+  },
+  {
+    id: 3,
+    title: "Introduction à Unreal Engine 5",
+    url: "https://www.youtube.com/watch?v=2rMkr4wh1Ls",
+    embedId: "2rMkr4wh1Ls",
+    description: "Découvrez les bases d'Unreal Engine 5 et son interface"
   }
 ];
 
