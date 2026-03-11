@@ -1,440 +1,210 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { 
+  HelpCircle, ChevronDown, BookOpen, Euro, Clock, Award,
+  Users, FileText, Shield, Phone, MessageSquare, CreditCard,
+  Building2, GraduationCap, Laptop, MapPin
+} from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '../components/ui/accordion';
-import { 
-  HelpCircle,
-  GraduationCap,
-  Video,
-  Award,
-  CreditCard,
-  BookOpen,
-  Clock,
-  Globe,
-  Accessibility,
-  ClipboardList,
-  Lock,
-  Briefcase,
-  BarChart3,
-  CheckCircle,
-  ArrowRight,
-  Mail,
-  Phone
-} from 'lucide-react';
-import { Button } from '../components/ui/button';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
 
 const FAQ = () => {
-  const faqItems = [
+  const faqCategories = [
     {
-      id: '1',
-      icon: GraduationCap,
-      question: 'Quelle est la différence entre la formation en ligne et la formation en présentiel ?',
-      answer: (
-        <div className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-              <h4 className="font-bold text-[#0f1f3d] mb-3 flex items-center gap-2">
-                <Globe className="w-5 h-5 text-blue-600" />
-                Formation en ligne (2290 €)
-              </h4>
-              <ul className="space-y-2 text-gray-700 text-sm">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Accès officiel Cisco NetAcad</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>1 session visio de 45 minutes par semaine avec instructeur</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Travail autonome encadré</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Flexibilité</span>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
-              <h4 className="font-bold text-[#0f1f3d] mb-3 flex items-center gap-2">
-                <GraduationCap className="w-5 h-5 text-amber-600" />
-                Formation en présentiel (3290 €)
-              </h4>
-              <ul className="space-y-2 text-gray-700 text-sm">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>35 heures intensives (1 semaine)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Encadrement permanent</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Travaux pratiques supervisés</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span>Immersion totale</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      )
+      title: "Inscription et admission",
+      icon: Users,
+      questions: [
+        {
+          q: "Comment s'inscrire à une formation ?",
+          a: "Pour vous inscrire, créez un compte sur notre site, sélectionnez la formation souhaitée, choisissez une session et procédez au paiement. Un email de confirmation vous sera envoyé avec toutes les informations pratiques."
+        },
+        {
+          q: "Quels sont les prérequis pour les formations CCNA ?",
+          a: "Le CCNA 1 ne nécessite aucun prérequis technique, seulement des connaissances de base en informatique. Pour les CCNA 2 et 3, il est recommandé d'avoir suivi et validé le module précédent ou de justifier d'une expérience équivalente."
+        },
+        {
+          q: "Y a-t-il des tests de positionnement ?",
+          a: "Oui, un entretien et/ou un test de positionnement peuvent être proposés pour valider l'adéquation entre votre profil et la formation choisie, et adapter le parcours si nécessaire."
+        },
+        {
+          q: "Peut-on s'inscrire en cours de session ?",
+          a: "Les inscriptions sont généralement closes 7 jours avant le début de la formation. Contactez-nous pour étudier les possibilités selon les places disponibles."
+        }
+      ]
     },
     {
-      id: '2',
-      icon: Video,
-      question: 'Les 75 vidéos sont-elles incluses dans la formation en ligne ?',
-      answer: (
-        <div>
-          <p className="text-red-600 font-semibold mb-3">Non.</p>
-          <p className="text-gray-700 mb-3">
-            L'accès aux 75 vidéos de préparation est une <strong>option distincte</strong> au tarif de <strong>150 €</strong>.
-          </p>
-          <p className="text-gray-700">
-            Elles peuvent être achetées indépendamment.
-          </p>
-          <div className="mt-4">
-            <Link to="/videos" className="text-blue-600 hover:underline font-medium flex items-center gap-1">
-              Voir les 75 vidéos CCNA <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      )
+      title: "Financement",
+      icon: Euro,
+      questions: [
+        {
+          q: "Quels sont les modes de paiement acceptés ?",
+          a: "Nous acceptons les paiements par carte bancaire (Visa, Mastercard) via notre plateforme sécurisée Stripe, ainsi que les virements bancaires pour les entreprises."
+        },
+        {
+          q: "Les formations sont-elles finançables par les OPCO ?",
+          a: "[Information à compléter selon le statut Qualiopi] Contactez votre OPCO ou notre service administratif pour étudier les possibilités de prise en charge."
+        },
+        {
+          q: "Proposez-vous des facilités de paiement ?",
+          a: "Des facilités de paiement peuvent être étudiées au cas par cas pour les particuliers. Contactez-nous pour en discuter."
+        },
+        {
+          q: "Les formations sont-elles éligibles au CPF ?",
+          a: "[Information à compléter] Les certifications Cisco peuvent être éligibles au CPF. Consultez votre compte CPF ou contactez-nous pour vérifier l'éligibilité."
+        }
+      ]
     },
     {
-      id: '3',
-      icon: Award,
-      question: 'La certification Cisco est-elle incluse ?',
-      answer: (
-        <div>
-          <p className="text-red-600 font-semibold mb-3">Non.</p>
-          <div className="bg-gray-50 rounded-lg p-4 border mb-4">
-            <p className="font-semibold text-[#0f1f3d] mb-2">L'examen officiel :</p>
-            <ul className="space-y-2 text-gray-700">
-              <li><strong>Coût :</strong> 630 €</li>
-              <li><strong>Passage via :</strong> Centre agréé Pearson VUE</li>
-            </ul>
-          </div>
-          <p className="text-gray-700">
-            La formation prépare à l'examen, mais <strong>ne garantit pas la réussite</strong>.
-          </p>
-          <div className="mt-4">
-            <Link to="/certification" className="text-blue-600 hover:underline font-medium flex items-center gap-1">
-              Acheter un voucher d'examen <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      )
-    },
-    {
-      id: '4',
-      icon: CreditCard,
-      question: 'Les formations sont-elles finançables ?',
-      answer: (
-        <div>
-          <p className="text-gray-700 mb-4">Les formations peuvent être financées via :</p>
-          <div className="grid sm:grid-cols-2 gap-3 mb-4">
-            <div className="flex items-center gap-2 bg-green-50 rounded-lg p-3 border border-green-200">
-              <CheckCircle className="w-5 h-5 text-green-600" />
-              <span>Financement personnel</span>
-            </div>
-            <div className="flex items-center gap-2 bg-green-50 rounded-lg p-3 border border-green-200">
-              <CheckCircle className="w-5 h-5 text-green-600" />
-              <span>Employeur</span>
-            </div>
-            <div className="flex items-center gap-2 bg-green-50 rounded-lg p-3 border border-green-200">
-              <CheckCircle className="w-5 h-5 text-green-600" />
-              <span>OPCO</span>
-            </div>
-            <div className="flex items-center gap-2 bg-amber-50 rounded-lg p-3 border border-amber-200">
-              <CheckCircle className="w-5 h-5 text-amber-600" />
-              <span>France Travail (AIF – sous réserve)</span>
-            </div>
-          </div>
-          <p className="text-gray-700">
-            Un <strong>accompagnement administratif</strong> est proposé.
-          </p>
-          <div className="mt-4">
-            <Link to="/funding" className="text-blue-600 hover:underline font-medium flex items-center gap-1">
-              Voir les options de financement <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      )
-    },
-    {
-      id: '5',
+      title: "Déroulement des formations",
       icon: BookOpen,
-      question: 'Dois-je avoir un niveau préalable ?',
-      answer: (
-        <div>
-          <p className="text-gray-700 mb-4">Oui, selon la formation :</p>
-          <div className="space-y-2">
-            <div className="bg-gray-50 rounded-lg p-3 border flex justify-between items-center">
-              <span className="font-medium text-[#0f1f3d]">CCNA 1</span>
-              <span className="text-gray-600 text-sm">Aucun prérequis réseau</span>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-3 border flex justify-between items-center">
-              <span className="font-medium text-[#0f1f3d]">CCNA 2</span>
-              <span className="text-gray-600 text-sm">Validation CCNA 1</span>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-3 border flex justify-between items-center">
-              <span className="font-medium text-[#0f1f3d]">CCNA 3</span>
-              <span className="text-gray-600 text-sm">Validation CCNA 1 & 2</span>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-3 border flex justify-between items-center">
-              <span className="font-medium text-[#0f1f3d]">CyberOps</span>
-              <span className="text-gray-600 text-sm">Niveau CCNA 1 minimum</span>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-3 border flex justify-between items-center">
-              <span className="font-medium text-[#0f1f3d]">Unreal Beginner</span>
-              <span className="text-gray-600 text-sm">Aucun prérequis technique</span>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-3 border flex justify-between items-center">
-              <span className="font-medium text-[#0f1f3d]">Unreal Intermediate</span>
-              <span className="text-gray-600 text-sm">Maîtrise Blueprint requise</span>
-            </div>
-          </div>
-        </div>
-      )
+      questions: [
+        {
+          q: "Quelle est la durée des formations CCNA ?",
+          a: "Chaque module CCNA (1, 2 ou 3) dure environ 4 semaines en ligne ou 5 jours intensifs en présentiel. La durée totale du parcours CCNA complet est d'environ 3 mois."
+        },
+        {
+          q: "Comment se déroulent les formations en ligne ?",
+          a: "Les formations en ligne combinent sessions live avec le formateur, travaux pratiques sur simulateur (Packet Tracer), ressources sur la plateforme NetAcad, et accompagnement individuel."
+        },
+        {
+          q: "Quel matériel est nécessaire pour les formations en ligne ?",
+          a: "Un ordinateur avec connexion internet stable, un navigateur récent, et le logiciel Cisco Packet Tracer (gratuit). Les spécifications détaillées sont envoyées avant la formation."
+        },
+        {
+          q: "Les supports de cours sont-ils fournis ?",
+          a: "Oui, tous les supports pédagogiques sont inclus : accès à la plateforme NetAcad, documentation, exercices pratiques, labs virtuels."
+        }
+      ]
     },
     {
-      id: '6',
-      icon: Clock,
-      question: 'Combien de temps dure une formation ?',
-      answer: (
-        <div className="space-y-3">
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Globe className="w-6 h-6 text-blue-600" />
-              <span className="font-medium text-[#0f1f3d]">Online</span>
-            </div>
-            <span className="text-gray-700">Rythme flexible (8 à 12 semaines recommandées)</span>
-          </div>
-          <div className="bg-amber-50 rounded-lg p-4 border border-amber-200 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <GraduationCap className="w-6 h-6 text-amber-600" />
-              <span className="font-medium text-[#0f1f3d]">Présentiel</span>
-            </div>
-            <span className="text-gray-700">35 heures sur 1 semaine</span>
-          </div>
-          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Video className="w-6 h-6 text-purple-600" />
-              <span className="font-medium text-[#0f1f3d]">Unreal Engine</span>
-            </div>
-            <span className="text-gray-700">35 heures intensives</span>
-          </div>
-        </div>
-      )
+      title: "Certifications et évaluations",
+      icon: Award,
+      questions: [
+        {
+          q: "Comment obtenir la certification Cisco CCNA ?",
+          a: "Après avoir suivi les 3 modules CCNA, vous pouvez passer l'examen de certification 200-301 dans un centre Pearson VUE. Nous vous préparons à cet examen mais le passage reste à votre charge."
+        },
+        {
+          q: "Quel est le taux de réussite à l'examen CCNA ?",
+          a: "[Taux à compléter] Nos formations préparent efficacement à l'examen. Le taux de réussite dépend également de l'investissement personnel de chaque apprenant."
+        },
+        {
+          q: "Une attestation est-elle délivrée en fin de formation ?",
+          a: "Oui, une attestation de fin de formation est systématiquement délivrée. Pour les formations Cisco, un certificat NetAcad est également fourni après validation des évaluations."
+        },
+        {
+          q: "Comment se passent les évaluations ?",
+          a: "Les évaluations comprennent des QCM, des travaux pratiques sur Packet Tracer, et un examen final. Elles sont intégrées tout au long de la formation."
+        }
+      ]
     },
     {
-      id: '7',
-      icon: Globe,
-      question: 'Puis-je suivre la formation depuis l\'étranger ?',
-      answer: (
-        <div>
-          <p className="text-green-600 font-semibold mb-3">Oui, pour le format en ligne.</p>
-          <p className="text-gray-700">
-            Un <strong>accès Internet stable</strong> est nécessaire.
-          </p>
-        </div>
-      )
+      title: "Modalités pratiques",
+      icon: MapPin,
+      questions: [
+        {
+          q: "Où se déroulent les formations en présentiel ?",
+          a: "Les formations en présentiel se déroulent à Loudun (86) dans nos locaux équipés. L'adresse exacte et les informations pratiques sont communiquées à l'inscription."
+        },
+        {
+          q: "Les repas sont-ils inclus pour les formations en présentiel ?",
+          a: "Les déjeuners et pauses café sont inclus dans le tarif des formations en présentiel. L'hébergement reste à la charge du stagiaire."
+        },
+        {
+          q: "Quels sont les horaires des formations ?",
+          a: "En présentiel : 9h-12h30 et 13h30-17h. En ligne : les horaires sont communiqués avant chaque session, généralement en journée (fuseau horaire Paris)."
+        },
+        {
+          q: "Puis-je annuler mon inscription ?",
+          a: "Vous disposez d'un délai de rétractation de 14 jours après inscription. Au-delà, des frais peuvent s'appliquer selon nos CGV. Reportez-vous à nos conditions générales de vente."
+        }
+      ]
     },
     {
-      id: '8',
-      icon: Accessibility,
-      question: 'Les formations sont-elles accessibles aux personnes en situation de handicap ?',
-      answer: (
-        <div>
-          <p className="text-green-600 font-semibold mb-3">Oui.</p>
-          <ul className="space-y-2 text-gray-700 mb-4">
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Un <strong>référent handicap</strong> est désigné</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Des <strong>adaptations</strong> sont étudiées au cas par cas</span>
-            </li>
-          </ul>
-          <Link to="/accessibilite" className="text-blue-600 hover:underline font-medium flex items-center gap-1">
-            Voir la page Accessibilité <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      )
-    },
-    {
-      id: '9',
-      icon: ClipboardList,
-      question: 'Comment s\'inscrire ?',
-      answer: (
-        <div>
-          <div className="space-y-3">
-            {[
-              'Contact ou demande de devis',
-              'Analyse du besoin',
-              'Validation des prérequis',
-              'Signature contrat/convention',
-              'Paiement ou validation financement'
-            ].map((step, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-[#0f1f3d] text-[#d4af37] rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
-                  {index + 1}
-                </div>
-                <span className="text-gray-700">{step}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-4">
-            <Link to="/inscription" className="text-blue-600 hover:underline font-medium flex items-center gap-1">
-              Voir la procédure complète <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      )
-    },
-    {
-      id: '10',
-      icon: Lock,
-      question: 'Mes données sont-elles protégées ?',
-      answer: (
-        <div>
-          <p className="text-green-600 font-semibold mb-3">Oui.</p>
-          <p className="text-gray-700">
-            Les données sont traitées conformément au{' '}
-            <Link to="/rgpd" className="text-blue-600 hover:underline font-medium">
-              Règlement général sur la protection des données (RGPD)
-            </Link>.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: '11',
-      icon: Briefcase,
-      question: 'Quels débouchés après la formation ?',
-      answer: (
-        <div className="space-y-4">
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-            <h4 className="font-bold text-[#0f1f3d] mb-2">Après CCNA :</h4>
-            <ul className="space-y-1 text-gray-700">
-              <li>• Technicien réseau</li>
-              <li>• Administrateur junior</li>
-              <li>• Support IT</li>
-            </ul>
-          </div>
-          <div className="bg-red-50 rounded-lg p-4 border border-red-200">
-            <h4 className="font-bold text-[#0f1f3d] mb-2">Après CyberOps :</h4>
-            <ul className="space-y-1 text-gray-700">
-              <li>• Analyste SOC</li>
-              <li>• Technicien cybersécurité</li>
-            </ul>
-          </div>
-          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-            <h4 className="font-bold text-[#0f1f3d] mb-2">Après Unreal :</h4>
-            <ul className="space-y-1 text-gray-700">
-              <li>• Développeur gameplay junior</li>
-              <li>• Créateur de prototype interactif</li>
-            </ul>
-          </div>
-        </div>
-      )
-    },
-    {
-      id: '12',
-      icon: BarChart3,
-      question: 'Les indicateurs de performance sont-ils disponibles ?',
-      answer: (
-        <div>
-          <p className="text-green-600 font-semibold mb-3">Oui.</p>
-          <p className="text-gray-700 mb-4">
-            Taux de satisfaction, réussite et insertion sont publiés dans la rubrique "Indicateurs de performance".
-          </p>
-          <Link to="/indicateurs" className="text-blue-600 hover:underline font-medium flex items-center gap-1">
-            Voir les indicateurs <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      )
+      title: "Accessibilité et handicap",
+      icon: Users,
+      questions: [
+        {
+          q: "Les formations sont-elles accessibles aux personnes handicapées ?",
+          a: "Oui, nous nous engageons à adapter nos formations aux personnes en situation de handicap. Contactez notre référent handicap pour étudier les aménagements possibles."
+        },
+        {
+          q: "Comment signaler un besoin d'aménagement ?",
+          a: "Contactez-nous dès votre projet de formation à handicap@saint-georges.academy. Nous étudierons ensemble les adaptations nécessaires."
+        }
+      ]
     }
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <Badge className="mb-4 bg-[#d4af37] text-[#0f1f3d] hover:bg-[#b8941f] text-base font-bold px-6 py-2">
-            <HelpCircle className="w-4 h-4 mr-2" />
-            FAQ
-          </Badge>
-          <h1 className="text-5xl font-bold text-[#0f1f3d] mb-4">
-            Foire Aux Questions
-          </h1>
-          <p className="text-xl text-gray-600">
-            Retrouvez les réponses aux questions les plus fréquentes sur nos formations.
-          </p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-[#0f1f3d] to-[#1a3a5c] text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge className="bg-white/10 text-white border-white/20 mb-4">
+              <HelpCircle className="w-4 h-4 mr-2" />
+              Aide
+            </Badge>
+            <h1 className="text-4xl font-bold mb-4">Questions Fréquentes</h1>
+            <p className="text-white/70">
+              Retrouvez les réponses aux questions les plus courantes sur nos formations.
+            </p>
+          </div>
         </div>
+      </div>
 
-        {/* FAQ Accordion */}
-        <Card className="mb-8">
-          <CardContent className="pt-6">
-            <Accordion type="single" collapsible className="w-full">
-              {faqItems.map((item) => (
-                <AccordionItem key={item.id} value={item.id} data-testid={`faq-item-${item.id}`}>
-                  <AccordionTrigger className="text-left hover:no-underline">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-[#0f1f3d] to-[#1a3a5f] rounded-lg flex items-center justify-center flex-shrink-0">
-                        <item.icon className="w-5 h-5 text-[#d4af37]" />
-                      </div>
-                      <span className="font-semibold text-[#0f1f3d] pr-4">{item.question}</span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-4 pb-6 pl-[52px]">
-                    {item.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </CardContent>
-        </Card>
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto space-y-8">
+          
+          {faqCategories.map((category, catIndex) => (
+            <Card key={catIndex}>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
+                  <category.icon className="w-5 h-5" />
+                  {category.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Accordion type="single" collapsible className="w-full">
+                  {category.questions.map((item, index) => (
+                    <AccordionItem key={index} value={`item-${catIndex}-${index}`}>
+                      <AccordionTrigger className="text-left hover:no-underline">
+                        <span className="font-medium text-[#0f1f3d]">{item.q}</span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-gray-600">
+                        {item.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </CardContent>
+            </Card>
+          ))}
 
-        {/* CTA Section */}
-        <Card className="bg-gradient-to-br from-[#0f1f3d] to-[#1a3a5f] text-white">
-          <CardContent className="pt-8 pb-8">
-            <div className="text-center">
-              <HelpCircle className="w-12 h-12 text-[#d4af37] mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Vous avez une autre question ?</h3>
-              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                Notre équipe est disponible pour répondre à toutes vos questions et vous accompagner dans votre projet de formation.
+          {/* Contact */}
+          <Card className="bg-[#0f1f3d] text-white">
+            <CardContent className="py-8 text-center">
+              <HelpCircle className="w-12 h-12 mx-auto mb-4 text-[#d4af37]" />
+              <h3 className="text-xl font-bold mb-2">Vous n'avez pas trouvé votre réponse ?</h3>
+              <p className="text-white/70 mb-6">
+                Notre équipe est à votre disposition pour répondre à toutes vos questions.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" className="bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d]">
-                  <Link to="/contact">
-                    <Mail className="w-5 h-5 mr-2" />
-                    Nous contacter
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#0f1f3d]">
-                  <a href="tel:+33549227510">
-                    <Phone className="w-5 h-5 mr-2" />
-                    +33 (0)5 49 22 75 10
-                  </a>
-                </Button>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link to="/contact" className="inline-flex items-center gap-2 bg-[#d4af37] text-[#0f1f3d] px-6 py-3 rounded-lg hover:bg-[#c4a030] transition-colors font-medium">
+                  <MessageSquare className="w-4 h-4" />
+                  Nous contacter
+                </Link>
+                <a href="tel:+33549227510" className="inline-flex items-center gap-2 bg-white text-[#0f1f3d] px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                  <Phone className="w-4 h-4" />
+                  +33 (0)5 49 22 75 10
+                </a>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+
+        </div>
       </div>
     </div>
   );

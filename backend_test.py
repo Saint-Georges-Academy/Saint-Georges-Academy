@@ -3,7 +3,7 @@ import sys
 from datetime import datetime
 
 class CheckoutAPITester:
-    def __init__(self, base_url="https://preview-demo-54.preview.emergentagent.com"):
+    def __init__(self, base_url="https://sga-preview-1.preview.emergentagent.com"):
         self.base_url = base_url
         self.tests_run = 0
         self.tests_passed = 0
@@ -58,7 +58,7 @@ class CheckoutAPITester:
         """Test checkout session creation"""
         data = {
             "product_id": product_id,
-            "origin_url": "https://preview-demo-54.preview.emergentagent.com"
+            "origin_url": "https://sga-preview-1.preview.emergentagent.com"
         }
         if session_date:
             data["session_date"] = session_date

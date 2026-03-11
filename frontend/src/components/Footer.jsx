@@ -62,6 +62,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/world-of-haiku" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  World of Haiku
+                </Link>
+              </li>
+              <li>
                 <Link to="/faq" className="text-gray-300 hover:text-[#d4af37] transition-colors">
                   FAQ
                 </Link>
@@ -72,8 +77,23 @@ const Footer = () => {
             <h3 className="font-semibold text-[#d4af37] mt-6 mb-4">Informations légales</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/inscription" className="text-gray-300 hover:text-[#d4af37] transition-colors">
-                  Procédure d'inscription
+                <Link to="/mentions-legales" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  Mentions légales
+                </Link>
+              </li>
+              <li>
+                <Link to="/cgv" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  Conditions générales de vente
+                </Link>
+              </li>
+              <li>
+                <Link to="/politique-confidentialite" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  Politique de confidentialité
+                </Link>
+              </li>
+              <li>
+                <Link to="/politique-cookies" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  Politique de cookies
                 </Link>
               </li>
               <li>
@@ -82,18 +102,23 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/rgpd" className="text-gray-300 hover:text-[#d4af37] transition-colors">
-                  Politique de confidentialité
+                <Link to="/reclamations" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  Réclamations
+                </Link>
+              </li>
+            </ul>
+            
+            {/* Quality Links */}
+            <h3 className="font-semibold text-[#d4af37] mt-6 mb-4">Qualité</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/qualite" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  Engagement qualité
                 </Link>
               </li>
               <li>
-                <Link to="/cgv" className="text-gray-300 hover:text-[#d4af37] transition-colors">
-                  CGV
-                </Link>
-              </li>
-              <li>
-                <Link to="/mentions-legales" className="text-gray-300 hover:text-[#d4af37] transition-colors">
-                  Mentions légales
+                <Link to="/inscription" className="text-gray-300 hover:text-[#d4af37] transition-colors">
+                  Procédure d'inscription
                 </Link>
               </li>
               <li>
@@ -131,12 +156,21 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-sm text-gray-400 text-center">
-          <p>© {currentYear} Saint-Georges Academy. {t('footer.rights')}</p>
-          <p className="mt-2">
-            <a href="https://saint-georges.academy" className="hover:text-[#d4af37] transition-colors">
-              www.saint-georges.academy
-            </a>
+        <div className="border-t border-gray-700 mt-8 pt-8 text-sm text-gray-400">
+          <div className="flex flex-wrap justify-center gap-4 mb-4">
+            <Link to="/mentions-legales" className="hover:text-[#d4af37] transition-colors">Mentions légales</Link>
+            <span>|</span>
+            <Link to="/cgv" className="hover:text-[#d4af37] transition-colors">CGV</Link>
+            <span>|</span>
+            <Link to="/politique-confidentialite" className="hover:text-[#d4af37] transition-colors">Confidentialité</Link>
+            <span>|</span>
+            <Link to="/politique-cookies" className="hover:text-[#d4af37] transition-colors">Cookies</Link>
+            <span>|</span>
+            <Link to="/accessibilite" className="hover:text-[#d4af37] transition-colors">Accessibilité</Link>
+          </div>
+          <p className="text-center">© {currentYear} Saint-Georges Academy. {t('footer.rights')}</p>
+          <p className="text-center mt-1 text-xs text-gray-500">
+            Organisme de formation déclaré sous le n° 75 86 01243 86 - Cette déclaration ne vaut pas agrément de l'État
           </p>
         </div>
       </div>

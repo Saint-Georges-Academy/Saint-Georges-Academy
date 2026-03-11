@@ -1,292 +1,395 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { 
+  Shield, FileText, Scale, Users, Phone, Mail, MapPin, 
+  Clock, Building2, CheckCircle, AlertTriangle, ExternalLink,
+  Accessibility, MessageSquare, BookOpen, Award, Euro
+} from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { Building2, Globe, Server, User, Mail, Phone, MapPin } from 'lucide-react';
 
 const MentionsLegales = () => {
+  const lastUpdate = "11 mars 2026";
+  
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <Badge className="mb-4 bg-[#d4af37] text-[#0f1f3d] hover:bg-[#b8941f] text-base font-bold px-6 py-2">
-            <Building2 className="w-4 h-4 mr-2" />
-            Informations légales
-          </Badge>
-          <h1 className="text-5xl font-bold text-[#0f1f3d] mb-4">
-            Mentions Légales
-          </h1>
-          <p className="text-xl text-gray-600">
-            Informations légales du site saint-georges.academy
-          </p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-[#0f1f3d] to-[#1a3a5c] text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <Badge className="bg-white/10 text-white border-white/20 mb-4">
+              <Scale className="w-4 h-4 mr-2" />
+              Informations légales
+            </Badge>
+            <h1 className="text-4xl font-bold mb-4">Mentions Légales</h1>
+            <p className="text-white/70">
+              Conformément aux dispositions des articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 
+              pour la Confiance dans l'économie numérique (LCEN).
+            </p>
+            <p className="text-white/50 text-sm mt-4">
+              Dernière mise à jour : {lastUpdate}
+            </p>
+          </div>
         </div>
+      </div>
 
-        <div className="space-y-6">
-          {/* Section 1: Éditeur du site */}
-          <Card className="border-2 border-[#d4af37]">
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto space-y-8">
+          
+          {/* Éditeur du site */}
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
-                <Building2 className="w-5 h-5 text-[#d4af37]" />
+                <Building2 className="w-5 h-5" />
                 1. Éditeur du site
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-3">
-                  <p className="text-gray-700">
-                    <strong className="text-gray-900">Raison sociale :</strong><br />
-                    Saint-Georges Academy
-                  </p>
-                  <p className="text-gray-700">
-                    <strong className="text-gray-900">Forme juridique :</strong><br />
-                    Organisme de formation professionnelle
-                  </p>
-                  <p className="text-gray-700">
-                    <strong className="text-gray-900">SIRET :</strong><br />
-                    528 616 113 00023
-                  </p>
+            <CardContent className="space-y-4">
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h3 className="font-bold text-[#0f1f3d] mb-4">Saint-Georges Academy</h3>
+                <div className="grid md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-gray-500">Forme juridique</p>
+                    <p className="font-medium">[À compléter : SAS / SARL / Association]</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500">Capital social</p>
+                    <p className="font-medium">[À compléter]</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500">SIRET</p>
+                    <p className="font-medium">528 616 113 00023</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500">Numéro TVA intracommunautaire</p>
+                    <p className="font-medium">[À compléter]</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500">RCS</p>
+                    <p className="font-medium">[À compléter : RCS Poitiers]</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500">Code APE/NAF</p>
+                    <p className="font-medium">[À compléter]</p>
+                  </div>
                 </div>
-                <div className="space-y-3">
-                  <p className="text-gray-700 flex items-start gap-2">
-                    <MapPin className="w-4 h-4 text-[#d4af37] mt-1 flex-shrink-0" />
-                    <span>
-                      <strong className="text-gray-900">Adresse :</strong><br />
-                      2 venelle des Amandiers<br />
-                      86200 Loudun – France
-                    </span>
-                  </p>
-                  <p className="text-gray-700 flex items-start gap-2">
-                    <Phone className="w-4 h-4 text-[#d4af37] mt-1 flex-shrink-0" />
-                    <span>
-                      <strong className="text-gray-900">Téléphone :</strong><br />
-                      +33 (0)5 49 22 75 10
-                    </span>
-                  </p>
-                  <p className="text-gray-700 flex items-start gap-2">
-                    <Mail className="w-4 h-4 text-[#d4af37] mt-1 flex-shrink-0" />
-                    <span>
-                      <strong className="text-gray-900">Email :</strong><br />
-                      contact@saint-georges.academy
-                    </span>
-                  </p>
+                
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <h4 className="font-semibold text-[#0f1f3d] mb-3">Siège social</h4>
+                  <div className="flex items-start gap-2 text-gray-700">
+                    <MapPin className="w-4 h-4 mt-1 text-gray-400" />
+                    <div>
+                      <p>2 venelle des Amandiers</p>
+                      <p>86200 Loudun, France</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <h4 className="font-semibold text-[#0f1f3d] mb-3">Contact</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-gray-700">
+                      <Phone className="w-4 h-4 text-gray-400" />
+                      <span>+33 (0)5 49 22 75 10</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-700">
+                      <Mail className="w-4 h-4 text-gray-400" />
+                      <span>contact@saint-georges.academy</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <h4 className="font-semibold text-[#0f1f3d] mb-3">Directeur de la publication</h4>
+                  <p className="text-gray-700">[Nom du représentant légal à compléter]</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Section 2: Directeur de publication */}
+          {/* Organisme de formation */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
-                <User className="w-5 h-5 text-[#d4af37]" />
-                2. Directeur de la publication
+                <Award className="w-5 h-5" />
+                2. Activité de formation professionnelle
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-gray-700">
-                Le directeur de la publication est le représentant légal de Saint-Georges Academy.
-              </p>
-              <p className="text-gray-700 mt-2">
-                <strong>Contact :</strong> contact@saint-georges.academy
+            <CardContent className="space-y-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 text-blue-600 mt-0.5" />
+                  <div className="text-sm text-blue-900">
+                    <strong>Déclaration d'activité</strong>
+                    <p className="mt-1">
+                      Saint-Georges Academy est un organisme de formation déclaré sous le numéro 
+                      <strong> 75 86 01243 86</strong> auprès du Préfet de la Région Nouvelle-Aquitaine.
+                    </p>
+                    <p className="mt-2 text-blue-700">
+                      Cette déclaration ne vaut pas agrément de l'État.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 text-amber-600 mt-0.5" />
+                  <div className="text-sm text-amber-900">
+                    <strong>Certification Qualiopi</strong>
+                    <p className="mt-1">
+                      [Statut de la certification Qualiopi à compléter une fois obtenue. 
+                      En l'absence de certification, ne pas mentionner l'éligibilité aux financements publics.]
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-gray-600 text-sm">
+                Partenaire officiel <strong>Cisco Networking Academy</strong> pour la formation aux certifications CCNA et CyberOps.
               </p>
             </CardContent>
           </Card>
 
-          {/* Section 3: Hébergement */}
+          {/* Hébergeur */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
-                <Server className="w-5 h-5 text-[#d4af37]" />
+                <Shield className="w-5 h-5" />
                 3. Hébergement
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-700 mb-3">
-                Le site est hébergé par un prestataire technique conforme aux normes de sécurité 
-                et de protection des données en vigueur.
-              </p>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="text-gray-700 text-sm">
-                  Pour toute question relative à l'hébergement, veuillez contacter :<br />
-                  <strong>contact@saint-georges.academy</strong>
-                </p>
+              <div className="bg-gray-50 rounded-lg p-6">
+                <p className="text-gray-600 mb-4">Le site est hébergé par :</p>
+                <div className="space-y-2 text-sm">
+                  <p className="font-medium">[Nom de l'hébergeur à compléter]</p>
+                  <p className="text-gray-600">[Adresse de l'hébergeur]</p>
+                  <p className="text-gray-600">[Téléphone de l'hébergeur]</p>
+                </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Section 4: Propriété intellectuelle */}
+          {/* Propriété intellectuelle */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
+                <FileText className="w-5 h-5" />
                 4. Propriété intellectuelle
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-gray-700">
-                L'ensemble du contenu du site (textes, images, vidéos, logos, graphismes, icônes, 
-                etc.) est la propriété exclusive de Saint-Georges Academy ou de ses partenaires, 
-                et est protégé par les lois françaises et internationales relatives à la propriété 
-                intellectuelle.
+            <CardContent className="prose prose-sm max-w-none text-gray-600">
+              <p>
+                L'ensemble du contenu de ce site (textes, images, vidéos, logos, icônes, sons, logiciels, 
+                base de données, etc.) est protégé par le droit d'auteur et le droit des marques, 
+                conformément aux dispositions du Code de la Propriété Intellectuelle.
               </p>
-              <p className="text-gray-700">
-                Toute reproduction, représentation, modification, publication, adaptation de tout 
-                ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est 
-                interdite, sauf autorisation écrite préalable de Saint-Georges Academy.
+              <p>
+                Toute reproduction, représentation, modification, publication, transmission, dénaturation, 
+                totale ou partielle du site ou de son contenu, par quelque procédé que ce soit, et sur 
+                quelque support que ce soit, est interdite sans l'autorisation écrite préalable de 
+                Saint-Georges Academy.
               </p>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <p className="text-blue-900 text-sm">
-                  <strong>Marques et logos :</strong> Les logos Cisco, CCNA, CyberOps et Unreal Engine 
-                  sont des marques déposées appartenant à leurs propriétaires respectifs. Leur 
-                  utilisation sur ce site est effectuée dans le cadre du partenariat Cisco Networking Academy.
-                </p>
-              </div>
+              <p>
+                Les marques et logos figurant sur ce site sont des marques déposées. Toute reproduction 
+                totale ou partielle de ces marques ou logos, effectuée à partir des éléments du site, 
+                est prohibée.
+              </p>
+              <p className="text-sm text-gray-500">
+                Cisco®, CCNA®, CyberOps® sont des marques déposées de Cisco Systems, Inc.
+              </p>
             </CardContent>
           </Card>
 
-          {/* Section 5: Conditions d'utilisation */}
+          {/* Données personnelles */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
-                <Globe className="w-5 h-5 text-[#d4af37]" />
-                5. Conditions d'utilisation du site
+                <Users className="w-5 h-5" />
+                5. Protection des données personnelles
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-gray-700">
-                L'utilisation du site implique l'acceptation pleine et entière des conditions 
-                générales d'utilisation décrites ci-après. Ces conditions sont susceptibles d'être 
-                modifiées à tout moment.
+              <p className="text-gray-600">
+                Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi 
+                Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez de droits sur vos 
+                données personnelles.
               </p>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">L'utilisateur s'engage à :</h3>
-                <ul className="list-disc list-inside text-gray-700 space-y-1">
-                  <li>Ne pas utiliser le site à des fins illicites</li>
-                  <li>Ne pas tenter de porter atteinte au bon fonctionnement du site</li>
-                  <li>Ne pas collecter d'informations sur les autres utilisateurs</li>
-                  <li>Respecter les droits de propriété intellectuelle</li>
-                </ul>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Section 6: Limitation de responsabilité */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
-                6. Limitation de responsabilité
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-gray-700">
-                Saint-Georges Academy s'efforce d'assurer l'exactitude et la mise à jour des 
-                informations diffusées sur ce site. Toutefois, l'Organisme ne peut garantir 
-                l'exactitude, la précision ou l'exhaustivité des informations mises à disposition.
-              </p>
-              <p className="text-gray-700">
-                Saint-Georges Academy décline toute responsabilité :
-              </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1">
-                <li>Pour toute interruption du site</li>
-                <li>Pour toute survenance de bugs ou virus</li>
-                <li>Pour tout dommage résultant d'une intrusion frauduleuse d'un tiers</li>
-                <li>Pour l'utilisation qui serait faite des informations du site</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          {/* Section 7: Liens hypertextes */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
-                7. Liens hypertextes
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Liens sortants</h3>
-                <p className="text-gray-700">
-                  Le site peut contenir des liens vers d'autres sites internet. Saint-Georges Academy 
-                  n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Liens entrants</h3>
-                <p className="text-gray-700">
-                  Toute création de lien hypertexte vers le site saint-georges.academy est soumise 
-                  à l'autorisation préalable de l'éditeur.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Section 8: Données personnelles */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
-                8. Données personnelles et cookies
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-700 mb-3">
-                Pour toute information relative à la collecte et au traitement des données personnelles, 
-                ainsi qu'à l'utilisation des cookies, veuillez consulter notre :
+              <p className="text-gray-600">
+                Pour plus d'informations sur la collecte et le traitement de vos données, 
+                veuillez consulter notre :
               </p>
               <div className="flex flex-wrap gap-3">
-                <a 
-                  href="/rgpd" 
-                  className="inline-flex items-center px-4 py-2 bg-[#0f1f3d] text-white rounded-lg hover:bg-[#1a3a5f] transition-colors"
+                <Link 
+                  to="/politique-confidentialite" 
+                  className="inline-flex items-center gap-2 bg-[#0f1f3d] text-white px-4 py-2 rounded-lg hover:bg-[#1a3a5c] transition-colors"
                 >
-                  Politique de Confidentialité (RGPD)
-                </a>
+                  <Shield className="w-4 h-4" />
+                  Politique de confidentialité
+                </Link>
+                <Link 
+                  to="/politique-cookies" 
+                  className="inline-flex items-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors"
+                >
+                  <FileText className="w-4 h-4" />
+                  Politique de cookies
+                </Link>
+              </div>
+              
+              <div className="bg-gray-50 rounded-lg p-4 mt-4">
+                <h4 className="font-semibold text-[#0f1f3d] mb-2">Délégué à la Protection des Données (DPO)</h4>
+                <p className="text-sm text-gray-600">
+                  Pour toute question relative à vos données personnelles :<br />
+                  <a href="mailto:dpo@saint-georges.academy" className="text-[#0f1f3d] hover:underline">
+                    dpo@saint-georges.academy
+                  </a>
+                </p>
               </div>
             </CardContent>
           </Card>
 
-          {/* Section 9: Droit applicable */}
+          {/* Cookies */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
-                9. Droit applicable
+                <FileText className="w-5 h-5" />
+                6. Cookies
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-gray-700">
-                Les présentes mentions légales sont soumises au droit français. En cas de litige, 
+            <CardContent className="prose prose-sm max-w-none text-gray-600">
+              <p>
+                Ce site utilise des cookies pour améliorer votre expérience de navigation. 
+                Conformément à la réglementation en vigueur, nous vous informons de leur utilisation 
+                et vous permettons de gérer vos préférences.
+              </p>
+              <p>
+                Pour en savoir plus sur les cookies utilisés et gérer vos préférences, consultez notre{' '}
+                <Link to="/politique-cookies" className="text-[#0f1f3d] hover:underline">
+                  politique de cookies
+                </Link>.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Responsabilité */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
+                <AlertTriangle className="w-5 h-5" />
+                7. Limitation de responsabilité
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="prose prose-sm max-w-none text-gray-600">
+              <p>
+                Les informations contenues sur ce site sont aussi précises que possible et le site 
+                est périodiquement mis à jour, mais peut toutefois contenir des inexactitudes, des 
+                omissions ou des lacunes.
+              </p>
+              <p>
+                Saint-Georges Academy ne pourra être tenue responsable des dommages directs ou indirects 
+                résultant de l'accès ou de l'utilisation du site, y compris l'inaccessibilité, les pertes 
+                de données, détériorations, destructions ou virus qui pourraient affecter l'équipement 
+                informatique de l'utilisateur.
+              </p>
+              <p>
+                Les liens hypertextes présents sur ce site peuvent renvoyer vers d'autres sites internet. 
+                La responsabilité de Saint-Georges Academy ne saurait être engagée si le contenu de ces 
+                sites contrevient aux législations en vigueur.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Droit applicable */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
+                <Scale className="w-5 h-5" />
+                8. Droit applicable et juridiction
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="prose prose-sm max-w-none text-gray-600">
+              <p>
+                Les présentes mentions légales sont régies par le droit français. En cas de litige, 
                 et après échec de toute tentative de recherche d'une solution amiable, les tribunaux 
                 français seront seuls compétents.
               </p>
-            </CardContent>
-          </Card>
-
-          {/* Contact */}
-          <Card className="bg-gradient-to-br from-[#0f1f3d] to-[#1a3a5f] text-white">
-            <CardContent className="pt-6 text-center">
-              <Mail className="w-12 h-12 text-[#d4af37] mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-3">Une question ?</h3>
-              <p className="text-gray-200 mb-4">
-                Pour toute question concernant ces mentions légales, contactez-nous.
+              <p>
+                Pour tout litige relatif à la formation professionnelle, le médiateur de la consommation 
+                compétent est :
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <a
-                  href="mailto:contact@saint-georges.academy"
-                  className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-bold px-8 py-3 rounded-lg transition-colors"
-                >
-                  contact@saint-georges.academy
-                </a>
-                <a
-                  href="tel:+33549227510"
-                  className="inline-block border-2 border-white hover:bg-white hover:text-[#0f1f3d] text-white font-bold px-8 py-3 rounded-lg transition-colors"
-                >
-                  +33 (0)5 49 22 75 10
-                </a>
+              <div className="bg-gray-50 rounded-lg p-4">
+                <p className="text-sm">
+                  [Coordonnées du médiateur à compléter]<br />
+                  <span className="text-gray-500">
+                    Conformément à l'article L.612-1 du Code de la consommation
+                  </span>
+                </p>
               </div>
             </CardContent>
           </Card>
 
-          {/* Last Updated */}
-          <div className="text-center text-sm text-gray-600 mt-8">
-            <p>Dernière mise à jour : Janvier 2026</p>
-          </div>
+          {/* Accessibilité */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-[#0f1f3d]">
+                <Accessibility className="w-5 h-5" />
+                9. Accessibilité
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="prose prose-sm max-w-none text-gray-600">
+              <p>
+                Saint-Georges Academy s'engage à rendre son site internet accessible conformément à 
+                l'article 47 de la loi n°2005-102 du 11 février 2005.
+              </p>
+              <p>
+                Pour plus d'informations sur notre politique d'accessibilité et nos engagements envers 
+                les personnes en situation de handicap, consultez notre{' '}
+                <Link to="/accessibilite" className="text-[#0f1f3d] hover:underline">
+                  déclaration d'accessibilité
+                </Link>.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Liens utiles */}
+          <Card className="bg-[#0f1f3d] text-white">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <ExternalLink className="w-5 h-5" />
+                Documents complémentaires
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-4">
+                <Link to="/cgv" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                  <FileText className="w-4 h-4" />
+                  Conditions Générales de Vente
+                </Link>
+                <Link to="/politique-confidentialite" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                  <Shield className="w-4 h-4" />
+                  Politique de confidentialité
+                </Link>
+                <Link to="/politique-cookies" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                  <FileText className="w-4 h-4" />
+                  Politique de cookies
+                </Link>
+                <Link to="/accessibilite" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                  <Accessibility className="w-4 h-4" />
+                  Accessibilité
+                </Link>
+                <Link to="/reclamations" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                  <MessageSquare className="w-4 h-4" />
+                  Procédure de réclamation
+                </Link>
+                <Link to="/contact" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                  <Mail className="w-4 h-4" />
+                  Contact
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
         </div>
       </div>
     </div>

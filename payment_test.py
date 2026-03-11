@@ -8,7 +8,7 @@ import sys
 from datetime import datetime
 
 class PaymentAPITester:
-    def __init__(self, base_url="https://preview-demo-54.preview.emergentagent.com"):
+    def __init__(self, base_url="https://sga-preview-1.preview.emergentagent.com"):
         self.base_url = base_url
         self.tests_run = 0
         self.tests_passed = 0
@@ -59,7 +59,7 @@ class PaymentAPITester:
         # Test checkout session creation (without actually completing payment)
         checkout_data = {
             "product_id": "ccna_videos",
-            "origin_url": "https://preview-demo-54.preview.emergentagent.com"
+            "origin_url": "https://sga-preview-1.preview.emergentagent.com"
         }
         
         try:
@@ -90,7 +90,7 @@ class PaymentAPITester:
         # Test invalid product ID
         invalid_checkout_data = {
             "product_id": "invalid_product",
-            "origin_url": "https://preview-demo-54.preview.emergentagent.com"
+            "origin_url": "https://sga-preview-1.preview.emergentagent.com"
         }
         
         try:

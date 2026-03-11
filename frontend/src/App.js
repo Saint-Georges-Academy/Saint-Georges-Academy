@@ -14,6 +14,11 @@ import Contact from "./pages/Contact";
 import RGPD from "./pages/RGPD";
 import CGV from "./pages/CGV";
 import MentionsLegales from "./pages/MentionsLegales";
+import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
+import PolitiqueCookies from "./pages/PolitiqueCookies";
+import Accessibilite from "./pages/Accessibilite";
+import Reclamations from "./pages/Reclamations";
+import Qualite from "./pages/Qualite";
 import CertificationCheckout from "./pages/CertificationCheckout";
 import Indicateurs from "./pages/Indicateurs";
 import ProcedureInscription from "./pages/ProcedureInscription";
@@ -26,6 +31,7 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import ExtremeBootcamp from "./pages/ExtremeBootcamp";
 import EdgeComputing from "./pages/EdgeComputing";
+import WorldOfHaiku from "./pages/WorldOfHaiku";
 import "./i18n";
 
 function App() {
@@ -45,6 +51,11 @@ function App() {
             <Route path="/rgpd" element={<RGPD />} />
             <Route path="/cgv" element={<CGV />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />
+            <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+            <Route path="/politique-cookies" element={<PolitiqueCookies />} />
+            <Route path="/accessibilite" element={<Accessibilite />} />
+            <Route path="/reclamations" element={<Reclamations />} />
+            <Route path="/qualite" element={<Qualite />} />
             <Route path="/certification" element={<CertificationCheckout />} />
             <Route path="/indicateurs" element={<Indicateurs />} />
             <Route path="/inscription" element={<ProcedureInscription />} />
@@ -55,6 +66,7 @@ function App() {
             <Route path="/auth" element={<Auth />} />
             <Route path="/extreme-bootcamp" element={<ExtremeBootcamp />} />
             <Route path="/edge-computing" element={<EdgeComputing />} />
+            <Route path="/world-of-haiku" element={<WorldOfHaiku />} />
             <Route 
               path="/dashboard" 
               element={
