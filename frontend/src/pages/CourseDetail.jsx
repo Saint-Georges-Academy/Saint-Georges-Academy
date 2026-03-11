@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -22,7 +22,8 @@ import {
   Coffee,
   Utensils,
   Play,
-  Youtube
+  Youtube,
+  LogIn
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import { generateCoursePDF } from '../utils/generatePDF';
@@ -132,8 +133,19 @@ const generateSessions = (format) => {
 
 const CourseDetail = () => {
   const { courseId } = useParams();
+  const navigate = useNavigate();
+  const { toast } = useToast();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedFormat, setSelectedFormat] = useState('online');
+  const [selectedSession, setSelectedSession] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // Check if user is logged in
+  const isLoggedIn = () => {
+    const token = localStorage.getItem('auth_token');
+    return !!token;
+  };
   
   useEffect(() => {
     const fetchCourse = async () => {
@@ -148,14 +160,6 @@ const CourseDetail = () => {
     };
     fetchCourse();
   }, [courseId]);
-  
-  // For Unreal Engine or Bootcamp (no online option), default to inclass
-  const isInClassOnly = course?.id === 'unreal' || course?.id === 'extreme-ccna-bootcamp' || !course?.onlinePrice;
-  const defaultFormat = isInClassOnly ? 'inclass' : 'online';
-  const [selectedFormat, setSelectedFormat] = useState(defaultFormat);
-  const [selectedSession, setSelectedSession] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
 
   // Update default format when course loads
   useEffect(() => {
@@ -219,6 +223,22 @@ const CourseDetail = () => {
   const selectedSessionDetails = availableSessions.find(s => s.id === selectedSession);
 
   const handleCheckout = async () => {
+    // Check if user is logged in first
+    if (!isLoggedIn()) {
+      toast({
+        title: "Connexion requise",
+        description: "Veuillez créer un compte ou vous connecter pour vous inscrire à cette formation.",
+        variant: "destructive"
+      });
+      // Store the return URL to redirect back after login
+      localStorage.setItem('checkout_return_url', window.location.pathname);
+      localStorage.setItem('checkout_session', selectedSession);
+      localStorage.setItem('checkout_format', selectedFormat);
+      // Redirect to auth page
+      navigate('/auth?redirect=checkout');
+      return;
+    }
+
     if (!selectedSession) {
       toast({
         title: "Session requise",
@@ -230,6 +250,10 @@ const CourseDetail = () => {
 
     setIsLoading(true);
     
+    // Get user info from localStorage
+    const userEmail = localStorage.getItem('user_email');
+    const userName = localStorage.getItem('user_name');
+    
     // Build the product_id based on course and format
     const productId = `${courseId}_${selectedFormat === 'online' ? 'online' : 'inclass'}`;
     
@@ -238,11 +262,14 @@ const CourseDetail = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
         },
         body: JSON.stringify({
           product_id: productId,
           origin_url: window.location.origin,
           session_date: selectedSessionDetails?.label || '',
+          customer_email: userEmail,
+          customer_name: userName,
         }),
       });
       
@@ -644,11 +671,13 @@ const CourseDetail = () => {
 
                 <Button 
                   onClick={handleCheckout}
-                  disabled={isLoading || !selectedSession}
+                  disabled={isLoading || (isLoggedIn() && !selectedSession)}
                   className={`w-full font-semibold text-lg py-6 ${
-                    selectedSession 
-                      ? 'bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d]' 
-                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    !isLoggedIn() 
+                      ? 'bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d]'
+                      : selectedSession 
+                        ? 'bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d]' 
+                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   }`}
                   data-testid="checkout-btn"
                 >
@@ -657,6 +686,11 @@ const CourseDetail = () => {
                       <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                       Redirection vers le paiement...
                     </>
+                  ) : !isLoggedIn() ? (
+                    <>
+                      <LogIn className="w-5 h-5 mr-2" />
+                      Se connecter pour s'inscrire
+                    </>
                   ) : (
                     <>
                       <ShoppingCart className="w-5 h-5 mr-2" />
@@ -664,6 +698,21 @@ const CourseDetail = () => {
                     </>
                   )}
                 </Button>
+
+                {!isLoggedIn() && (
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                    <div className="flex items-start space-x-3">
+                      <LogIn className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                      <div className="text-sm text-amber-900">
+                        <strong className="block mb-1">Compte requis</strong>
+                        Vous devez créer un compte ou vous connecter avant de pouvoir vous inscrire à cette formation.
+                        <Link to="/auth" className="text-amber-700 underline hover:text-amber-800 block mt-2">
+                          Créer un compte ou se connecter →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <div className="flex items-start space-x-3">

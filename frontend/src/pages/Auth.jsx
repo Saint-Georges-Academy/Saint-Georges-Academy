@@ -36,15 +36,37 @@ const Auth = () => {
   });
 
   const from = location.state?.from?.pathname || '/dashboard';
+  
+  // Check if redirected from checkout
+  const searchParams = new URLSearchParams(location.search);
+  const isCheckoutRedirect = searchParams.get('redirect') === 'checkout';
+  const checkoutReturnUrl = localStorage.getItem('checkout_return_url');
+
+  const handleLoginSuccess = () => {
+    toast.success('Connexion réussie !');
+    // If redirected from checkout, go back to the course page
+    if (isCheckoutRedirect && checkoutReturnUrl) {
+      localStorage.removeItem('checkout_return_url');
+      navigate(checkoutReturnUrl, { replace: true });
+    } else {
+      navigate(from, { replace: true });
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     
     try {
-      await login(loginEmail, loginPassword);
-      toast.success('Connexion réussie !');
-      navigate(from, { replace: true });
+      const response = await login(loginEmail, loginPassword);
+      // Store user info for checkout
+      if (response?.user) {
+        localStorage.setItem('user_email', response.user.email || loginEmail);
+        localStorage.setItem('user_name', `${response.user.first_name || ''} ${response.user.last_name || ''}`.trim());
+      } else {
+        localStorage.setItem('user_email', loginEmail);
+      }
+      handleLoginSuccess();
     } catch (error) {
       const message = error.response?.data?.detail || 'Erreur de connexion';
       toast.error(message);
@@ -77,8 +99,17 @@ const Auth = () => {
         phone: registerData.phone || null,
         company: registerData.company || null
       });
+      // Store user info for checkout
+      localStorage.setItem('user_email', registerData.email);
+      localStorage.setItem('user_name', `${registerData.first_name} ${registerData.last_name}`.trim());
       toast.success('Compte créé avec succès !');
-      navigate(from, { replace: true });
+      // If redirected from checkout, go back to the course page
+      if (isCheckoutRedirect && checkoutReturnUrl) {
+        localStorage.removeItem('checkout_return_url');
+        navigate(checkoutReturnUrl, { replace: true });
+      } else {
+        navigate(from, { replace: true });
+      }
     } catch (error) {
       const message = error.response?.data?.detail || 'Erreur lors de l\'inscription';
       toast.error(message);
@@ -107,6 +138,21 @@ const Auth = () => {
         </div>
 
         <Card className="border-0 shadow-2xl">
+          {/* Checkout redirect notice */}
+          {isCheckoutRedirect && (
+            <div className="bg-amber-50 border-b border-amber-200 p-4 rounded-t-lg">
+              <div className="flex items-start space-x-3">
+                <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Lock className="w-4 h-4 text-amber-600" />
+                </div>
+                <div className="text-sm text-amber-900">
+                  <strong className="block">Créez votre compte pour vous inscrire</strong>
+                  <span className="text-amber-700">Un compte est nécessaire pour finaliser votre inscription à la formation.</span>
+                </div>
+              </div>
+            </div>
+          )}
+          
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <CardHeader className="pb-0">
               <TabsList className="grid w-full grid-cols-2">

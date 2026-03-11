@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -21,7 +21,8 @@ import {
   Settings,
   Zap,
   ArrowRight,
-  Loader2
+  Loader2,
+  LogIn
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 
@@ -30,6 +31,13 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 const Videos = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  
+  // Check if user is logged in
+  const isLoggedIn = () => {
+    const token = localStorage.getItem('auth_token');
+    return !!token;
+  };
 
   // Module data with all 75 videos
   const modules = [
@@ -153,17 +161,38 @@ const Videos = () => {
   const totalVideos = modules.reduce((acc, module) => acc + module.videos.length, 0);
 
   const handlePurchase = async () => {
+    // Check if user is logged in first
+    if (!isLoggedIn()) {
+      toast({
+        title: "Connexion requise",
+        description: "Veuillez créer un compte ou vous connecter pour acheter les vidéos.",
+        variant: "destructive"
+      });
+      // Store the return URL to redirect back after login
+      localStorage.setItem('checkout_return_url', '/videos');
+      // Redirect to auth page
+      navigate('/auth?redirect=checkout');
+      return;
+    }
+    
     setIsLoading(true);
+    
+    // Get user info from localStorage
+    const userEmail = localStorage.getItem('user_email');
+    const userName = localStorage.getItem('user_name');
     
     try {
       const response = await fetch(`${API_URL}/api/payments/checkout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
         },
         body: JSON.stringify({
           product_id: 'ccna_videos',
           origin_url: window.location.origin,
+          customer_email: userEmail,
+          customer_name: userName,
         }),
       });
       
