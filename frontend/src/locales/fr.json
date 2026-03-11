@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "courses": "Formations",
+    "videos": "Vidéos CCNA",
+    "funding": "Financement",
+    "contact": "Contact",
+    "register": "Inscription"
+  },
+  "hero": {
+    "badge": "Official Cisco Networking Academy",
+    "title": "Devenez Expert en Réseaux et Cybersécurité",
+    "subtitle": "Formations professionnelles certifiantes en présentiel et en ligne. Cisco CCNA, CyberOps et Unreal Engine à Loudun, France.",
+    "exploreBtn": "Explorer les formations",
+    "fundingBtn": "Options de financement",
+    "stats": {
+      "courses": "Formations certifiantes",
+      "hours": "Heures de formation",
+      "success": "Taux de réussite",
+      "experience": "Années d'expérience"
+    }
+  },
+  "features": {
+    "title": "Pourquoi Choisir Saint-Georges Academy ?",
+    "subtitle": "Une formation d'excellence reconnue par les professionnels du secteur",
+    "cisco": {
+      "title": "Cisco Networking Academy Officielle",
+      "description": "Accès direct aux ressources et certifications Cisco reconnues mondialement."
+    },
+    "instructors": {
+      "title": "Instructeurs Certifiés",
+      "description": "Formateurs experts avec une expérience terrain significative en entreprise."
+    },
+    "format": {
+      "title": "Double Format",
+      "description": "Formations en ligne flexibles ou intensives en présentiel selon vos besoins."
+    },
+    "quality": {
+      "title": "Qualité Garantie",
+      "description": "Structure pédagogique conforme au Référentiel National Qualité."
+    }
+  },
+  "coursesPreview": {
+    "title": "Nos Formations",
+    "subtitle": "Formations professionnelles reconnues avec certifications internationales",
+    "allCourses": "Voir toutes les formations",
+    "learnMore": "En savoir plus"
+  },
+  "cta": {
+    "title": "Prêt à Lancer Votre Carrière ?",
+    "subtitle": "Rejoignez des centaines de professionnels formés chez Saint-Georges Academy",
+    "chooseBtn": "Choisir ma formation",
+    "contactBtn": "Nous contacter"
+  },
+  "footer": {
+    "brand": "Saint-Georges Academy",
+    "intSchool": "International School",
+    "description": "Organisme de formation professionnelle spécialisé en réseaux, cybersécurité et Unreal Engine. Structure pédagogique conforme au Référentiel National Qualité.",
+    "navigation": "Navigation",
+    "contact": "Contact",
+    "address": "Adresse",
+    "rights": "Tous droits réservés."
+  }
+}
