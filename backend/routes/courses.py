@@ -138,6 +138,83 @@ async def update_inclass_features():
     
     return {"message": "Updated all in-class courses with meal information"}
 
+@course_router.post("/add-edge-computing")
+async def add_edge_computing():
+    """Add the Edge Computing for Smart Towns course"""
+    
+    # Check if already exists
+    existing = await db.courses.find_one({"id": "edge-computing"})
+    if existing:
+        return {"message": "Edge Computing course already exists"}
+    
+    edge_course = {
+        "id": "edge-computing",
+        "title": "Edge Computing for Smart Towns",
+        "category": "Infrastructure",
+        "description": "A comprehensive 3-month programme teaching edge computing fundamentals through a real-world case study: designing local digital infrastructure for the town of Metković, Croatia. Includes a dedicated Stormshield firewall module.",
+        "duration": "3 months",
+        "level": "Débutant",
+        "onlinePrice": 3000,
+        "inClassPrice": None,
+        "certificationCost": None,
+        "groupPrice": 20000,
+        "maxGroupSize": 10,
+        "features": [
+            "Programme complet de 3 mois",
+            "Formation hybride en ligne",
+            "Module dédié Stormshield Firewall",
+            "Projet pratique sur Metković, Croatie",
+            "Supports de cours et ressources",
+            "Sessions live interactives",
+            "Certificat Saint-Georges Academy",
+            "Support par email pendant la formation"
+        ],
+        "inClassFeatures": None,
+        "objectives": [
+            "Concevoir une architecture edge computing municipale",
+            "Déployer des solutions d'hébergement local",
+            "Configurer des firewalls Stormshield",
+            "Implémenter des systèmes de monitoring environnemental",
+            "Créer des systèmes de communication d'urgence",
+            "Intégrer des plateformes de médias locaux",
+            "Connecter des réseaux éducatifs",
+            "Présenter des projets techniques aux décideurs"
+        ],
+        "modules": [
+            {"number": 1, "title": "Fondamentaux Edge Computing", "topics": ["Introduction au edge computing", "Souveraineté numérique locale", "Architecture réseau fondamentale", "Stratégies de déploiement hardware"]},
+            {"number": 2, "title": "Services Municipaux", "topics": ["Services numériques municipaux", "Infrastructure médias locaux", "Réseaux d'établissements éducatifs", "Services tourisme et économie"]},
+            {"number": 3, "title": "Sécurité et Résilience", "topics": ["Systèmes de monitoring environnemental", "Intégration Stormshield Firewall", "Systèmes de communication d'urgence", "Projet final: Infrastructure Metković"]}
+        ],
+        "practicalSkills": [
+            "Concevoir des architectures edge municipales",
+            "Déployer des solutions d'hébergement local",
+            "Configurer des firewalls Stormshield entreprise",
+            "Construire des systèmes de monitoring environnemental",
+            "Créer des systèmes de communication de crise",
+            "Intégrer des plateformes de médias locaux",
+            "Connecter des réseaux éducatifs",
+            "Présenter des projets aux parties prenantes"
+        ],
+        "targetAudience": [
+            "Municipalités et mairies",
+            "Collectivités locales",
+            "PME et entreprises IT",
+            "Fournisseurs de cybersécurité",
+            "Écoles et centres de formation",
+            "Équipes projets smart city"
+        ],
+        "prerequisites": [
+            "Aucune connaissance technique préalable requise",
+            "Intérêt pour l'infrastructure numérique territoriale",
+            "Capacité à travailler en ligne",
+            "Motivation pour un apprentissage par projet"
+        ],
+        "note": "Formation hybride en ligne de 3 mois. Niveau débutant. Projet pratique basé sur Metković, Croatie. Module dédié Stormshield Firewall inclus. Certificat Saint-Georges Academy à l'issue de la formation."
+    }
+    
+    await db.courses.insert_one(edge_course)
+    return {"message": "Edge Computing for Smart Towns course added successfully"}
+
 @course_router.post("/add-bootcamp")
 async def add_bootcamp():
     """Add the Extreme CCNA Boot Camp course"""

@@ -9,7 +9,7 @@ from datetime import datetime
 import uuid
 
 class SimpleAPITester:
-    def __init__(self, base_url="https://sga-preview.preview.emergentagent.com"):
+    def __init__(self, base_url="https://preview-demo-54.preview.emergentagent.com"):
         self.base_url = base_url
         self.token = None
         self.tests_run = 0
@@ -83,8 +83,44 @@ class SimpleAPITester:
         if success and isinstance(courses, list):
             print(f"   Found {len(courses)} courses")
             self.log_test("Courses count validation", len(courses) >= 5, f"Expected 5+ courses, got {len(courses)}")
+            
+            # Check if Edge Computing course exists
+            edge_course = None
+            for course in courses:
+                if course.get('id') == 'edge-computing':
+                    edge_course = course
+                    break
+            
+            if edge_course:
+                self.log_test("Edge Computing in courses list", True, f"Found: {edge_course.get('title')}")
+            else:
+                self.log_test("Edge Computing in courses list", False, "Edge Computing course not found")
         
-        # Test get single course
+        # Test get Edge Computing course specifically
+        success, edge_course = self.run_test(
+            "GET /api/courses/edge-computing - Edge Computing course",
+            "GET",
+            "api/courses/edge-computing",
+            200,
+            auth_required=False
+        )
+        
+        if success and edge_course.get('id') == 'edge-computing':
+            # Validate Edge Computing course data
+            validations = [
+                (edge_course.get('title') == "Edge Computing for Smart Towns", "Title validation"),
+                (edge_course.get('category') == "Infrastructure", "Category validation"),
+                (edge_course.get('duration') == "3 months", "Duration validation"),
+                (edge_course.get('onlinePrice') == 3000, "Individual price validation"),
+                (edge_course.get('groupPrice') == 20000, "Group price validation"),
+                ('Stormshield' in str(edge_course.get('description', '')), "Stormshield mention"),
+                ('Metković' in str(edge_course.get('description', '')), "Metković mention"),
+            ]
+            
+            for condition, test_name in validations:
+                self.log_test(f"Edge Computing {test_name}", condition, f"✓" if condition else "✗")
+        
+        # Test get single course (existing test)
         success, course = self.run_test(
             "GET /api/courses/ccna1 - Single course",
             "GET", 

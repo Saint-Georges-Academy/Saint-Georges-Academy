@@ -25,6 +25,7 @@ import About from "./pages/About";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import ExtremeBootcamp from "./pages/ExtremeBootcamp";
+import EdgeComputing from "./pages/EdgeComputing";
 import "./i18n";
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
             <Route path="/payment/cancel" element={<PaymentCancel />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/extreme-bootcamp" element={<ExtremeBootcamp />} />
+            <Route path="/edge-computing" element={<EdgeComputing />} />
             <Route 
               path="/dashboard" 
               element={
