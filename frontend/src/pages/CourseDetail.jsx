@@ -270,7 +270,7 @@ const CourseDetail = () => {
   // For courses with only in-class option, use inClassFeatures
   const currentFeatures = (selectedFormat === 'online' && course.features) 
     ? course.features 
-    : course.inClassFeatures;
+    : (course.inClassFeatures ?? course.features ?? []);
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50">
@@ -460,7 +460,7 @@ const CourseDetail = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  {currentFeatures.map((feature, index) => (
+                  {(currentFeatures ?? []).map((feature, index) => (
                     <li key={index} className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700">{feature}</span>
@@ -471,13 +471,14 @@ const CourseDetail = () => {
             </Card>
 
             {/* Objectives */}
+            {(course.objectives ?? []).length > 0 && (
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl text-[#0f1f3d]">Objectifs de la formation</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  {course.objectives.map((objective, index) => (
+                  {(course.objectives ?? []).map((objective, index) => (
                     <li key={index} className="flex items-start space-x-3">
                       <div className="w-6 h-6 bg-[#d4af37] text-[#0f1f3d] rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">
                         {index + 1}
@@ -488,6 +489,7 @@ const CourseDetail = () => {
                 </ul>
               </CardContent>
             </Card>
+            )}
 
             {/* Unreal Engine Course Videos */}
             {course.id === 'unreal' && (
@@ -604,7 +606,7 @@ const CourseDetail = () => {
                       <SelectValue placeholder="Choisir une date de début" />
                     </SelectTrigger>
                     <SelectContent>
-                      {availableSessions.map((session) => (
+                      {(availableSessions ?? []).map((session) => (
                         <SelectItem 
                           key={session.id} 
                           value={session.id}
