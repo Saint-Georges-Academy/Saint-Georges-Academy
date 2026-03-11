@@ -644,8 +644,12 @@ const CourseDetail = () => {
 
                 <Button 
                   onClick={handleCheckout}
-                  disabled={isLoading}
-                  className="w-full bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d] font-semibold text-lg py-6"
+                  disabled={isLoading || !selectedSession}
+                  className={`w-full font-semibold text-lg py-6 ${
+                    selectedSession 
+                      ? 'bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d]' 
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
                   data-testid="checkout-btn"
                 >
                   {isLoading ? (
@@ -656,7 +660,7 @@ const CourseDetail = () => {
                   ) : (
                     <>
                       <ShoppingCart className="w-5 h-5 mr-2" />
-                      S'inscrire maintenant
+                      {selectedSession ? "S'inscrire maintenant" : "Sélectionnez une session"}
                     </>
                   )}
                 </Button>
