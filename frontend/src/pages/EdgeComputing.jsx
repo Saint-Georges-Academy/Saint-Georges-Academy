@@ -228,43 +228,49 @@ const EdgeComputing = () => {
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  onClick={handleEnroll}
-                  disabled={isLoading}
-                  size="lg"
-                  className="bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 text-white font-bold px-8 py-6 text-lg shadow-lg shadow-cyan-500/25"
-                >
-                  {isLoading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <ArrowRight className="w-5 h-5 mr-2" />}
-                  Enroll Now — €4,500
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-6 text-lg"
-                  asChild
-                >
-                  <a href="#programme">
-                    <BookOpen className="w-5 h-5 mr-2" />
-                    View Programme
-                  </a>
-                </Button>
-                <Button 
-                  onClick={() => {
-                    generateEdgeComputingBrochure();
-                    toast({
-                      title: "Downloading Brochure",
-                      description: "Your premium PDF brochure is being downloaded.",
-                    });
-                  }}
-                  variant="outline" 
-                  size="lg"
-                  className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 px-8 py-6 text-lg"
-                  data-testid="download-brochure-btn"
-                >
-                  <Download className="w-5 h-5 mr-2" />
-                  Download Brochure
-                </Button>
+              <div className="flex flex-col gap-4">
+                {/* Primary CTAs */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button 
+                    onClick={handleEnroll}
+                    disabled={isLoading}
+                    size="lg"
+                    className="bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 text-white font-bold px-8 py-6 text-lg shadow-lg shadow-cyan-500/25"
+                  >
+                    {isLoading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <ArrowRight className="w-5 h-5 mr-2" />}
+                    Enroll Now — €4,500
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-6 text-lg"
+                    asChild
+                  >
+                    <a href="#programme">
+                      <BookOpen className="w-5 h-5 mr-2" />
+                      View Programme
+                    </a>
+                  </Button>
+                </div>
+                {/* Secondary CTA - Download Brochure */}
+                <div>
+                  <Button 
+                    onClick={() => {
+                      generateEdgeComputingBrochure();
+                      toast({
+                        title: "Downloading Brochure",
+                        description: "Your premium PDF brochure is being downloaded.",
+                      });
+                    }}
+                    variant="outline" 
+                    size="lg"
+                    className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 px-6 py-5"
+                    data-testid="download-brochure-btn"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    Download Brochure (PDF)
+                  </Button>
+                </div>
               </div>
             </div>
             
