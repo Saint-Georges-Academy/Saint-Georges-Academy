@@ -135,6 +135,36 @@ const Home = () => {
                 </div>
               ))}
             </div>
+
+            {/* Official Partners */}
+            <div className="mt-20">
+              <p className="text-sm text-gray-400 uppercase tracking-widest mb-8 font-medium">Official Partners</p>
+              <div className="flex flex-wrap justify-center items-center gap-12">
+                {/* Cisco */}
+                <a href="https://www.cisco.com" target="_blank" rel="noopener noreferrer" className="group">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:border-[#d4af37]/50 hover:bg-white/20 transition-all">
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png" 
+                      alt="Cisco"
+                      className="h-12 w-auto object-contain filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-400 mt-2 text-center">Networking Academy Partner</p>
+                </a>
+                
+                {/* Haiku Inc */}
+                <Link to="/world-of-haiku" className="group">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:border-red-500/50 hover:bg-white/20 transition-all">
+                    <img 
+                      src="https://customer-assets.emergentagent.com/job_sga-preview/artifacts/3ftzj0fb_image.png" 
+                      alt="Haiku Inc - The World of Haiku"
+                      className="h-12 w-auto object-contain"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-400 mt-2 text-center">Official Reseller</p>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
