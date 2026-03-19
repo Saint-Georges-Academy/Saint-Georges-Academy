@@ -453,11 +453,17 @@ const EdgeComputing = () => {
                   <MapPin className="w-5 h-5 text-cyan-400" />
                   Metković, Croatia
                 </h3>
-                <div className="aspect-video bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-xl flex items-center justify-center mb-6 border border-gray-700/30">
-                  <div className="text-center">
-                    <Globe className="w-16 h-16 text-cyan-400/50 mx-auto mb-3" />
-                    <p className="text-gray-500">Neretva Delta Region</p>
-                  </div>
+                <div className="aspect-video bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-xl overflow-hidden mb-6 border border-gray-700/30">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/2EOw506Eiko"
+                    title="Metković - Smart Territory Case Study"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  ></iframe>
                 </div>
                 <p className="text-gray-400 text-sm">
                   Your capstone project will design real infrastructure for this territory — creating portfolio-ready deliverables with genuine professional value.
