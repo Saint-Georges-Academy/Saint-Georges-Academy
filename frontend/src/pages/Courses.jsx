@@ -30,7 +30,7 @@ const Courses = () => {
     fetchCourses();
   }, []);
 
-  const categories = ['all', 'CCNA', 'Cybersécurité', 'Développement'];
+  const categories = ['all', 'CCNA', 'Cybersécurité', 'Développement', 'Edge Computing'];
 
   const filteredCourses = activeFilter === 'all' 
     ? courses 
@@ -50,6 +50,13 @@ const Courses = () => {
 
   // Check if course is bootcamp
   const isBootcamp = (course) => course.id === 'extreme-ccna-bootcamp';
+  
+  // Check if course has dedicated page
+  const getDedicatedPage = (course) => {
+    if (course.id === 'extreme-ccna-bootcamp') return '/extreme-bootcamp';
+    if (course.id === 'edge-computing') return '/edge-computing';
+    return null;
+  };
 
   if (loading) {
     return (
@@ -165,7 +172,7 @@ const Courses = () => {
                 </div>
 
                 <Button asChild className={`w-full ${bootcamp ? 'bg-[#d4af37] hover:bg-[#b8941f] text-[#0f1f3d]' : 'bg-[#0f1f3d] hover:bg-[#1a3a5f] text-white'}`}>
-                  <Link to={bootcamp ? '/extreme-bootcamp' : `/course/${course.id}`}>
+                  <Link to={getDedicatedPage(course) || `/course/${course.id}`}>
                     Voir les détails
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>

@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -161,6 +161,11 @@ const CourseDetail = () => {
     );
   }
 
+  // Redirect special courses to their dedicated pages
+  if (course && course.id === 'edge-computing') {
+    return <Navigate to="/edge-computing" replace />;
+  }
+
   if (!course) {
     return (
       <div className="min-h-screen pt-32 pb-20">
@@ -243,7 +248,7 @@ const CourseDetail = () => {
   // For courses with only in-class option, use inClassFeatures
   const currentFeatures = (selectedFormat === 'online' && course.features) 
     ? course.features 
-    : course.inClassFeatures;
+    : (course.inClassFeatures || course.features || []);
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50">
@@ -427,6 +432,7 @@ const CourseDetail = () => {
             )}
 
             {/* What's Included */}
+            {currentFeatures && currentFeatures.length > 0 && (
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl text-[#0f1f3d]">Ce qui est inclus</CardTitle>
@@ -442,8 +448,10 @@ const CourseDetail = () => {
                 </ul>
               </CardContent>
             </Card>
+            )}
 
             {/* Objectives */}
+            {course.objectives && course.objectives.length > 0 && (
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl text-[#0f1f3d]">Objectifs de la formation</CardTitle>
@@ -461,6 +469,7 @@ const CourseDetail = () => {
                 </ul>
               </CardContent>
             </Card>
+            )}
 
             {/* Certification Info */}
             {course.certificationCost && (
