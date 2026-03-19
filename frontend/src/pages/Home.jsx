@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Award, BookOpen, Users, ArrowRight, Shield, Globe } from 'lucide-react';
+import { Award, BookOpen, Users, ArrowRight, Shield, Globe, Star, Target, ThumbsUp, BarChart3 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -195,6 +195,71 @@ const Home = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quality Indicators Section */}
+      <section className="py-16 bg-gradient-to-br from-[#0f1f3d] to-[#1a3a5f]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-[#d4af37] text-[#0f1f3d] hover:bg-[#b8941f]">
+              <BarChart3 className="w-4 h-4 mr-2" />
+              Nos indicateurs qualité
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Des résultats concrets
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Chez Saint-Georges Academy, nous suivons attentivement la satisfaction des apprenants 
+              et la qualité de nos formations.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Satisfaction */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all">
+              <Star className="w-10 h-10 text-[#d4af37] mx-auto mb-3" />
+              <div className="text-5xl font-bold text-white mb-1">96<span className="text-3xl">%</span></div>
+              <p className="text-sm text-gray-300 font-medium">Taux de satisfaction</p>
+              <p className="text-xs text-gray-400">des apprenants</p>
+            </div>
+            
+            {/* Completion */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all">
+              <Target className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
+              <div className="text-5xl font-bold text-white mb-1">92<span className="text-3xl">%</span></div>
+              <p className="text-sm text-gray-300 font-medium">Taux de complétion</p>
+              <p className="text-xs text-gray-400">des formations</p>
+            </div>
+            
+            {/* Learners */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all">
+              <Users className="w-10 h-10 text-blue-400 mx-auto mb-3" />
+              <div className="text-5xl font-bold text-white mb-1">10</div>
+              <p className="text-sm text-gray-300 font-medium">Apprenants</p>
+              <p className="text-xs text-gray-400">accompagnés</p>
+            </div>
+            
+            {/* Recommendation */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all">
+              <ThumbsUp className="w-10 h-10 text-orange-400 mx-auto mb-3" />
+              <div className="text-5xl font-bold text-white mb-1">94<span className="text-3xl">%</span></div>
+              <p className="text-sm text-gray-300 font-medium">Recommandation</p>
+              <p className="text-xs text-gray-400">de nos formations</p>
+            </div>
+          </div>
+
+          <div className="text-center mt-8">
+            <p className="text-xs text-gray-400 mb-4">
+              Données issues du suivi interne des apprenants et des actions de formation.
+            </p>
+            <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white hover:text-[#0f1f3d]">
+              <Link to="/indicateurs">
+                Voir tous nos indicateurs
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
