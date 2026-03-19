@@ -98,6 +98,13 @@ PRODUCTS = {
         "currency": "eur",
         "category": "videos"
     },
+    # Edge Computing
+    "edge_computing_online": {
+        "name": "Edge Computing for Smart Territories (3 months online)",
+        "amount": 4500.00,
+        "currency": "eur",
+        "category": "formation"
+    },
     # Certification
     "certification_ccna": {
         "name": "Voucher Examen CCNA (200-301)",
