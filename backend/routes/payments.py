@@ -128,6 +128,7 @@ class CreateCheckoutRequest(BaseModel):
     origin_url: str = Field(..., description="Frontend origin URL")
     customer_email: Optional[str] = Field(None, description="Customer email")
     customer_name: Optional[str] = Field(None, description="Customer name")
+    session_date: Optional[str] = Field(None, description="Session date for the course")
     exam_date: Optional[str] = Field(None, description="Exam date for certification")
 
 class CheckoutResponse(BaseModel):
@@ -194,6 +195,8 @@ async def create_checkout_session(request: CreateCheckoutRequest, http_request: 
         metadata["customer_email"] = request.customer_email
     if request.customer_name:
         metadata["customer_name"] = request.customer_name
+    if request.session_date:
+        metadata["session_date"] = request.session_date
     if request.exam_date:
         metadata["exam_date"] = request.exam_date
     
@@ -219,6 +222,7 @@ async def create_checkout_session(request: CreateCheckoutRequest, http_request: 
             "currency": product["currency"],
             "customer_email": request.customer_email,
             "customer_name": request.customer_name,
+            "session_date": request.session_date,
             "exam_date": request.exam_date,
             "status": "initiated",
             "payment_status": "pending",
