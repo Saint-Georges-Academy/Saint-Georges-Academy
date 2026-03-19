@@ -255,9 +255,11 @@ const EdgeComputing = () => {
               <Card className="relative bg-[#111827]/80 backdrop-blur-xl border-gray-700/50 rounded-3xl overflow-hidden">
                 <CardContent className="p-8">
                   <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-cyan-500 to-emerald-500 rounded-2xl mb-4">
-                      <Cpu className="w-10 h-10 text-white" />
-                    </div>
+                    <img 
+                      src="https://customer-assets.emergentagent.com/job_sga-preview/artifacts/n98ve9w4_image.png"
+                      alt="Stormshield"
+                      className="h-16 w-auto mx-auto mb-4 object-contain"
+                    />
                     <h3 className="text-2xl font-bold text-white mb-2">Professional Investment</h3>
                     <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400 mb-2">
                       €4,500
@@ -682,11 +684,13 @@ const EdgeComputing = () => {
             </div>
             
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 rounded-3xl blur-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-3xl blur-xl"></div>
               <div className="relative bg-[#111827]/80 border border-gray-700/50 rounded-3xl p-8 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-red-500/30">
-                  <Shield className="w-12 h-12 text-red-400" />
-                </div>
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_sga-preview/artifacts/n98ve9w4_image.png"
+                  alt="Stormshield"
+                  className="h-32 w-auto mx-auto mb-6 object-contain"
+                />
                 <h3 className="text-xl font-bold text-white mb-2">CSNA Certification</h3>
                 <p className="text-gray-400 mb-6">Stormshield Certified Network Administrator</p>
                 <div className="bg-[#1e293b] rounded-lg p-4 text-left">
