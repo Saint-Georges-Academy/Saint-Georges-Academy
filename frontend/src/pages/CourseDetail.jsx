@@ -485,6 +485,27 @@ const CourseDetail = () => {
                   Explorez les possibilités infinies d'Unreal Engine à travers ces démonstrations impressionnantes.
                 </p>
                 <div className="grid gap-6">
+                  {/* Featured Video - Chopard Metaverse */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-purple-700 mb-2 flex items-center gap-2">
+                      <span className="bg-purple-600 text-white text-xs px-2 py-0.5 rounded">FEATURED</span>
+                      Chopard Metaverse Experience
+                    </h4>
+                    <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        src="https://www.youtube.com/embed/o9SYdnpmV8Y"
+                        title="Chopard Metaverse - Unreal Engine"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      ></iframe>
+                    </div>
+                  </div>
+                  
+                  {/* Secondary Video */}
                   <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
                     <iframe
                       width="100%"
@@ -497,6 +518,8 @@ const CourseDetail = () => {
                       className="w-full h-full"
                     ></iframe>
                   </div>
+                  
+                  {/* Grid of additional videos */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
                       <iframe
