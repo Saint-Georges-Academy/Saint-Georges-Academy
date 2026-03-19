@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -7,7 +7,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '..
 import { 
   CheckCircle, 
   Shield,
-  Gamepad2,
   GraduationCap,
   Users,
   Building2,
@@ -20,8 +19,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  Star,
-  Monitor,
   Terminal,
   Lock,
   Sparkles,
@@ -29,65 +26,121 @@ import {
   Award,
   TrendingUp,
   Globe,
-  MessageCircle
+  MessageCircle,
+  Monitor,
+  Layers,
+  Cpu,
+  Eye,
+  Clock,
+  BarChart3,
+  Lightbulb,
+  Rocket,
+  Volume2,
+  VolumeX,
+  Pause
 } from 'lucide-react';
 
 const WorldOfHaiku = () => {
   const [activeTab, setActiveTab] = useState('individual');
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
+
+  const handlePlayVideo = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
 
   // Benefits for individuals
   const individualBenefits = [
-    { icon: Gamepad2, title: "Learn by Playing", desc: "Master cybersecurity concepts through engaging gameplay, not boring lectures" },
+    { icon: TrendingUp, title: "Affordable Monthly Access", desc: "Just €19/month for full platform access — a fraction of traditional training costs" },
+    { icon: Target, title: "Practical & Engaging Learning", desc: "Learn by doing, not just watching. Every action builds real cybersecurity skills" },
+    { icon: Rocket, title: "Accessible Entry Point", desc: "No prerequisites needed. Start your cybersecurity journey from zero" },
+    { icon: Lightbulb, title: "Modern Learning Alternative", desc: "Escape passive video courses. Immersive learning that actually sticks" },
     { icon: Terminal, title: "Real Linux Skills", desc: "Develop practical command-line and system administration abilities" },
-    { icon: TrendingUp, title: "Track Progress", desc: "Monitor your skill development with clear progression metrics" },
-    { icon: Trophy, title: "Earn Achievements", desc: "Unlock badges and certifications as you advance" },
-    { icon: Brain, title: "Retain Knowledge", desc: "Game-based learning improves long-term retention by up to 90%" },
-    { icon: Zap, title: "Stay Motivated", desc: "Gamification keeps you engaged and coming back for more" }
+    { icon: Trophy, title: "Track Your Progress", desc: "Clear progression metrics and achievements to celebrate your growth" }
   ];
 
   // Benefits for institutions
   const institutionBenefits = [
-    { icon: Users, title: "Engage Students", desc: "Transform passive learners into active cybersecurity practitioners" },
-    { icon: BookOpen, title: "Curriculum Integration", desc: "Seamlessly integrate into existing cybersecurity programmes" },
-    { icon: Target, title: "Measurable Outcomes", desc: "Track student progress with detailed analytics and reporting" },
-    { icon: Award, title: "Recognized Skills", desc: "Students develop industry-relevant competencies" },
-    { icon: Building2, title: "Scalable Deployment", desc: "Deploy across classrooms, departments, or entire institutions" },
-    { icon: Shield, title: "Safe Learning Environment", desc: "Practice real attacks and defenses in a controlled sandbox" }
+    { icon: Sparkles, title: "Innovative Cyber Education", desc: "Bring cutting-edge pedagogy to your cybersecurity curriculum" },
+    { icon: Users, title: "Unmatched Student Engagement", desc: "Transform passive learners into motivated cybersecurity practitioners" },
+    { icon: Layers, title: "Flexible Deployment", desc: "Scale from a single classroom to entire institutions with ease" },
+    { icon: BookOpen, title: "Modern Teaching Support", desc: "Complement lectures with hands-on, immersive lab experiences" },
+    { icon: BarChart3, title: "Analytics & Reporting", desc: "Track student progress with detailed performance dashboards" },
+    { icon: Shield, title: "Safe Learning Sandbox", desc: "Students practice real techniques in a controlled, secure environment" }
+  ];
+
+  // Why immersive learning works
+  const immersiveBenefits = [
+    { stat: "90%", label: "Knowledge Retention", desc: "Learning by doing retains 90% vs 10% for reading" },
+    { stat: "3x", label: "Higher Engagement", desc: "Immersive platforms increase engagement by 300%" },
+    { stat: "2x", label: "Faster Skill Acquisition", desc: "Achieve competency in weeks, not months" },
+    { stat: "∞", label: "Motivation Factor", desc: "Gamification keeps learners coming back" }
+  ];
+
+  // Why Saint-Georges Academy
+  const academyBenefits = [
+    { icon: Award, title: "Official Reseller", desc: "Authorized partner with direct publisher relationship and support" },
+    { icon: MessageCircle, title: "Local Expert Support", desc: "French and English language assistance, personalized guidance" },
+    { icon: Globe, title: "Integrated Training Path", desc: "Combine with our CCNA, CyberOps, and other cybersecurity programmes" },
+    { icon: GraduationCap, title: "Educational Expertise", desc: "Over a decade of Cisco Networking Academy experience" }
   ];
 
   // FAQ data
   const faqs = [
     {
-      q: "What is The World of Haiku?",
-      a: "The World of Haiku is an immersive cybersecurity learning platform that combines video game mechanics with professional skill development. Players learn real-world cybersecurity and Linux skills through engaging gameplay, challenges, and missions."
+      q: "What exactly is The World of Haiku?",
+      a: "The World of Haiku is a professional cybersecurity learning platform that uses immersive, game-based mechanics to teach real-world security skills. Unlike passive video courses, learners actively engage with realistic scenarios, developing practical Linux, networking, and security competencies through hands-on challenges."
     },
     {
-      q: "Who is this platform for?",
-      a: "The World of Haiku is designed for anyone interested in cybersecurity — from complete beginners to intermediate learners looking to strengthen their skills. It's perfect for students, career changers, IT professionals, and educational institutions."
+      q: "Who should use this platform?",
+      a: "The World of Haiku serves two primary audiences: individuals seeking an engaging path into cybersecurity (students, career changers, IT professionals), and educational institutions looking to modernize their cyber curriculum with practical, immersive learning experiences."
     },
     {
-      q: "Do I need prior experience?",
-      a: "No prior cybersecurity or Linux experience is required. The platform is designed to take you from zero to proficient through progressive challenges that build on each other."
+      q: "Is this just a video game?",
+      a: "No. While The World of Haiku incorporates game mechanics to enhance engagement, it's fundamentally a serious learning platform. The immersive format is a pedagogical choice — research shows that active, experiential learning dramatically outperforms passive instruction for technical skill development."
     },
     {
-      q: "What skills will I learn?",
-      a: "You'll develop practical skills including Linux command line, network security, system hardening, threat detection, penetration testing concepts, and defensive security strategies — all through hands-on gameplay."
+      q: "What skills will learners develop?",
+      a: "Learners build practical competencies including Linux command line, network security fundamentals, system hardening, threat detection, penetration testing concepts, and defensive security strategies. All skills are industry-relevant and transfer directly to professional practice."
     },
     {
-      q: "How does institutional licensing work?",
-      a: "Educational institutions receive volume pricing based on the number of learners. Contact Saint-Georges Academy for a customized quote that includes deployment support, analytics dashboards, and curriculum integration guidance."
+      q: "Do learners need prior experience?",
+      a: "No prior cybersecurity or Linux experience is required. The platform is designed with progressive challenges that take learners from complete beginner to proficient practitioner."
+    },
+    {
+      q: "How does institutional pricing work?",
+      a: "Educational institutions receive customized volume pricing based on learner count and deployment scope. Contact Saint-Georges Academy for a tailored quote that includes implementation support, analytics dashboards, and curriculum integration guidance."
     },
     {
       q: "Why purchase through Saint-Georges Academy?",
-      a: "As an official reseller, Saint-Georges Academy provides local support, French-language assistance, integration with our broader cybersecurity training offerings, and expertise in educational deployment."
+      a: "As an official reseller, we provide local support, bilingual assistance (French/English), expertise in educational deployment, and the ability to integrate Haiku into a broader cybersecurity training pathway including Cisco certifications."
     },
     {
-      q: "Is there a free trial?",
-      a: "Contact Saint-Georges Academy to discuss trial options for individuals and institutions. We can arrange demonstrations and pilot programmes for educational partners."
+      q: "Can institutions try before committing?",
+      a: "Yes. Contact Saint-Georges Academy to discuss pilot programmes and demonstration options for educational partners."
     },
     {
-      q: "Can this replace traditional cybersecurity training?",
-      a: "The World of Haiku is an excellent complement to traditional training, providing the practical, hands-on component that lectures often lack. Many institutions use it alongside their existing curriculum to boost engagement and skill retention."
+      q: "Does this replace traditional cybersecurity training?",
+      a: "The World of Haiku excels as both a standalone learning path and a complement to traditional instruction. Many institutions use it alongside existing curriculum to add the practical, hands-on component that lectures inherently lack."
+    },
+    {
+      q: "What support is included?",
+      a: "Individual subscribers receive platform access and community support. Institutional clients receive dedicated onboarding, deployment assistance, analytics access, and ongoing Saint-Georges Academy support."
     }
   ];
 
@@ -95,59 +148,67 @@ const WorldOfHaiku = () => {
     <div className="min-h-screen bg-[#0a0f1a]">
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-24">
+      <section className="relative overflow-hidden pt-32 pb-20">
         {/* Background effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a0f1a] via-[#1a0a2e] to-[#0a0f1a]"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMxZTI5M2IiIGZpbGwtb3BhY2l0eT0iMC4zIj48Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIvPjwvZz48L2c+PC9zdmc+')] opacity-40"></div>
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500/5 rounded-full blur-2xl"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/5 rounded-full blur-3xl"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
+            {/* Badges */}
             <div className="flex flex-wrap justify-center items-center gap-3 mb-8">
-              <Badge className="bg-purple-500/20 text-purple-400 border border-purple-500/30 px-4 py-1.5">
-                <Gamepad2 className="w-4 h-4 mr-2" />
-                Game-Based Learning
-              </Badge>
-              <Badge className="bg-pink-500/20 text-pink-400 border border-pink-500/30 px-4 py-1.5">
+              <Badge className="bg-red-500/20 text-red-400 border border-red-500/30 px-4 py-1.5">
                 <Shield className="w-4 h-4 mr-2" />
-                Cybersecurity
+                Cybersecurity Learning
               </Badge>
-              <Badge className="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-4 py-1.5">
+              <Badge className="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-4 py-1.5">
+                <Cpu className="w-4 h-4 mr-2" />
+                Immersive Platform
+              </Badge>
+              <Badge className="bg-amber-500/20 text-amber-400 border border-amber-500/30 px-4 py-1.5">
                 <Terminal className="w-4 h-4 mr-2" />
-                Linux Skills
+                Practical Skills
               </Badge>
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_sga-preview/artifacts/3ftzj0fb_image.png"
-                alt="Haiku Inc."
-                className="h-32 md:h-40 w-auto mx-auto mb-6"
-              />
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-pink-400">
-                The World of Haiku
+            {/* Logo */}
+            <img 
+              src="https://customer-assets.emergentagent.com/job_sga-preview/artifacts/3ftzj0fb_image.png"
+              alt="Haiku Inc."
+              className="h-28 md:h-36 w-auto mx-auto mb-6"
+            />
+            
+            {/* Headline */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              The Future of
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-amber-500">
+                Cybersecurity Learning
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-300 mb-4">
-              Master Cybersecurity Through Play
+            {/* Subheadline */}
+            <p className="text-xl md:text-2xl text-gray-300 mb-4 font-light">
+              Master cybersecurity through immersive, hands-on experience
             </p>
             
-            <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
-              An immersive game-based learning platform that transforms cybersecurity education into an engaging adventure. Develop real-world skills while having fun.
+            <p className="text-lg text-gray-400 mb-10 max-w-3xl mx-auto leading-relaxed">
+              The World of Haiku transforms cybersecurity education into an engaging, practical journey. 
+              Develop real skills through an innovative platform designed for modern learners and forward-thinking institutions.
             </p>
             
+            {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button 
                 size="lg"
-                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-8 py-6 text-lg shadow-lg shadow-purple-500/25"
+                className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold px-8 py-6 text-lg shadow-lg shadow-red-500/25"
                 asChild
               >
                 <a href="#pricing">
                   <Sparkles className="w-5 h-5 mr-2" />
-                  Get Your Licence — €19/month
+                  Start Learning — €19/month
                 </a>
               </Button>
               <Button 
@@ -156,13 +217,14 @@ const WorldOfHaiku = () => {
                 className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-6 text-lg"
                 asChild
               >
-                <a href="#video">
-                  <Play className="w-5 h-5 mr-2" />
-                  Watch Video
+                <a href="#institutions">
+                  <Building2 className="w-5 h-5 mr-2" />
+                  Institutional Solutions
                 </a>
               </Button>
             </div>
             
+            {/* Trust indicators */}
             <div className="flex flex-wrap justify-center gap-8 text-gray-400 text-sm">
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 text-green-400" />
@@ -170,44 +232,118 @@ const WorldOfHaiku = () => {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 text-green-400" />
-                <span>Real cybersecurity skills</span>
+                <span>Industry-relevant skills</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 text-green-400" />
-                <span>Instant access</span>
+                <span>Official reseller support</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Video Section - Central Sales Element */}
+      <section className="py-20 bg-[#0f172a]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="mb-6 bg-red-500/20 text-red-400 border border-red-500/30">
+              <Play className="w-4 h-4 mr-2" />
+              See It In Action
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Experience The World of Haiku
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Watch how immersive learning transforms cybersecurity education
+            </p>
+          </div>
+          
+          {/* Video Player */}
+          <div className="relative max-w-4xl mx-auto">
+            <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-3xl blur-xl"></div>
+            <div className="relative aspect-video bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl overflow-hidden border-2 border-red-500/30 shadow-2xl shadow-red-500/10">
+              <video
+                ref={videoRef}
+                className="w-full h-full object-cover"
+                poster="https://customer-assets.emergentagent.com/job_sga-preview/artifacts/3ftzj0fb_image.png"
+                muted={isMuted}
+                playsInline
+                onEnded={() => setIsPlaying(false)}
+              >
+                <source src="https://customer-assets.emergentagent.com/job_2e4d9af3-45cd-47a7-9716-49578471fb53/artifacts/5gmhxpiu_HaikuGamePromo.mov" type="video/quicktime" />
+                <source src="https://customer-assets.emergentagent.com/job_2e4d9af3-45cd-47a7-9716-49578471fb53/artifacts/5gmhxpiu_HaikuGamePromo.mov" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              
+              {/* Video Controls Overlay */}
+              {!isPlaying && (
+                <div 
+                  className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer group"
+                  onClick={handlePlayVideo}
+                >
+                  <div className="w-24 h-24 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-red-500/50">
+                    <Play className="w-12 h-12 text-white ml-2" />
+                  </div>
+                </div>
+              )}
+              
+              {/* Control buttons */}
+              {isPlaying && (
+                <div className="absolute bottom-4 right-4 flex gap-2">
+                  <button 
+                    onClick={handlePlayVideo}
+                    className="p-3 bg-black/60 hover:bg-black/80 rounded-full transition-colors"
+                  >
+                    <Pause className="w-5 h-5 text-white" />
+                  </button>
+                  <button 
+                    onClick={toggleMute}
+                    className="p-3 bg-black/60 hover:bg-black/80 rounded-full transition-colors"
+                  >
+                    {isMuted ? <VolumeX className="w-5 h-5 text-white" /> : <Volume2 className="w-5 h-5 text-white" />}
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+          
+          <p className="text-center text-gray-500 text-sm mt-6">
+            The World of Haiku — Where cybersecurity learning meets innovation
+          </p>
+        </div>
+      </section>
+
       {/* What is The World of Haiku */}
-      <section className="py-24 bg-[#0f172a]">
+      <section className="py-24 bg-[#0a0f1a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <Badge className="mb-6 bg-purple-500/20 text-purple-400 border border-purple-500/30">
-                Revolutionary Learning
+              <Badge className="mb-6 bg-orange-500/20 text-orange-400 border border-orange-500/30">
+                The Platform
               </Badge>
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 What is The World of Haiku?
               </h2>
               <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-                The World of Haiku is a <span className="text-purple-400 font-semibold">groundbreaking cybersecurity learning platform</span> that reimagines how security skills are taught and acquired.
+                The World of Haiku is a <span className="text-orange-400 font-semibold">professional cybersecurity learning platform</span> that revolutionizes how security skills are developed.
+              </p>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                Unlike traditional courses that rely on passive video consumption, Haiku immerses learners in realistic scenarios where every action builds genuine competency. It's not a game pretending to teach — it's a serious learning platform leveraging immersive mechanics for maximum effectiveness.
               </p>
               <p className="text-gray-400 mb-8 leading-relaxed">
-                Unlike traditional courses with passive video watching, The World of Haiku drops you into an immersive game environment where every action teaches real cybersecurity concepts. You'll learn Linux commands, network security, threat detection, and defensive strategies — all while completing engaging missions and challenges.
+                Whether you're an individual seeking an accessible entry into cybersecurity or an institution looking to modernize your curriculum, The World of Haiku delivers practical, engaging, and measurable learning outcomes.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-4">
                 {[
-                  { icon: Gamepad2, text: "Immersive game experience" },
-                  { icon: Terminal, text: "Real Linux environment" },
-                  { icon: Shield, text: "Practical security skills" },
-                  { icon: Trophy, text: "Achievement system" }
+                  { icon: Monitor, text: "Immersive learning environment" },
+                  { icon: Terminal, text: "Real Linux & security skills" },
+                  { icon: Target, text: "Practical, hands-on challenges" },
+                  { icon: TrendingUp, text: "Clear progression pathway" }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 p-3 bg-[#1e293b] rounded-xl">
-                    <item.icon className="w-5 h-5 text-purple-400" />
+                    <item.icon className="w-5 h-5 text-orange-400" />
                     <span className="text-gray-300 text-sm">{item.text}</span>
                   </div>
                 ))}
@@ -215,29 +351,28 @@ const WorldOfHaiku = () => {
             </div>
             
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-3xl blur-xl"></div>
-              <div className="relative bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-3xl p-8 border border-purple-500/20">
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-3xl blur-xl"></div>
+              <div className="relative bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-3xl p-8 border border-orange-500/20">
                 <div className="text-center">
-                  <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <Gamepad2 className="w-12 h-12 text-white" />
+                  <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <Shield className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Learn. Play. Master.</h3>
+                  <h3 className="text-2xl font-bold text-white mb-4">A Serious Learning Platform</h3>
                   <p className="text-gray-400 mb-6">
-                    Transform your cybersecurity journey from boring to brilliant.
+                    Immersive format. Professional outcomes. Real-world skills.
                   </p>
-                  <div className="grid grid-cols-3 gap-4 text-center">
-                    <div>
-                      <div className="text-2xl font-bold text-purple-400">100+</div>
-                      <div className="text-xs text-gray-500">Challenges</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-pink-400">50+</div>
-                      <div className="text-xs text-gray-500">Skills</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-cyan-400">∞</div>
-                      <div className="text-xs text-gray-500">Replay Value</div>
-                    </div>
+                  <div className="space-y-3 text-left">
+                    {[
+                      "Industry-relevant competencies",
+                      "Progressive skill building",
+                      "Practical cybersecurity experience",
+                      "Modern digital pedagogy"
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3 text-gray-300">
+                        <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                        <span className="text-sm">{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -246,90 +381,59 @@ const WorldOfHaiku = () => {
         </div>
       </section>
 
-      {/* Video Section */}
-      <section id="video" className="py-24 bg-[#0a0f1a] scroll-mt-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <Badge className="mb-6 bg-pink-500/20 text-pink-400 border border-pink-500/30">
-              See It In Action
-            </Badge>
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Discover The World of Haiku
-            </h2>
-            <p className="text-xl text-gray-400">
-              Watch how game-based learning transforms cybersecurity education
-            </p>
-          </div>
-          
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-3xl blur-xl"></div>
-            <div className="relative aspect-video bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-3xl overflow-hidden border-2 border-purple-500/30">
-              {/* Placeholder for video - will be replaced with actual video URL */}
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer hover:scale-110 transition-transform">
-                    <Play className="w-10 h-10 text-white ml-1" />
-                  </div>
-                  <p className="text-gray-400">Promotional Video</p>
-                  <p className="text-gray-500 text-sm">Coming Soon</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Game-Based Learning */}
+      {/* Why Immersive Learning Works */}
       <section className="py-24 bg-gradient-to-br from-[#0f172a] to-[#1a0a2e]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="mb-6 bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+            <Badge className="mb-6 bg-red-500/20 text-red-400 border border-red-500/30">
+              <Brain className="w-4 h-4 mr-2" />
               The Science of Learning
             </Badge>
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Why Game-Based Learning Works
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Why Immersive Learning Works
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Traditional cybersecurity training fails because it's passive. Games engage active learning — the most effective way to develop real skills.
+              Traditional cybersecurity training fails because it's passive. Immersive platforms engage active learning — 
+              the most effective way to develop technical skills that transfer to real-world practice.
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Brain, title: "90% Retention", desc: "Learning by doing retains 90% vs 10% for reading", color: "purple" },
-              { icon: Zap, title: "3x Engagement", desc: "Gamification increases engagement by 300%", color: "pink" },
-              { icon: Target, title: "Immediate Feedback", desc: "Know instantly if your approach works", color: "cyan" },
-              { icon: TrendingUp, title: "Faster Progress", desc: "Achieve competency in weeks, not months", color: "green" }
-            ].map((item, i) => {
-              const colors = {
-                purple: "from-purple-500/20 to-purple-500/5 border-purple-500/30 text-purple-400",
-                pink: "from-pink-500/20 to-pink-500/5 border-pink-500/30 text-pink-400",
-                cyan: "from-cyan-500/20 to-cyan-500/5 border-cyan-500/30 text-cyan-400",
-                green: "from-green-500/20 to-green-500/5 border-green-500/30 text-green-400"
-              };
+            {immersiveBenefits.map((item, i) => {
+              const colors = ['red', 'orange', 'amber', 'yellow'];
+              const color = colors[i % colors.length];
               return (
-                <Card key={i} className={`bg-gradient-to-br ${colors[item.color]} border`}>
-                  <CardContent className="p-6 text-center">
-                    <item.icon className={`w-10 h-10 mx-auto mb-4 ${colors[item.color].split(' ').pop()}`} />
-                    <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                <Card key={i} className={`bg-gradient-to-br from-${color}-500/20 to-${color}-500/5 border-${color}-500/30 border text-center`}>
+                  <CardContent className="p-8">
+                    <div className={`text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-${color}-400 to-orange-400 mb-2`}>
+                      {item.stat}
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">{item.label}</h3>
                     <p className="text-gray-400 text-sm">{item.desc}</p>
                   </CardContent>
                 </Card>
               );
             })}
           </div>
+          
+          <div className="mt-12 text-center">
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Research consistently shows that <span className="text-orange-400 font-semibold">learning by doing</span> dramatically 
+              outperforms passive instruction. The World of Haiku applies this principle to cybersecurity education.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Benefits Sections */}
       <section className="py-24 bg-[#0a0f1a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <Badge className="mb-6 bg-purple-500/20 text-purple-400 border border-purple-500/30">
+            <Badge className="mb-6 bg-orange-500/20 text-orange-400 border border-orange-500/30">
               Who Benefits
             </Badge>
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Perfect For Everyone
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Designed for Two Audiences
             </h2>
           </div>
           
@@ -337,9 +441,9 @@ const WorldOfHaiku = () => {
           <div className="flex justify-center gap-4 mb-12">
             <button
               onClick={() => setActiveTab('individual')}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all ${
+              className={`px-8 py-4 rounded-xl font-semibold transition-all ${
                 activeTab === 'individual'
-                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                  ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg shadow-red-500/25'
                   : 'bg-[#1e293b] text-gray-400 hover:text-white'
               }`}
             >
@@ -348,35 +452,77 @@ const WorldOfHaiku = () => {
             </button>
             <button
               onClick={() => setActiveTab('institution')}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all ${
+              id="institutions"
+              className={`px-8 py-4 rounded-xl font-semibold transition-all ${
                 activeTab === 'institution'
-                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                  ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg shadow-red-500/25'
                   : 'bg-[#1e293b] text-gray-400 hover:text-white'
               }`}
             >
               <Building2 className="w-5 h-5 inline mr-2" />
-              Schools & Institutions
+              Educational Institutions
             </button>
           </div>
           
-          {/* Benefits Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(activeTab === 'individual' ? individualBenefits : institutionBenefits).map((benefit, i) => (
-              <Card key={i} className="bg-[#111827]/50 border-gray-700/50 hover:border-purple-500/30 transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <benefit.icon className="w-6 h-6 text-purple-400" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-white mb-1">{benefit.title}</h3>
-                      <p className="text-sm text-gray-400">{benefit.desc}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {/* Individual Benefits */}
+          {activeTab === 'individual' && (
+            <div>
+              <div className="max-w-3xl mx-auto text-center mb-12">
+                <h3 className="text-2xl font-bold text-white mb-4">For Individual Learners</h3>
+                <p className="text-gray-400">
+                  Looking for an engaging, affordable path into cybersecurity? The World of Haiku offers 
+                  a modern alternative to passive online courses — practical learning that actually sticks.
+                </p>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {individualBenefits.map((benefit, i) => (
+                  <Card key={i} className="bg-[#111827]/50 border-gray-700/50 hover:border-orange-500/30 transition-all">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <benefit.icon className="w-6 h-6 text-orange-400" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white mb-1">{benefit.title}</h4>
+                          <p className="text-sm text-gray-400">{benefit.desc}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Institution Benefits */}
+          {activeTab === 'institution' && (
+            <div>
+              <div className="max-w-3xl mx-auto text-center mb-12">
+                <h3 className="text-2xl font-bold text-white mb-4">For Educational Institutions</h3>
+                <p className="text-gray-400">
+                  Transform your cybersecurity curriculum with an innovative platform that engages students 
+                  and delivers measurable learning outcomes. Flexible deployment, modern pedagogy, and dedicated support.
+                </p>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {institutionBenefits.map((benefit, i) => (
+                  <Card key={i} className="bg-[#111827]/50 border-gray-700/50 hover:border-red-500/30 transition-all">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <benefit.icon className="w-6 h-6 text-red-400" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white mb-1">{benefit.title}</h4>
+                          <p className="text-sm text-gray-400">{benefit.desc}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -384,99 +530,119 @@ const WorldOfHaiku = () => {
       <section id="pricing" className="py-24 bg-[#0f172a] scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="mb-6 bg-pink-500/20 text-pink-400 border border-pink-500/30">
+            <Badge className="mb-6 bg-red-500/20 text-red-400 border border-red-500/30">
               Simple Pricing
             </Badge>
-            <h2 className="text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Choose Your Path
             </h2>
             <p className="text-xl text-gray-400">
-              Start your cybersecurity journey today
+              Accessible for individuals. Flexible for institutions.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Individual Plan */}
-            <Card className="bg-[#111827]/80 border-2 border-purple-500/30 hover:border-purple-500/50 transition-all">
-              <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Card className="bg-[#111827]/80 border-2 border-orange-500/30 hover:border-orange-500/50 transition-all relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl"></div>
+              <CardHeader className="text-center pb-4 relative">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <CardTitle className="text-2xl text-white">Individual Licence</CardTitle>
-                <p className="text-gray-400">For personal learning</p>
+                <p className="text-gray-400">For personal cybersecurity learning</p>
               </CardHeader>
-              <CardContent className="text-center">
+              <CardContent className="text-center relative">
                 <div className="mb-6">
-                  <span className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">€19</span>
-                  <span className="text-gray-400">/month</span>
+                  <span className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">€19</span>
+                  <span className="text-gray-400 text-xl">/month</span>
                 </div>
+                
+                <p className="text-gray-400 text-sm mb-6">
+                  Full platform access at an accessible price point
+                </p>
                 
                 <ul className="space-y-3 text-left mb-8">
                   {[
-                    "Full game access",
-                    "All challenges & missions",
-                    "Progress tracking",
-                    "Achievement badges",
+                    "Complete platform access",
+                    "All challenges & scenarios",
+                    "Progress tracking & analytics",
+                    "Achievement system",
                     "Community access",
-                    "Regular updates"
+                    "Regular content updates",
+                    "Cancel anytime"
                   ].map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-gray-300">
-                      <CheckCircle className="w-5 h-5 text-purple-400 flex-shrink-0" />
-                      {feature}
+                      <CheckCircle className="w-5 h-5 text-orange-400 flex-shrink-0" />
+                      <span className="text-sm">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 
-                <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-6">
-                  Get Started — €19/month
+                <Button className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-6 text-lg">
+                  Start Learning
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
+                
+                <p className="text-gray-500 text-xs mt-4">
+                  Secure payment • Instant access
+                </p>
               </CardContent>
             </Card>
             
             {/* Institution Plan */}
-            <Card className="bg-[#111827]/80 border-2 border-cyan-500/30 hover:border-cyan-500/50 transition-all relative overflow-hidden">
+            <Card className="bg-[#111827]/80 border-2 border-red-500/30 hover:border-red-500/50 transition-all relative overflow-hidden">
               <div className="absolute top-4 right-4">
-                <Badge className="bg-cyan-500 text-white">
+                <Badge className="bg-red-500 text-white">
                   <Building2 className="w-3 h-3 mr-1" />
-                  Education
+                  Enterprise
                 </Badge>
               </div>
-              <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="absolute top-0 left-0 w-32 h-32 bg-red-500/10 rounded-full blur-2xl"></div>
+              <CardHeader className="text-center pb-4 relative">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <GraduationCap className="w-8 h-8 text-white" />
                 </div>
                 <CardTitle className="text-2xl text-white">Educational Institution</CardTitle>
-                <p className="text-gray-400">For schools & training centres</p>
+                <p className="text-gray-400">For schools, universities & training centres</p>
               </CardHeader>
-              <CardContent className="text-center">
+              <CardContent className="text-center relative">
                 <div className="mb-6">
-                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Custom Quote</span>
-                  <p className="text-gray-400 text-sm mt-1">Volume-based pricing</p>
+                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-pink-400">Custom Quote</span>
+                  <p className="text-gray-400 text-sm mt-2">Pricing adapted to your scale & needs</p>
                 </div>
+                
+                <p className="text-gray-400 text-sm mb-6">
+                  Volume licensing with dedicated institutional support
+                </p>
                 
                 <ul className="space-y-3 text-left mb-8">
                   {[
-                    "Volume licensing",
-                    "Admin dashboard",
-                    "Student progress analytics",
-                    "Curriculum integration",
-                    "Dedicated support",
+                    "Volume-based licensing",
+                    "Admin dashboard & analytics",
+                    "Student progress tracking",
+                    "Curriculum integration support",
+                    "Dedicated onboarding",
+                    "Priority support channel",
                     "Pilot programme available"
                   ].map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-gray-300">
-                      <CheckCircle className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-                      {feature}
+                      <CheckCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                      <span className="text-sm">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 
-                <Button className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-6" asChild>
+                <Button className="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white font-bold py-6 text-lg" asChild>
                   <Link to="/contact">
                     Request a Quote
                     <MessageCircle className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
+                
+                <p className="text-gray-500 text-xs mt-4">
+                  Speak with Saint-Georges Academy
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -490,22 +656,18 @@ const WorldOfHaiku = () => {
             <Badge className="mb-6 bg-[#d4af37]/20 text-[#d4af37] border border-[#d4af37]/30">
               Official Reseller
             </Badge>
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Why Choose Saint-Georges Academy?
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Why Buy Through Saint-Georges Academy?
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              As an official reseller, we provide more than just a licence — we provide a complete learning partnership.
+              As an official reseller, we provide more than just a licence — 
+              we provide expertise, support, and integration into a broader cybersecurity learning pathway.
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Shield, title: "Official Partner", desc: "Authorized reseller with direct publisher relationship" },
-              { icon: MessageCircle, title: "Local Support", desc: "French-language assistance and guidance" },
-              { icon: Globe, title: "Integrated Training", desc: "Combine with our broader cybersecurity programmes" },
-              { icon: Award, title: "Educational Expertise", desc: "Cisco Networking Academy experience since 2010" }
-            ].map((item, i) => (
-              <div key={i} className="text-center p-6 bg-[#111827]/50 rounded-2xl border border-gray-700/50">
+            {academyBenefits.map((item, i) => (
+              <div key={i} className="text-center p-6 bg-[#111827]/50 rounded-2xl border border-gray-700/50 hover:border-[#d4af37]/30 transition-all">
                 <div className="w-14 h-14 bg-[#d4af37]/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <item.icon className="w-7 h-7 text-[#d4af37]" />
                 </div>
@@ -516,11 +678,16 @@ const WorldOfHaiku = () => {
           </div>
           
           <div className="mt-12 text-center">
-            <img 
-              src="https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/klaxr3o2_logo%20saint%20georges.webp"
-              alt="Saint-Georges Academy"
-              className="h-24 w-auto mx-auto bg-white rounded-xl p-4"
-            />
+            <div className="inline-block bg-[#111827]/80 border border-[#d4af37]/30 rounded-2xl p-6">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/klaxr3o2_logo%20saint%20georges.webp"
+                alt="Saint-Georges Academy"
+                className="h-16 w-auto mx-auto bg-white rounded-xl p-3"
+              />
+              <p className="text-gray-400 text-sm mt-4">
+                Cisco Networking Academy Partner Since 2010
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -529,10 +696,10 @@ const WorldOfHaiku = () => {
       <section className="py-24 bg-[#0f172a]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="mb-6 bg-purple-500/20 text-purple-400 border border-purple-500/30">
+            <Badge className="mb-6 bg-orange-500/20 text-orange-400 border border-orange-500/30">
               Questions & Answers
             </Badge>
-            <h2 className="text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Frequently Asked Questions
             </h2>
           </div>
@@ -540,10 +707,10 @@ const WorldOfHaiku = () => {
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, i) => (
               <AccordionItem key={i} value={`faq-${i}`} className="bg-[#111827]/50 border border-gray-700/50 rounded-xl px-6">
-                <AccordionTrigger className="text-white text-left hover:text-purple-400 py-6">
+                <AccordionTrigger className="text-white text-left hover:text-orange-400 py-6">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-400 pb-6">
+                <AccordionContent className="text-gray-400 pb-6 leading-relaxed">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -553,25 +720,26 @@ const WorldOfHaiku = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 bg-gradient-to-br from-purple-900/30 via-pink-900/20 to-cyan-900/30">
+      <section className="py-24 bg-gradient-to-br from-red-900/30 via-orange-900/20 to-amber-900/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-8">
-            <Gamepad2 className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+            <Shield className="w-16 h-16 text-orange-400 mx-auto mb-4" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to Master Cybersecurity?
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            Ready to Transform Your Cybersecurity Learning?
           </h2>
           <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-            Join thousands of learners who have transformed their cybersecurity skills through The World of Haiku.
+            Join the future of cybersecurity education. Whether you're starting your personal journey 
+            or bringing innovation to your institution, The World of Haiku delivers.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-12 py-7 text-xl shadow-lg shadow-purple-500/25"
+              className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold px-12 py-7 text-xl shadow-lg shadow-red-500/25"
             >
               <Sparkles className="w-6 h-6 mr-2" />
-              Start Learning — €19/month
+              Get Your Licence — €19/month
             </Button>
             <Button 
               size="lg"
@@ -581,13 +749,13 @@ const WorldOfHaiku = () => {
             >
               <Link to="/contact">
                 <Building2 className="w-6 h-6 mr-2" />
-                Institutional Quote
+                Bring Haiku to Your Institution
               </Link>
             </Button>
           </div>
           
           <p className="text-gray-400 text-sm">
-            Questions? <Link to="/contact" className="text-purple-400 hover:underline">Contact Saint-Georges Academy</Link>
+            Questions? <Link to="/contact" className="text-orange-400 hover:underline">Speak with Saint-Georges Academy</Link>
           </p>
         </div>
       </section>
@@ -597,15 +765,15 @@ const WorldOfHaiku = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-8 text-gray-400 text-sm">
             <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-purple-400" />
+              <MapPin className="w-4 h-4 text-orange-400" />
               <span>2 venelle des Amandiers, 86200 Loudun, France</span>
             </div>
             <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-purple-400" />
-              <a href="mailto:contact@saint-georges.academy" className="hover:text-purple-400">contact@saint-georges.academy</a>
+              <Mail className="w-4 h-4 text-orange-400" />
+              <a href="mailto:contact@saint-georges.academy" className="hover:text-orange-400">contact@saint-georges.academy</a>
             </div>
             <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-purple-400" />
+              <Phone className="w-4 h-4 text-orange-400" />
               <span>+33 (0)5 49 22 75 10</span>
             </div>
           </div>

@@ -339,13 +339,54 @@ Created professional, Qualiopi-compliant institutional page with:
 ---
 
 ### Phase 5 - Course Detail Redesign & New Pages (Mar 2026) ✅ NEW
-✅ **World of Haiku Page** - /world-of-haiku
-- Game-based cybersecurity learning platform page
-- Premium dark-themed sales page with purple/pink gradients
-- €19/month individual pricing
-- Institutional quote request option
-- Added to main navigation bar
-- Features FAQ, benefits section, and video placeholder
+✅ **World of Haiku Premium Sales Page** - /world-of-haiku
+Complete redesign with conversion-focused layout:
+
+**1. Hero Section**
+- Strong headline: "The Future of Cybersecurity Learning"
+- Subheadline explaining immersive learning
+- CTAs: "Start Learning — €19/month" and "Institutional Solutions"
+- Trust indicators (no experience required, industry skills, official support)
+
+**2. Video Section (Central Sales Element)**
+- Embedded promotional video with custom player controls
+- Play/Pause and Mute buttons
+- Premium styling with gradient border
+
+**3. What is The World of Haiku**
+- Explanation positioning as serious learning platform
+- Key differentiators from passive video courses
+- Feature highlights grid
+
+**4. Why Immersive Learning Works**
+- 90% knowledge retention statistic
+- 3x engagement increase
+- 2x faster skill acquisition
+- Research-backed messaging
+
+**5. Designed for Two Audiences**
+- Tab navigation (Individuals / Institutions)
+- Individual benefits: affordable access, practical learning, accessibility
+- Institution benefits: innovative education, student engagement, flexible deployment
+
+**6. Pricing Section**
+- Individual Licence: €19/month with full features list
+- Educational Institution: Custom quote with enterprise badge
+- Clear CTAs: "Start Learning" and "Request a Quote"
+
+**7. Why Saint-Georges Academy**
+- Official reseller status
+- Local expert support
+- Integrated training path
+- Educational expertise
+
+**8. FAQ Section**
+- 10 comprehensive questions
+- Professional, informative tone
+
+**9. Final CTA**
+- Strong closing with dual CTAs
+- Contact link
 
 ✅ **Course Detail Page Redesign** - /course/:courseId
 Completely redesigned all course detail pages with dark, cyber-professional theme:
