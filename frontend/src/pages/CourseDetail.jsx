@@ -586,27 +586,45 @@ const CourseDetail = () => {
                   </p>
                   
                   <div className="space-y-6">
-                    {/* Metascape Portfolio Link */}
-                    <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl p-6 border border-purple-500/30">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs">PORTFOLIO</Badge>
-                        <span className="text-sm text-gray-300">Metascape - Professional Unreal Engine Projects</span>
+                    {/* Metascape Portfolio Link with Image */}
+                    <a 
+                      href="https://www.metascape.it/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block group"
+                    >
+                      <div className="relative rounded-2xl overflow-hidden border-2 border-purple-500/30 hover:border-purple-500/60 transition-all">
+                        {/* Background Image */}
+                        <div className="relative h-64 md:h-80">
+                          <img 
+                            src="https://customer-assets.emergentagent.com/job_2e4d9af3-45cd-47a7-9716-49578471fb53/artifacts/4fbub24q_image.png"
+                            alt="Metascape - Your Gateway to the Metaverse"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          {/* Gradient Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                          
+                          {/* Content Overlay */}
+                          <div className="absolute inset-0 flex flex-col justify-end p-6">
+                            <div className="flex items-center gap-2 mb-3">
+                              <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs">PORTFOLIO</Badge>
+                              <Badge className="bg-white/20 text-white text-xs border-0">Unreal Engine Projects</Badge>
+                            </div>
+                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                              Metascape
+                            </h3>
+                            <p className="text-white/80 text-sm md:text-base mb-4 max-w-xl">
+                              Your Gateway to the Metaverse — Découvrez une collection impressionnante de projets Unreal Engine : architecture, visualisation, expériences interactives et plus encore.
+                            </p>
+                            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold w-fit group-hover:from-purple-600 group-hover:to-pink-600 transition-all">
+                              <Globe className="w-5 h-5" />
+                              Visiter Metascape Portfolio
+                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <p className="text-gray-400 text-sm mb-4">
-                        Découvrez une collection impressionnante de projets Unreal Engine réalisés par des professionnels. 
-                        Architecture, visualisation, expériences interactives et plus encore.
-                      </p>
-                      <a 
-                        href="https://www.metascape.it/" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-                      >
-                        <Globe className="w-5 h-5" />
-                        Visiter Metascape Portfolio
-                        <ArrowRight className="w-4 h-4" />
-                      </a>
-                    </div>
+                    </a>
                     
                     {/* Featured Video */}
                     <div>
