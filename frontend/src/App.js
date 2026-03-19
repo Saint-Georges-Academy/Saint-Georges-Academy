@@ -26,6 +26,7 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import ExtremeBootcamp from "./pages/ExtremeBootcamp";
 import EdgeComputing from "./pages/EdgeComputing";
+import WorldOfHaiku from "./pages/WorldOfHaiku";
 import "./i18n";
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
             <Route path="/auth" element={<Auth />} />
             <Route path="/extreme-bootcamp" element={<ExtremeBootcamp />} />
             <Route path="/edge-computing" element={<EdgeComputing />} />
+            <Route path="/world-of-haiku" element={<WorldOfHaiku />} />
             <Route 
               path="/dashboard" 
               element={
