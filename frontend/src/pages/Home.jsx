@@ -62,7 +62,7 @@ const Home = () => {
       level: 'Tous niveaux',
       path: '/course/unreal',
       color: 'from-purple-50 to-purple-100',
-      logo: 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/l0g1p6bm_image.png'
+      logo: 'https://customer-assets.emergentagent.com/job_2e4d9af3-45cd-47a7-9716-49578471fb53/artifacts/c88t19aj_image.png'
     }
   ];
 

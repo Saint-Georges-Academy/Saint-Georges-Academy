@@ -171,7 +171,7 @@ const CourseDetail = () => {
     } else if (course.id === 'cyberops') {
       return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/djop92go_image.png';
     } else if (course.id === 'unreal') {
-      return 'https://customer-assets.emergentagent.com/job_ccna-loudun/artifacts/l0g1p6bm_image.png';
+      return 'https://customer-assets.emergentagent.com/job_2e4d9af3-45cd-47a7-9716-49578471fb53/artifacts/c88t19aj_image.png';
     }
     return null;
   };
@@ -586,6 +586,28 @@ const CourseDetail = () => {
                   </p>
                   
                   <div className="space-y-6">
+                    {/* Metascape Portfolio Link */}
+                    <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl p-6 border border-purple-500/30">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs">PORTFOLIO</Badge>
+                        <span className="text-sm text-gray-300">Metascape - Professional Unreal Engine Projects</span>
+                      </div>
+                      <p className="text-gray-400 text-sm mb-4">
+                        Découvrez une collection impressionnante de projets Unreal Engine réalisés par des professionnels. 
+                        Architecture, visualisation, expériences interactives et plus encore.
+                      </p>
+                      <a 
+                        href="https://www.metascape.it/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                      >
+                        <Globe className="w-5 h-5" />
+                        Visiter Metascape Portfolio
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    </div>
+                    
                     {/* Featured Video */}
                     <div>
                       <div className="flex items-center gap-2 mb-3">
