@@ -471,6 +471,63 @@ const CourseDetail = () => {
             </Card>
             )}
 
+            {/* Video Gallery - Unreal Engine */}
+            {course.id === 'unreal' && (
+            <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-indigo-50">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#0f1f3d] flex items-center space-x-2">
+                  <Video className="w-6 h-6 text-purple-600" />
+                  <span>Découvrez Unreal Engine</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-6">
+                  Explorez les possibilités infinies d'Unreal Engine à travers ces démonstrations impressionnantes.
+                </p>
+                <div className="grid gap-6">
+                  <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/nWb2Ht7jbrE"
+                      title="Unreal Engine Demo 1"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        src="https://www.youtube.com/embed/7NonJwSJi_U"
+                        title="Unreal Engine Demo 2"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      ></iframe>
+                    </div>
+                    <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        src="https://www.youtube.com/embed/2rMkr4wh1Ls"
+                        title="Unreal Engine Demo 3"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      ></iframe>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            )}
+
             {/* Certification Info */}
             {course.certificationCost && (
               <Card className="border-2 border-[#d4af37] bg-gradient-to-br from-amber-50 to-yellow-50">
