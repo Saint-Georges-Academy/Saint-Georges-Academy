@@ -40,9 +40,12 @@ import {
   MessageCircle,
   CalendarCheck,
   ChevronRight,
-  Play
+  Play,
+  Download,
+  FileText
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import { generateEdgeComputingBrochure } from '../utils/generateEdgeComputingBrochure';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -245,6 +248,22 @@ const EdgeComputing = () => {
                     <BookOpen className="w-5 h-5 mr-2" />
                     View Programme
                   </a>
+                </Button>
+                <Button 
+                  onClick={() => {
+                    generateEdgeComputingBrochure();
+                    toast({
+                      title: "Downloading Brochure",
+                      description: "Your premium PDF brochure is being downloaded.",
+                    });
+                  }}
+                  variant="outline" 
+                  size="lg"
+                  className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 px-8 py-6 text-lg"
+                  data-testid="download-brochure-btn"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  Download Brochure
                 </Button>
               </div>
             </div>
