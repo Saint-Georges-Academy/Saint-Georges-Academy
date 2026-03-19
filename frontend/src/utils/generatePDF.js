@@ -3,10 +3,18 @@ import 'jspdf-autotable';
 
 // Generate a professional PDF program for a course
 export const generateCoursePDF = (course) => {
-  const doc = new jsPDF();
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const margin = 20;
-  let yPosition = 20;
+  try {
+    if (!course) {
+      console.error('generateCoursePDF: No course data provided');
+      alert('Erreur: Données du cours non disponibles');
+      return null;
+    }
+    
+    console.log('Generating PDF for course:', course.id);
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 20;
+    let yPosition = 20;
 
   // Colors
   const navyBlue = [15, 31, 61]; // #0f1f3d
@@ -299,7 +307,14 @@ export const generateCoursePDF = (course) => {
   const fileName = `Programme_${course.id.toUpperCase()}_Saint-Georges-Academy.pdf`;
   doc.save(fileName);
   
+  console.log('PDF generated successfully:', fileName);
   return fileName;
+  
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    alert('Erreur lors de la génération du PDF: ' + error.message);
+    return null;
+  }
 };
 
 export default generateCoursePDF;

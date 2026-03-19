@@ -338,7 +338,21 @@ const CourseDetail = () => {
                   S'inscrire — {selectedFormat === 'online' ? course.onlinePrice : course.inClassPrice}€
                 </Button>
                 <Button 
-                  onClick={() => generateCoursePDF(course)}
+                  onClick={() => {
+                    try {
+                      generateCoursePDF(course);
+                      toast({
+                        title: "Téléchargement en cours",
+                        description: "Le programme PDF est en cours de téléchargement.",
+                      });
+                    } catch (error) {
+                      toast({
+                        title: "Erreur",
+                        description: "Impossible de générer le PDF.",
+                        variant: "destructive"
+                      });
+                    }
+                  }}
                   variant="outline" 
                   size="lg"
                   className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-6 text-lg"
