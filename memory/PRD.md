@@ -338,10 +338,63 @@ Created professional, Qualiopi-compliant institutional page with:
 
 ---
 
+### Phase 5 - Course Detail Redesign & New Pages (Mar 2026) ✅ NEW
+✅ **World of Haiku Page** - /world-of-haiku
+- Game-based cybersecurity learning platform page
+- Premium dark-themed sales page with purple/pink gradients
+- €19/month individual pricing
+- Institutional quote request option
+- Added to main navigation bar
+- Features FAQ, benefits section, and video placeholder
+
+✅ **Course Detail Page Redesign** - /course/:courseId
+Completely redesigned all course detail pages with dark, cyber-professional theme:
+
+**1. Visual Design**
+- Dark background (#0a0f1a, #0f172a)
+- Gradient blur orbs for visual depth
+- Category-based accent colors:
+  - CCNA courses: Cyan/blue gradient
+  - CyberOps: Emerald/cyan gradient  
+  - Unreal Engine: Purple/pink gradient
+- Glass-morphism cards with backdrop blur
+
+**2. Hero Section**
+- Course badges with category colors
+- Large title with description
+- Duration, level, certification info
+- CTA buttons: "S'inscrire" and "Programme PDF"
+- Certification logo card on the right
+
+**3. Format Selection**
+- Interactive clickable cards for En Ligne / Présentiel
+- Visual selection indicator
+- Price display on each card
+- Meals included badge for in-class
+
+**4. Content Sections**
+- "Ce qui est inclus" with checkmark list
+- "Objectifs de la formation" with numbered badges
+- Video gallery for Unreal Engine (4 videos)
+- Certification exam purchase option
+
+**5. Sticky Inscription Sidebar**
+- Gradient header matching course category
+- Price display with format indicator
+- Session selector dropdown
+- Checkout button with loading state
+- Funding options info
+- Benefits checklist
+
+**6. Footer**
+- Contact information with accent icons
+
+---
+
 ## Design Guidelines
-- Institutional professional aesthetic
-- Navy blue (#0f1f3d) and gold (#d4af37)
-- No dark colorful gradients
+- **Premium Pages**: Dark theme (#0a0f1a) with gradient accents, glass-morphism
+- **Standard Pages**: Institutional aesthetic with navy blue (#0f1f3d) and gold (#d4af37)
+- Category-based accent colors for courses
 - Cisco Networking Academy branding
 - Clean, spacious layouts
 - Smooth transitions and micro-interactions
@@ -403,4 +456,4 @@ Created professional, Qualiopi-compliant institutional page with:
 ---
 
 ## Last Updated
-February 2026 - P0 Features Completed
+March 2026 - Course Detail Redesign & World of Haiku Page Completed
